@@ -9,8 +9,12 @@
 #import "ESCFileManager.h"
 #import "ESCHeader.h"
 #import "MJExtension.h"
+#import "ESCConfigurationModel.h"
+#import "NSDate+ESCDateString.h"
 
 @interface ESCFileManager ()
+
+@property(nonatomic,strong)NSDateFormatter* dateFormatter;
 
 @end
 
@@ -28,14 +32,33 @@ static ESCFileManager *staticESCFileManager;
 
 
 #pragma mark - public
-- (NSData *)getFirstDirectoryNewVersionIPA {
-    NSString *filePath = [self getLatestIPAFilePathFromFirstDirectory];
-    NSData *firstIPAData = [[NSData alloc] initWithContentsOfFile:filePath];
-    return firstIPAData;
+
+
+
+- (NSString *)getLatestIPAFilePathFromWithConfigurationModel:(ESCConfigurationModel *)model {
+    NSString *path = [self getFilePathFromFileURLString:model.ipaPath];
+    NSArray *ipaArray = [self getAllIPAinDirectoryPath:path];
+    NSString *filePath = [self getLatestIPAFilePath:ipaArray];
+    return filePath;
 }
 
-- (NSDictionary *)getLatestIPAFileInfoFromFirstDirectory {
-    NSString *filePath = [self getLatestIPAFilePathFromFirstDirectory];
+- (NSString *)getFilePathFromFileURLString:(NSString *)urlString {
+    NSURL *url = [NSURL URLWithString:urlString];
+    return url.path;
+}
+
+- (void)getLatestIPAFileInfoWithConfigurationModel:(ESCConfigurationModel *)model {
+    model.ipaName = [[NSFileManager defaultManager] displayNameAtPath:[self getLatestIPAFilePathFromWithConfigurationModel:model]];
+    NSDictionary *infoDicture = [[ESCFileManager sharedFileManager] getLatestIPAFileInfoFromDirectoryWithConfigurationModel:model];
+    NSDate *date = [infoDicture objectForKey:NSFileCreationDate];
+    model.createDateString = [self.dateFormatter stringFromDate:date];
+    model.offTime = [date getOffTime];
+    float firstSize = [[infoDicture objectForKey:NSFileSize] floatValue] / 1024 / 1024;
+    model.sizeString = [NSString stringWithFormat:@"%.2lfM",firstSize];
+}
+
+- (NSDictionary *)getLatestIPAFileInfoFromDirectoryWithConfigurationModel:(ESCConfigurationModel *)model {
+    NSString *filePath = [self getLatestIPAFilePathFromWithConfigurationModel:model];
     NSError *error;
     NSDictionary *attributesDict = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
     if (error) {
@@ -44,44 +67,6 @@ static ESCFileManager *staticESCFileManager;
     }else {
         return attributesDict;
     }
-}
-
-- (NSString *)getLatestIPAFilePathFromFirstDirectory {
-    NSArray *ipaArray = [self getAllIPAinDirectoryPath:ESCfirstFileDirectoryPath];
-    NSString *filePath = [self getLatestIPAFilePath:ipaArray];
-    return filePath;
-}
-
-- (NSString *)getFirstIPADisplayName {
-    return [[NSFileManager defaultManager] displayNameAtPath:[self getLatestIPAFilePathFromFirstDirectory]];
-}
-
-- (NSDictionary *)getLatestIPAFileInfoFromSecondDirectory {
-    NSString *filePath = [self getLatestIPAFilePathFromSecondDirectory];
-    NSError *error;
-    NSDictionary *attributesDict = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
-    if (error) {
-        NSLog(@"get first ipa attributes error %@",error);
-        return nil;
-    }else {
-        return attributesDict;
-    }
-}
-
-- (NSData *)getSecondDirectoryNewVersionIPA {
-    NSString *filePath = [self getLatestIPAFilePathFromSecondDirectory];
-    NSData *firstIPAData = [[NSData alloc] initWithContentsOfFile:filePath];
-    return firstIPAData;
-}
-
-- (NSString *)getLatestIPAFilePathFromSecondDirectory {
-    NSArray *ipaArray = [self getAllIPAinDirectoryPath:ESCsecondFileDirectoryPath];
-    NSString *filePath = [self getLatestIPAFilePath:ipaArray];
-    return filePath;
-}
-
-- (NSString *)getSecondIPADisplayName {
-    return [[NSFileManager defaultManager] displayNameAtPath:[self getLatestIPAFilePathFromSecondDirectory]];
 }
 
 - (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name{
@@ -151,4 +136,11 @@ static ESCFileManager *staticESCFileManager;
     
 }
 
+- (NSDateFormatter *)dateFormatter {
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"yyyy年MM月dd日 HH:mm:ss";
+    }
+    return _dateFormatter;
+}
 @end

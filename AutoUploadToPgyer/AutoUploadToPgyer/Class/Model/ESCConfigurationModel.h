@@ -36,4 +36,22 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
     
 @property (nonatomic, copy) NSString *projectName;
 
+@property(nonatomic,assign)BOOL isCreateIPA;
+
+@property(nonatomic,assign)BOOL isUploadIPA;
+
+@property(nonatomic,copy)NSString* escprojectName;
+
+@property(nonatomic,copy)NSString* ipaName;
+
+@property(nonatomic,copy)NSString* createDateString;
+
+@property(nonatomic,copy)NSString* offTime;
+
+@property(nonatomic,copy)NSString* sizeString;
+
+@property(nonatomic,assign)CGFloat uploadProgress;
+
+@property(nonatomic,copy)NSString* uploadState;
+
 @end

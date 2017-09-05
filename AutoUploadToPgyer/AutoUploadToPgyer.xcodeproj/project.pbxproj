@@ -32,7 +32,6 @@
 		04199F681F5ADB9800CEFAB0 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 04199F671F5ADB9800CEFAB0 /* NSDate+Utilities.m */; };
 		04199F701F5AF63700CEFAB0 /* G.E.M.邓紫棋 - 喜欢你.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04199F6F1F5AF63700CEFAB0 /* G.E.M.邓紫棋 - 喜欢你.mp3 */; };
 		04199F721F5AF69E00CEFAB0 /* G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04199F711F5AF69E00CEFAB0 /* G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3 */; };
-		047431911F5D8AED00445EB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431901F5D8AED00445EB5 /* ViewController.m */; };
 		047431941F5D8B3200445EB5 /* ESCconfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431931F5D8B3200445EB5 /* ESCconfigViewController.m */; };
 		047431981F5D978100445EB5 /* ESCConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431971F5D978100445EB5 /* ESCConfigurationModel.m */; };
 		0474319B1F5D987200445EB5 /* ESCNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474319A1F5D987200445EB5 /* ESCNetWorkManager.m */; };
@@ -95,8 +94,6 @@
 		04199F671F5ADB9800CEFAB0 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		04199F6F1F5AF63700CEFAB0 /* G.E.M.邓紫棋 - 喜欢你.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "G.E.M.邓紫棋 - 喜欢你.mp3"; sourceTree = "<group>"; };
 		04199F711F5AF69E00CEFAB0 /* G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3"; sourceTree = "<group>"; };
-		0474318F1F5D8AED00445EB5 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		047431901F5D8AED00445EB5 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		047431921F5D8B3200445EB5 /* ESCconfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCconfigViewController.h; sourceTree = "<group>"; };
 		047431931F5D8B3200445EB5 /* ESCconfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCconfigViewController.m; sourceTree = "<group>"; };
 		047431961F5D978100445EB5 /* ESCConfigurationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCConfigurationModel.h; sourceTree = "<group>"; };
@@ -265,14 +262,12 @@
 		0474318E1F5D8AED00445EB5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0474318F1F5D8AED00445EB5 /* ViewController.h */,
-				047431901F5D8AED00445EB5 /* ViewController.m */,
+				F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */,
+				F07C80021F5EB33900AEAF30 /* ESCMainViewController.m */,
 				0474319F1F5D9A9B00445EB5 /* Main.storyboard */,
 				047431921F5D8B3200445EB5 /* ESCconfigViewController.h */,
 				047431931F5D8B3200445EB5 /* ESCconfigViewController.m */,
 				047431A11F5D9ADC00445EB5 /* ESCconfigViewController.storyboard */,
-				F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */,
-				F07C80021F5EB33900AEAF30 /* ESCMainViewController.m */,
 				F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */,
 				F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */,
 			);
@@ -388,7 +383,6 @@
 				04199F5F1F5ABD8300CEFAB0 /* NSString+MJExtension.m in Sources */,
 				04199F651F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m in Sources */,
 				04199F3A1F5AB52300CEFAB0 /* ESCFileManager.m in Sources */,
-				047431911F5D8AED00445EB5 /* ViewController.m in Sources */,
 				04199F331F5AB45600CEFAB0 /* AFURLResponseSerialization.m in Sources */,
 				04199F2F1F5AB45600CEFAB0 /* AFHTTPSessionManager.m in Sources */,
 				047431A51F5D9C4100445EB5 /* ESCBuildShellFileManager.m in Sources */,

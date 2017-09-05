@@ -8,8 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ESCConfigurationModel;
+
 @interface ESCconfigViewController : NSViewController
 
-@property(nonatomic,assign)NSInteger projectNum;
+@property(nonatomic,strong)ESCConfigurationModel* configurationModel;
+
+@property(nonatomic,copy)void(^configCompleteBlock)();
 
 @end

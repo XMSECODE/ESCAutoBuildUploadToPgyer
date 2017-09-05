@@ -8,6 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ESCMainTableCellView,ESCConfigurationModel;
+
+static NSString *ESCMainTableCellViewID = @"ESCMainTableCellViewID";
+
+@protocol ESCMainTableCellViewDelegate <NSObject>
+
+- (void)mainTableCellViewdidClickConfigButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
+
+@end
+
 @interface ESCMainTableCellView : NSTableCellView
+
+@property(nonatomic,weak)id<ESCMainTableCellViewDelegate> delegate;
+
+@property(nonatomic,strong)ESCConfigurationModel* configurationModel;
 
 @end

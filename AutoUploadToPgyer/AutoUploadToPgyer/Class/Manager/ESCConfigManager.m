@@ -13,6 +13,8 @@
 static NSString *firstConfiguration = @"firstConfiguration";
 static NSString *secondConfiguration = @"secondConfiguration";
 
+static NSString *ESCUserDataKey = @"ESCUserDataKey";
+
 @interface ESCConfigManager ()
 
 @end
@@ -31,23 +33,22 @@ static ESCConfigManager *staticESCConfigManager;
 }
 
 - (void)readConfigData {
-    NSDictionary *firstDict = [[NSUserDefaults standardUserDefaults] objectForKey:firstConfiguration];
-    self.firstConfigurationModel = [ESCConfigurationModel mj_objectWithKeyValues:firstDict];
-    
-    NSDictionary *secondDict = [[NSUserDefaults standardUserDefaults] objectForKey:secondConfiguration];
-    self.secondConfigurationModel = [ESCConfigurationModel mj_objectWithKeyValues:secondDict];
+    NSArray *temArray = [[NSUserDefaults standardUserDefaults] objectForKey:ESCUserDataKey];
+    self.modelArray = [ESCConfigurationModel mj_objectArrayWithKeyValuesArray:temArray];
 }
 
-- (void)setFirstConfigurationModel:(ESCConfigurationModel *)firstConfigurationModel {
-    _firstConfigurationModel = firstConfigurationModel;
-    NSDictionary *dict = [[firstConfigurationModel mj_keyValues] copy];
-    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:firstConfiguration];
+- (void)saveUserData {
+    NSMutableArray *temArray = [NSMutableArray array];
+    for (ESCConfigurationModel *model in self.modelArray) {
+        NSDictionary *dict = [[model mj_keyValues] copy];
+        [temArray addObject:dict];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:temArray forKey:ESCUserDataKey];
 }
 
-- (void)setSecondConfigurationModel:(ESCConfigurationModel *)secondConfigurationModel {
-    _secondConfigurationModel = secondConfigurationModel;
-    NSDictionary *dict = [[secondConfigurationModel mj_keyValues] copy];
-    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:secondConfiguration];
+- (void)setModelArray:(NSArray<ESCConfigurationModel *> *)modelArray {
+    _modelArray = modelArray;
+    [self saveUserData];
 }
 
 @end

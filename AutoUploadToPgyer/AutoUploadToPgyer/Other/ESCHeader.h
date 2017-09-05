@@ -9,9 +9,6 @@
 #ifndef ESCHeader_h
 #define ESCHeader_h
 
-#define ESCfirstFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlbtest_IPA"
-#define ESCsecondFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlb_IPA"
-
-#define ESCHistoryFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlbtest_IPA"
+#define ESCHistoryFileDirectoryPath @"/Users/xiangmingsheng/Documents/buildtest"
 
 #endif /* ESCHeader_h */

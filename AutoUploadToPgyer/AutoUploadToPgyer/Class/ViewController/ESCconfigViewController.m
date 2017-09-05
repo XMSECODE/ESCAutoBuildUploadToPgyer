@@ -35,15 +35,8 @@
 }
 
 - (void)setupUI {
-    ESCConfigurationModel *configurationModel;
-    if (self.projectNum == 1) {
-        configurationModel = [ESCConfigManager sharedConfigManager].firstConfigurationModel;
-    }else {
-        configurationModel = [ESCConfigManager sharedConfigManager].secondConfigurationModel;
-    }
-    if (configurationModel == nil) {
-        return;
-    }
+    ESCConfigurationModel *configurationModel = self.configurationModel;
+
     if (configurationModel.projectPath) {
         NSURL *url = [NSURL URLWithString:configurationModel.projectPath];
         self.projectPathControl.URL = url;
@@ -59,8 +52,8 @@
         self.ipaPathControl.URL = url;
     }
     
-    self.xcodeprojButton.state = configurationModel.projectType;
-    self.xcworkspaceButton.state = !configurationModel.projectType;
+    self.xcodeprojButton.state = !configurationModel.projectType;
+    self.xcworkspaceButton.state = configurationModel.projectType;
     self.debugButton.state = configurationModel.configuration;
     self.releaseButton.state = !configurationModel.configuration;
     if (configurationModel.schemes) {
@@ -77,7 +70,7 @@
 }
 
 - (IBAction)didClickCheckProject:(id)sender {
-    ESCConfigurationModel *configurationModel = [[ESCConfigurationModel alloc] init];
+    ESCConfigurationModel *configurationModel = self.configurationModel;
     
     NSString *projectPath = self.projectPathControl.stringValue;
     configurationModel.projectPath = projectPath;
@@ -104,10 +97,10 @@
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
     configurationModel.projectName = self.projectNameTextField.stringValue;
-    if (self.projectNum == 1) {
-        [ESCConfigManager sharedConfigManager].firstConfigurationModel = configurationModel;
-    }else {
-        [ESCConfigManager sharedConfigManager].secondConfigurationModel = configurationModel;
+    [[ESCConfigManager sharedConfigManager] saveUserData];
+    
+    if (self.configCompleteBlock) {
+        self.configCompleteBlock();
     }
     
     [self dismissController:nil];

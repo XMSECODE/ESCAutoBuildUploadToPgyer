@@ -12,10 +12,10 @@
 
 @interface ESCConfigManager : NSObject
 
-@property(nonatomic,strong)ESCConfigurationModel* firstConfigurationModel;
-
-@property(nonatomic,strong)ESCConfigurationModel* secondConfigurationModel;
+@property(nonatomic,strong)NSArray <ESCConfigurationModel *>* modelArray;
 
 + (instancetype)sharedConfigManager;
+
+- (void)saveUserData;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ESCConfigManager.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,7 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+    [[ESCConfigManager sharedConfigManager] saveUserData];
 }
 
 
