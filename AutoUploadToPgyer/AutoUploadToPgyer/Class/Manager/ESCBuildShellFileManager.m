@@ -79,7 +79,6 @@
 + (NSString *)writeWorkSpaceShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     NSURL *filePathURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/temBuild.sh",configurationModel.temPath]];
     
-    
     NSURL *projectPathURL = [NSURL URLWithString:configurationModel.projectPath];
     NSString *projectPath = projectPathURL.path;
     

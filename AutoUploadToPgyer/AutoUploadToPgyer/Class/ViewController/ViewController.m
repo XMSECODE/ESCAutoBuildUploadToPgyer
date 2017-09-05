@@ -17,6 +17,7 @@
 #import "ESCBuildShellFileManager.h"
 #import "ESCConfigurationModel.h"
 #import "ESCConfigManager.h"
+#import "ESCMainViewController.h"
 
 @interface ViewController ()
 
@@ -56,6 +57,10 @@
     [self uploadSecondIPA];
 }
 
+- (IBAction)didClickTest:(id)sender {
+    NSViewController *vc = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"ESCMainViewController"];
+    [self presentViewControllerAsSheet:vc];
+}
 
 - (IBAction)uploadFirstIPA:(id)sender {
     [self uploadFirstIPA];
