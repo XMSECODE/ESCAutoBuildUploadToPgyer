@@ -21,6 +21,7 @@
 @property (weak) IBOutlet NSButton *releaseButton;
 @property (weak) IBOutlet NSTextField *schemesTextField;
 @property (weak) IBOutlet NSTextField *appNameTextField;
+    @property (weak) IBOutlet NSTextField *projectNameTextField;
 
 @end
 
@@ -69,6 +70,10 @@
         self.appNameTextField.stringValue = configurationModel.appName;
     }
     
+    if (configurationModel.projectName) {
+        self.projectNameTextField.stringValue = configurationModel.projectName;
+    }
+    
 }
 
 - (IBAction)didClickCheckProject:(id)sender {
@@ -98,7 +103,7 @@
     NSString *schemes = self.schemesTextField.stringValue;
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
-
+    configurationModel.projectName = self.projectNameTextField.stringValue;
     if (self.projectNum == 1) {
         [ESCConfigManager sharedConfigManager].firstConfigurationModel = configurationModel;
     }else {

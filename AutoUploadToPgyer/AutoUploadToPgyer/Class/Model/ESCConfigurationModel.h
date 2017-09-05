@@ -33,6 +33,7 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 @property(nonatomic,assign)ESCXcodeBuildConfiguration configuration;
 
 @property(nonatomic,copy)NSString* appName;
-
+    
+@property (nonatomic, copy) NSString *projectName;
 
 @end

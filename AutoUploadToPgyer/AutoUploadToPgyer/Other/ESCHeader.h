@@ -9,12 +9,9 @@
 #ifndef ESCHeader_h
 #define ESCHeader_h
 
-#define ESCfirstFileDirectoryPath @"/Volumes/MyFiles/AppCust/ipa"
-#define ESCsecondFileDirectoryPath @"/Volumes/MyFiles/AppCust/custipa"
+#define ESCfirstFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlbtest_IPA"
+#define ESCsecondFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlb_IPA"
 
-#define ESCHistoryFileDirectoryPath @"/Volumes/MyFiles/AppCust/上传日志"
-
-#define ESCFirstProjectDirectoryPath @"/Volumes/MyFiles/AppCust/temapp copy/APPEMP/AppEmp"
-
+#define ESCHistoryFileDirectoryPath @"/Users/xiang/个人资料/tem_IPA/xlbtest_IPA"
 
 #endif /* ESCHeader_h */

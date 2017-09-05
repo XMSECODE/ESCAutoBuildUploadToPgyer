@@ -44,8 +44,8 @@ static ESCNetWorkManager *staticNetWorkManager;
                      progress:(void (^)(NSProgress * progress))cuploadProgress
                       success:(void (^)(NSDictionary *result))success
                       failure:(void (^)(NSError *error))failure{
-    NSDictionary *pare = @{@"uKey":@"5b7eb66deba06bbfe9665b8311091b32",
-                           @"_api_key":@"13bf7514f3247c2b5c40e39a70bd7bc6",
+    NSDictionary *pare = @{@"uKey":@"1fd1b8d57d2da401b4a763fb73004051",
+                           @"_api_key":@"0622e038913f8d820cbc676fabb27d0c",
                            @"installType":@"1",
                            @"password":@"",
                            @"updateDescription":@""

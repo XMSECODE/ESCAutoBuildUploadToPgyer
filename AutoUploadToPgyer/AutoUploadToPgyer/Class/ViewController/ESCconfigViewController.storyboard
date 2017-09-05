@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sWe-Bl-9jS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sWe-Bl-9jS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -143,17 +143,6 @@
                                     <action selector="didClickReleaseButton:" target="sWe-Bl-9jS" id="C0t-CO-hjo"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
-                                <rect key="frame" x="753" y="199" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="配置完成" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4lr-BS-Yzk">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="didClickCheckProject:" target="sWe-Bl-9jS" id="eeB-8f-JOK"/>
-                                </connections>
-                            </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-1F-XJH">
                                 <rect key="frame" x="520" y="160" width="150" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0Mj-X3-fUQ">
@@ -170,6 +159,36 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SrY-BK-zd2">
+                                <rect key="frame" x="698" y="207" width="86" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="projectName" id="9bs-vD-XdK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwD-j3-kkH">
+                                <rect key="frame" x="812" y="204" width="150" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="6Wi-Ho-JaH"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tpK-Y2-Hhz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
+                                <rect key="frame" x="527" y="57" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="配置完成" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4lr-BS-Yzk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickCheckProject:" target="sWe-Bl-9jS" id="eeB-8f-JOK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Eod-dA-Mty" firstAttribute="leading" secondItem="9fY-Ek-7Yn" secondAttribute="leading" id="192-dk-9Gz"/>
@@ -185,6 +204,7 @@
                             <constraint firstItem="ko9-7p-9pV" firstAttribute="centerY" secondItem="fpk-D3-dSO" secondAttribute="centerY" id="KvA-1F-rSV"/>
                             <constraint firstItem="Wi5-rP-QD7" firstAttribute="top" secondItem="sdF-1w-XkN" secondAttribute="bottom" constant="40" id="N19-It-4Za"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="leading" id="Oyt-LR-hjY"/>
+                            <constraint firstItem="JwD-j3-kkH" firstAttribute="centerY" secondItem="ogb-rr-Nsu" secondAttribute="centerY" id="PP5-kE-76g"/>
                             <constraint firstItem="YZx-9a-lMI" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="trailing" constant="60" id="SSY-Vw-HGL"/>
                             <constraint firstItem="9YQ-Oo-EHi" firstAttribute="centerY" secondItem="Eod-dA-Mty" secondAttribute="centerY" id="Sfx-mk-lBS"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="top" secondItem="fpk-D3-dSO" secondAttribute="bottom" constant="30" id="Sz5-df-VDo"/>
@@ -195,15 +215,18 @@
                             <constraint firstItem="ko9-7p-9pV" firstAttribute="leading" secondItem="YZx-9a-lMI" secondAttribute="trailing" constant="120" id="cPX-fc-e8X"/>
                             <constraint firstItem="CrZ-Mz-qBp" firstAttribute="centerY" secondItem="rSK-tx-LUh" secondAttribute="centerY" id="cvI-Ue-HUe"/>
                             <constraint firstItem="X0t-1F-XJH" firstAttribute="centerY" secondItem="Eod-dA-Mty" secondAttribute="centerY" id="dU8-4a-YqO"/>
+                            <constraint firstItem="JwD-j3-kkH" firstAttribute="leading" secondItem="SrY-BK-zd2" secondAttribute="trailing" constant="30" id="fhQ-ui-WAj"/>
                             <constraint firstItem="Eod-dA-Mty" firstAttribute="centerY" secondItem="dBU-2k-8wq" secondAttribute="centerY" id="gFP-bq-9kb"/>
                             <constraint firstItem="sMv-nJ-KD8" firstAttribute="leading" secondItem="CrZ-Mz-qBp" secondAttribute="trailing" constant="50" id="hD6-6h-Rmq"/>
                             <constraint firstItem="sdF-1w-XkN" firstAttribute="leading" secondItem="g35-gl-wLE" secondAttribute="leading" constant="20" id="jVH-2F-GbI"/>
                             <constraint firstItem="ogb-rr-Nsu" firstAttribute="leading" secondItem="ko9-7p-9pV" secondAttribute="trailing" constant="10" id="l7d-VC-rMT"/>
                             <constraint firstItem="HyV-Rt-6N1" firstAttribute="leading" secondItem="sMv-nJ-KD8" secondAttribute="trailing" constant="50" id="la0-Lz-9Vs"/>
+                            <constraint firstItem="SrY-BK-zd2" firstAttribute="centerY" secondItem="ogb-rr-Nsu" secondAttribute="centerY" id="ljo-nw-36w"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="centerY" secondItem="Wi5-rP-QD7" secondAttribute="centerY" id="qae-wo-1TJ"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="leading" secondItem="Wi5-rP-QD7" secondAttribute="trailing" constant="20" id="r4E-7f-dOf"/>
                             <constraint firstItem="rSK-tx-LUh" firstAttribute="centerY" secondItem="sdF-1w-XkN" secondAttribute="centerY" id="sKZ-4o-1XF"/>
                             <constraint firstItem="YZx-9a-lMI" firstAttribute="centerY" secondItem="fpk-D3-dSO" secondAttribute="centerY" id="sV5-xq-1aU"/>
+                            <constraint firstItem="SrY-BK-zd2" firstAttribute="leading" secondItem="ogb-rr-Nsu" secondAttribute="trailing" constant="30" id="xna-05-e2j"/>
                             <constraint firstItem="RTC-yb-uJt" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="trailing" constant="20" id="zoS-Vx-RYh"/>
                         </constraints>
                     </view>
@@ -211,6 +234,7 @@
                         <outlet property="appNameTextField" destination="X0t-1F-XJH" id="dUW-p7-xqY"/>
                         <outlet property="debugButton" destination="9fY-Ek-7Yn" id="Geo-iH-rs3"/>
                         <outlet property="ipaPathControl" destination="HyV-Rt-6N1" id="rSs-aK-KMV"/>
+                        <outlet property="projectNameTextField" destination="JwD-j3-kkH" id="Gfm-E3-Msx"/>
                         <outlet property="projectPathControl" destination="RTC-yb-uJt" id="4pJ-af-4Z0"/>
                         <outlet property="releaseButton" destination="Eod-dA-Mty" id="jfZ-lq-Dde"/>
                         <outlet property="schemesTextField" destination="ogb-rr-Nsu" id="p9t-PW-ugT"/>
