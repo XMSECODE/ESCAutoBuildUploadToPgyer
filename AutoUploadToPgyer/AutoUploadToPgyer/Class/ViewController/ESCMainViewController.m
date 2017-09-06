@@ -51,6 +51,19 @@
 }
 
 - (void)createIPAFile {
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        if (model.isCreateIPA) {
+            NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
+            system(filePath.UTF8String);
+            NSString *logStr = [NSString stringWithFormat:@"生成%@项目ipa包",model.projectName];
+            [self addLog:logStr];
+            [self uploadData];
+        }
+    }
+
+}
+
+- (void)uploadToPgyer {
     NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
     NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
@@ -69,18 +82,6 @@
                 model.uploadState = @"上传失败";
                 [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
             }];
-        }
-    }
-}
-
-- (void)uploadToPgyer {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        if (model.isCreateIPA) {
-            NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-            system(filePath.UTF8String);
-            NSString *logStr = [NSString stringWithFormat:@"生成%@项目ipa包",model.projectName];
-            [self addLog:logStr];
-            [self uploadData];
         }
     }
 }
