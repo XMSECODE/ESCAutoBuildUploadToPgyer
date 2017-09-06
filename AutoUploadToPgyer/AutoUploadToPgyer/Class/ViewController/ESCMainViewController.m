@@ -45,33 +45,12 @@
     cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
     return cell;
 }
-
-- (IBAction)didClickAddNewTarget:(id)sender {
-    ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
-    ESCConfigurationModel *newModel = [[ESCConfigurationModel alloc] init];
-    NSMutableArray *newArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
-    [newArray addObject:newModel];
-    [ESCConfigManager sharedConfigManager].modelArray = [newArray copy];
-    viewController.configurationModel = newModel;
-    [viewController setConfigCompleteBlock:^{
-        [self.tableView reloadData];
-    }];
-    [self presentViewControllerAsSheet:viewController];
+- (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
+    [self createIPAFile];
+    [self uploadToPgyer];
 }
 
-- (IBAction)didClickCreateIPAButton:(id)sender {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        if (model.isCreateIPA) {
-            NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-            system(filePath.UTF8String);
-            NSString *logStr = [NSString stringWithFormat:@"生成%@项目ipa包",model.projectName];
-            [self addLog:logStr];
-            [self uploadData];
-        }
-    }
-}
-
-- (IBAction)didClickUploadPgyerButton:(id)sender {
+- (void)createIPAFile {
     NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
     NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
@@ -92,6 +71,39 @@
             }];
         }
     }
+}
+
+- (void)uploadToPgyer {
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        if (model.isCreateIPA) {
+            NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
+            system(filePath.UTF8String);
+            NSString *logStr = [NSString stringWithFormat:@"生成%@项目ipa包",model.projectName];
+            [self addLog:logStr];
+            [self uploadData];
+        }
+    }
+}
+
+- (IBAction)didClickAddNewTarget:(id)sender {
+    ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
+    ESCConfigurationModel *newModel = [[ESCConfigurationModel alloc] init];
+    NSMutableArray *newArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+    [newArray addObject:newModel];
+    [ESCConfigManager sharedConfigManager].modelArray = [newArray copy];
+    viewController.configurationModel = newModel;
+    [viewController setConfigCompleteBlock:^{
+        [self.tableView reloadData];
+    }];
+    [self presentViewControllerAsSheet:viewController];
+}
+
+- (IBAction)didClickCreateIPAButton:(id)sender {
+    [self createIPAFile];
+}
+
+- (IBAction)didClickUploadPgyerButton:(id)sender {
+    [self uploadToPgyer];
 }
 
 - (IBAction)didClickScanButton:(id)sender {
