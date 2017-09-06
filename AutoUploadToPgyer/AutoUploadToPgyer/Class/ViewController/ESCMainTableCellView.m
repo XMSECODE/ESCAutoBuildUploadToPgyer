@@ -30,6 +30,12 @@
     [super drawRect:dirtyRect];
     
 }
+- (IBAction)didClickDeleteButton:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickDeleteButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickDeleteButton:self configurationModel:self.configurationModel];
+    }
+}
+
 - (IBAction)didClickConfigButton:(id)sender {
     if (self.delegate) {
         [self.delegate mainTableCellViewdidClickConfigButton:self configurationModel:self.configurationModel];

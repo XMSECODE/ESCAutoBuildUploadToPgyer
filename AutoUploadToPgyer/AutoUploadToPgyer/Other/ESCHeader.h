@@ -9,6 +9,4 @@
 #ifndef ESCHeader_h
 #define ESCHeader_h
 
-#define ESCHistoryFileDirectoryPath @"/Users/xiangmingsheng/Documents/buildtest"
-
 #endif /* ESCHeader_h */

@@ -41,11 +41,13 @@ static ESCNetWorkManager *staticNetWorkManager;
 }
 
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
+                             uKey:(NSString *)uKey
+                          api_key:(NSString *)api_key
                      progress:(void (^)(NSProgress * progress))cuploadProgress
                       success:(void (^)(NSDictionary *result))success
                       failure:(void (^)(NSError *error))failure{
-    NSDictionary *pare = @{@"uKey":@"b2abb2d4332617715670122f1ca472e2",
-                           @"_api_key":@"3d7b303c497c4e499f1057adc296a2c6",
+    NSDictionary *pare = @{@"uKey":uKey,
+                           @"_api_key":api_key,
                            @"installType":@"1",
                            @"password":@"",
                            @"updateDescription":@""

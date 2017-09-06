@@ -12,129 +12,52 @@
 @implementation ESCBuildShellFileManager
 
 + (NSString *)writeShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
-    if (configurationModel.projectType == ESCXCodeProjectTypeProj) {
-        return [self writeProjectShellFileWithConfigurationModel:configurationModel];
-    }else {
-        return [self writeWorkSpaceShellFileWithConfigurationModel:configurationModel];
-    }
+    return [self writeProjectShellFileWithConfigurationModel:configurationModel];
 }
 
 + (NSString *)writeProjectShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     
-    NSURL *filePathURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/temBuild.sh",configurationModel.temPath]];
+    NSString *projectPath = configurationModel.projectPath;
     
-    
-    NSURL *projectPathURL = [NSURL URLWithString:configurationModel.projectPath];
-    NSString *projectPath = projectPathURL.path;
-    
-    NSString *shellPath = filePathURL.path.stringByDeletingLastPathComponent;
-    
-    NSURL *ipaPathURL = [NSURL URLWithString:configurationModel.ipaPath];
-    NSString *ipaPath = ipaPathURL.path;
-    
-    NSString *shellString = [NSString stringWithFormat:@"#!/bin/sh\n\
-                             echo \"==============start=========\"\n\
-                             \n\
-                             todayTime=$(%@)\n\
-                             echo $todayTime\n\
-                             \n\
-                             appName=\"%@\"\n\
-                             projectPath=\"%@\"\n\
-                             shellPath=\"%@\"\n\
-                             resultipaPath=\"%@\"\n\
-                             \n\
-                             \n\
-                             rmobuild=\"rm -fr ${shellPath}/build\"\n\
-                             echo \"$($rmobuild)\"\n\
-                             \n\
-                             echo \"$(cd %@;clear;pwd;xcodebuild)\"\n\
-                             \n\
-                             copyPath=\"${projectPath}/build\"\n\
-                             copyd=\"cp -R ${copyPath} %@\"\n\
-                             echo \"$($copyd)\"\n\
-                             \n\
-                             ipad=\"xcrun -sdk iphoneos PackageApplication -v ${shellPath}/build/Release-iphoneos/${appName}.app -o ${resultipaPath}/${todayTime}-${appName}.ipa\"\n\
-                             echo $ipad\n\
-                             echo \"$($ipad)\"\n\
-                             \n\
-                             rmprojectbuild=\"rm -rf ${projectPath}/build\"\n\
-                             echo \"$($rmprojectbuild)\"\n\
-                             \n\
-                             \n\
-                             echo \"=============end================\"\n",@"date -v -0d +%Y-%m-%d-%H-%M-%S",configurationModel.appName,projectPath,shellPath,ipaPath,projectPath,shellPath];
-    
+    NSString *ipaPath = configurationModel.ipaPath;
 
+    NSString *projectTypeString;
+    if (configurationModel.projectType == ESCXCodeProjectTypeProj) {
+        projectTypeString = @"project";
+    }else {
+        projectTypeString = @"workspace";
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd-HH-mm-ss";
+    NSDate *date = [NSDate date];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    
+    NSString *projectName = [configurationModel projectName];
+    
+    NSString *archiveFilePath = [NSString stringWithFormat:@"%@/%@/%@.xcarchive",ipaPath,dateString,projectName];
+    
+    NSString *ipaFilePath = [NSString stringWithFormat:@"%@/%@",ipaPath,dateString];
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"buildinfo.plist" ofType:nil];
+    
+    NSString *archiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild archive -%@ %@ -scheme %@ -archivePath %@)\"",projectTypeString,projectPath,configurationModel.schemes,archiveFilePath];
+    
+    NSString *exportArchiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild -exportArchive -archivePath %@ -exportPath %@ -exportOptionsPlist %@)\"",archiveFilePath,ipaFilePath,plistPath];
+
+    
+    NSString *shellString = [NSString stringWithFormat:@"#!/bin/sh\n\n%@\n\n%@\n",archiveShellString,exportArchiveShellString];
 
     NSError *error;
-    [shellString writeToURL:filePathURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    NSString *getauto = [NSString stringWithFormat:@"chmod a+x %@",filePathURL.path];
+    NSString *temShellPath = [NSString stringWithFormat:@"%@/tem.sh",ipaPath];
+    [shellString writeToFile:temShellPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    NSString *getauto = [NSString stringWithFormat:@"chmod a+x %@",temShellPath];
     system(getauto.UTF8String);
     if (error) {
         return nil;
     }else {
-        return filePathURL.path;
+        return temShellPath;
     }
-}
-
-+ (NSString *)writeWorkSpaceShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
-    NSURL *filePathURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/temBuild.sh",configurationModel.temPath]];
-    
-    NSURL *projectPathURL = [NSURL URLWithString:configurationModel.projectPath];
-    NSString *projectPath = projectPathURL.path;
-    
-    NSString *shellPath = filePathURL.path.stringByDeletingLastPathComponent;
-    
-    NSURL *ipaPathURL = [NSURL URLWithString:configurationModel.ipaPath];
-    NSString *ipaPath = ipaPathURL.path;
-    
-    NSString *appName = configurationModel.appName;
-    NSString *scheme = configurationModel.schemes;
-    NSString *projectName = configurationModel.projectName;
-    
-    NSString *shellString = [NSString stringWithFormat:@"#!/bin/sh\n\
-                             echo \"==========\"\n\
-                             \n\
-                             \n\
-                             todayTime=$(%@)\n\
-                             echo $todayTime\n\
-                             \n\
-                             appName=\"%@\"\n\
-                             projectName=\"%@.xcworkspace\"\n\
-                             scheme=\"%@\"\n\
-                             projectPath=\"%@\"\n\
-                             shellPath=\"%@\"\n\
-                             resultipaPath=\"%@\"\n\
-                             \n\
-                             rmobuild=\"rm -fr ${shellPath}/build\"\n\
-                             echo \"$($rmobuild)\"\n\
-                             \n\
-                             workspacepath=\"xcodebuild -workspace ${projectPath}/${projectName} -scheme ${scheme} -configuration Release -derivedDataPath ${shellPath}\"\n\
-                             echo $workspacepath\n\
-                             echo \"$($workspacepath)\"\n\
-                             \n\
-                             copyPath=\"${projectPath}/build\"\n\
-                             copyd=\"cp -R ${copyPath} ${shellPath}/build\"\n\
-                             echo \"$($copyd)\"\n\
-                             \n\
-                             ipad=\"xcrun -sdk iphoneos PackageApplication -v ${shellPath}/Build/Products/Release-iphoneos/${appName}.app -o ${resultipaPath}/${todayTime}-${appName}.ipa\"\n\
-                             echo $ipad\n\
-                             echo \"$($ipad)\"\n\
-                             \n\
-                             rmprojectbuild=\"rm -rf ${projectPath}/build\"\n\
-                             echo \"$($rmprojectbuild)\"",@"date -v -0d +%Y-%m-%d-%H-%M-%S",appName,projectName,scheme,projectPath,shellPath,ipaPath];
-    
-    NSError *error;
-    [shellString writeToURL:filePathURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    NSString *getauto = [NSString stringWithFormat:@"chmod a+x %@",filePathURL.path];
-    system(getauto.UTF8String);
-    return @"/Users/xiang/个人资料/tem_IPA/xlb_test.sh";
-    if (error) {
-        return nil;
-    }else {
-        return filePathURL.path;
-    }
-
-    return nil;
 }
 
 @end

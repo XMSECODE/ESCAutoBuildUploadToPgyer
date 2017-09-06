@@ -10,9 +10,8 @@
 #import "MJExtension.h"
 #import "ESCConfigurationModel.h"
 
-static NSString *firstConfiguration = @"firstConfiguration";
-static NSString *secondConfiguration = @"secondConfiguration";
-
+static NSString *ESCPgyerUKey = @"ESCPgyerUKey";
+static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
 
 @interface ESCConfigManager ()
@@ -35,6 +34,9 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)readConfigData {
     NSArray *temArray = [[NSUserDefaults standardUserDefaults] objectForKey:ESCUserDataKey];
     self.modelArray = [ESCConfigurationModel mj_objectArrayWithKeyValuesArray:temArray];
+    
+    self.api_k = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerapi_key];
+    self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
 }
 
 - (void)saveUserData {
@@ -49,6 +51,16 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setModelArray:(NSArray<ESCConfigurationModel *> *)modelArray {
     _modelArray = modelArray;
     [self saveUserData];
+}
+
+- (void)setUKey:(NSString *)uKey {
+    _uKey = [uKey copy];
+    [[NSUserDefaults standardUserDefaults] setObject:_uKey forKey:ESCPgyerUKey];
+}
+
+- (void)setApi_k:(NSString *)api_k {
+    _api_k = [api_k copy];
+    [[NSUserDefaults standardUserDefaults] setObject:_api_k forKey:ESCPgyerapi_key];
 }
 
 @end

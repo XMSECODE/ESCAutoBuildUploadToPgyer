@@ -11,6 +11,8 @@
 @interface ESCNetWorkManager : NSObject
 
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
+                             uKey:(NSString *)uKey
+                          api_key:(NSString *)api_key
                          progress:(void (^)(NSProgress * progress))cuploadProgress
                           success:(void (^)(NSDictionary *result))success
                           failure:(void (^)(NSError *error))failure;

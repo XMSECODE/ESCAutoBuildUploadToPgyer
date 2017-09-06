@@ -27,6 +27,6 @@
 /**
  写入日志
  */
-- (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name;
+- (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name withPath:(NSString *)path;
 
 @end

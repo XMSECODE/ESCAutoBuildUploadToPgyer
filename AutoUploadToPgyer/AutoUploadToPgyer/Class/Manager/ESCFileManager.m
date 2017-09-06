@@ -32,19 +32,11 @@ static ESCFileManager *staticESCFileManager;
 
 
 #pragma mark - public
-
-
-
 - (NSString *)getLatestIPAFilePathFromWithConfigurationModel:(ESCConfigurationModel *)model {
-    NSString *path = [self getFilePathFromFileURLString:model.ipaPath];
+    NSString *path = model.ipaPath;
     NSArray *ipaArray = [self getAllIPAinDirectoryPath:path];
     NSString *filePath = [self getLatestIPAFilePath:ipaArray];
     return filePath;
-}
-
-- (NSString *)getFilePathFromFileURLString:(NSString *)urlString {
-    NSURL *url = [NSURL URLWithString:urlString];
-    return url.path;
 }
 
 - (void)getLatestIPAFileInfoWithConfigurationModel:(ESCConfigurationModel *)model {
@@ -62,16 +54,16 @@ static ESCFileManager *staticESCFileManager;
     NSError *error;
     NSDictionary *attributesDict = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
     if (error) {
-        NSLog(@"get first ipa attributes error %@",error);
+        NSLog(@"get ipa attributes error === %@ ===\n==%@",error,filePath);
         return nil;
     }else {
         return attributesDict;
     }
 }
 
-- (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name{
+- (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name withPath:(NSString *)path{
     NSError *error;
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@.txt",ESCHistoryFileDirectoryPath,name];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.txt",path,name];
     [logString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 

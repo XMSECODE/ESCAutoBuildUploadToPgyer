@@ -13,7 +13,6 @@
 @interface ESCconfigViewController ()
 
 @property (weak) IBOutlet NSPathControl *projectPathControl;
-@property (weak) IBOutlet NSPathControl *temPathControl;
 @property (weak) IBOutlet NSPathControl *ipaPathControl;
 @property (weak) IBOutlet NSButton *xcodeprojButton;
 @property (weak) IBOutlet NSButton *xcworkspaceButton;
@@ -21,7 +20,6 @@
 @property (weak) IBOutlet NSButton *releaseButton;
 @property (weak) IBOutlet NSTextField *schemesTextField;
 @property (weak) IBOutlet NSTextField *appNameTextField;
-    @property (weak) IBOutlet NSTextField *projectNameTextField;
 
 @end
 
@@ -42,11 +40,6 @@
         self.projectPathControl.URL = url;
     }
     
-    if (configurationModel.temPath) {
-        NSURL *url = [NSURL URLWithString:configurationModel.temPath];
-        self.temPathControl.URL = url;
-    }
-    
     if (configurationModel.ipaPath) {
         NSURL *url = [NSURL URLWithString:configurationModel.ipaPath];
         self.ipaPathControl.URL = url;
@@ -63,22 +56,18 @@
         self.appNameTextField.stringValue = configurationModel.appName;
     }
     
-    if (configurationModel.projectName) {
-        self.projectNameTextField.stringValue = configurationModel.projectName;
-    }
-    
+}
+- (IBAction)didClickCancelButton:(id)sender {
+    [self dismissController:nil];
 }
 
 - (IBAction)didClickCheckProject:(id)sender {
     ESCConfigurationModel *configurationModel = self.configurationModel;
     
-    NSString *projectPath = self.projectPathControl.stringValue;
+    NSString *projectPath = self.projectPathControl.URL.path;
     configurationModel.projectPath = projectPath;
     
-    NSString *temPath = self.temPathControl.stringValue;
-    configurationModel.temPath = temPath;
-    
-    NSString *ipaPath = self.ipaPathControl.stringValue;
+    NSString *ipaPath = self.ipaPathControl.URL.path;
     configurationModel.ipaPath = ipaPath;
     
     if (self.xcodeprojButton.state) {
@@ -96,7 +85,6 @@
     NSString *schemes = self.schemesTextField.stringValue;
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
-    configurationModel.projectName = self.projectNameTextField.stringValue;
     [[ESCConfigManager sharedConfigManager] saveUserData];
     
     if (self.configCompleteBlock) {

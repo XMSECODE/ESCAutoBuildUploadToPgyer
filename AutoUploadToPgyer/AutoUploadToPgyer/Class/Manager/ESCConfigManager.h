@@ -14,6 +14,10 @@
 
 @property(nonatomic,strong)NSArray <ESCConfigurationModel *>* modelArray;
 
+@property (nonatomic, copy) NSString *api_k;
+
+@property (nonatomic, copy) NSString *uKey;
+
 + (instancetype)sharedConfigManager;
 
 - (void)saveUserData;

@@ -41,6 +41,8 @@
 		047431A51F5D9C4100445EB5 /* ESCBuildShellFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431A41F5D9C4100445EB5 /* ESCBuildShellFileManager.m */; };
 		F07C80041F5EB33900AEAF30 /* ESCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80021F5EB33900AEAF30 /* ESCMainViewController.m */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
+		F084B4101F5FC4ED00D71BCC /* buildinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */; };
+		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,9 @@
 		F07C80021F5EB33900AEAF30 /* ESCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainViewController.m; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
+		F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = buildinfo.plist; sourceTree = "<group>"; };
+		F084B4111F5FC70600D71BCC /* ESCPgyerConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCPgyerConfigViewController.h; sourceTree = "<group>"; };
+		F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCPgyerConfigViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,7 @@
 				04199F1F1F5AB43C00CEFAB0 /* Other */,
 				04199F201F5AB43C00CEFAB0 /* Vender */,
 				04199EFB1F5AB21900CEFAB0 /* Assets.xcassets */,
+				F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */,
 				04199F001F5AB21900CEFAB0 /* Info.plist */,
 				04199EF51F5AB21900CEFAB0 /* Supporting Files */,
 			);
@@ -264,6 +270,8 @@
 			children = (
 				F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */,
 				F07C80021F5EB33900AEAF30 /* ESCMainViewController.m */,
+				F084B4111F5FC70600D71BCC /* ESCPgyerConfigViewController.h */,
+				F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */,
 				0474319F1F5D9A9B00445EB5 /* Main.storyboard */,
 				047431921F5D8B3200445EB5 /* ESCconfigViewController.h */,
 				047431931F5D8B3200445EB5 /* ESCconfigViewController.m */,
@@ -316,6 +324,11 @@
 					04199EEE1F5AB21900CEFAB0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -348,6 +361,7 @@
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
 				04199F721F5AF69E00CEFAB0 /* G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3 in Resources */,
 				04199F551F5ABD8300CEFAB0 /* Info.plist in Resources */,
+				F084B4101F5FC4ED00D71BCC /* buildinfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +393,7 @@
 				0474319B1F5D987200445EB5 /* ESCNetWorkManager.m in Sources */,
 				047431981F5D978100445EB5 /* ESCConfigurationModel.m in Sources */,
 				04199F681F5ADB9800CEFAB0 /* NSDate+Utilities.m in Sources */,
+				F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */,
 				04199F5C1F5ABD8300CEFAB0 /* NSObject+MJCoding.m in Sources */,
 				04199F5F1F5ABD8300CEFAB0 /* NSString+MJExtension.m in Sources */,
 				04199F651F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m in Sources */,

@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* ipaPath;
 
+@property (nonatomic, readonly,copy) NSString *historyLogPath;
+
 @property(nonatomic,copy)NSString* schemes;
 
 @property(nonatomic,assign)ESCXCodeProjectType projectType;

@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = 70;
+    self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     
     [self uploadData];
 }
@@ -71,21 +72,23 @@
 }
 
 - (IBAction)didClickUploadPgyerButton:(id)sender {
+    NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+    NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         __weak __typeof(self)weakSelf = self;
-        if (model.isUploadIPA) {            
-            [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] progress:^(NSProgress *progress) {
+        if (model.isUploadIPA) {
+            [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
                 double currentProgress = progress.fractionCompleted;
                 model.uploadProgress = currentProgress;
                 [weakSelf.tableView reloadData];
             } success:^(NSDictionary *result){
                 model.uploadState = @"上传成功";
                 NSString *resultString = [result mj_JSONString];
-                [weakSelf writeLog:resultString];
+                [weakSelf writeLog:resultString withPath:model.historyLogPath];
                 [weakSelf.tableView reloadData];
             } failure:^(NSError *error) {
                 model.uploadState = @"上传失败";
-                [weakSelf writeLog:error.localizedDescription];
+                [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
             }];
         }
     }
@@ -102,9 +105,9 @@
     [self.tableView reloadData];
 }
 
-- (void)writeLog:(NSString *)string {
+- (void)writeLog:(NSString *)string withPath:(NSString *)path{
     NSString *logString = [[self.dateFormatter stringFromDate:[NSDate date]] stringByAppendingString:[NSString stringWithFormat:@"==========%@",string]];
-    [[ESCFileManager sharedFileManager] wirteLogToFileWith:logString withName:[self.dateFormatter stringFromDate:[NSDate date]]];
+    [[ESCFileManager sharedFileManager] wirteLogToFileWith:logString withName:[self.dateFormatter stringFromDate:[NSDate date]] withPath:path];
 }
 
 - (void)addLog:(NSString *)string {
@@ -118,6 +121,13 @@
     ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
     viewController.configurationModel = model;
     [self presentViewControllerAsSheet:viewController];
+}
+
+- (void)mainTableCellViewdidClickDeleteButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+    [temArray removeObject:model];
+    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+    [self.tableView reloadData];
 }
 
 - (void)uploadFirstSuccess {
