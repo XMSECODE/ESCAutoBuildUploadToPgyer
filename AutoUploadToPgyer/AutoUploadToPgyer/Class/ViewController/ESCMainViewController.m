@@ -75,11 +75,15 @@
                 [weakSelf.tableView reloadData];
             } success:^(NSDictionary *result){
                 model.uploadState = @"上传成功";
+                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包",model.projectName];
+                [weakSelf addLog:logStr];
                 NSString *resultString = [result mj_JSONString];
                 [weakSelf writeLog:resultString withPath:model.historyLogPath];
                 [weakSelf.tableView reloadData];
             } failure:^(NSError *error) {
                 model.uploadState = @"上传失败";
+                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.projectName];
+                [weakSelf addLog:logStr];
                 [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
             }];
         }
