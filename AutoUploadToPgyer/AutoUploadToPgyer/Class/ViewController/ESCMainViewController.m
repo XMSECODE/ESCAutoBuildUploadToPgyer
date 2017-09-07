@@ -23,6 +23,12 @@
 @property (unsafe_unretained) IBOutlet NSTextView *logTextView;
 @property(nonatomic,strong)NSDateFormatter* dateFormatter;
 
+@property (nonatomic, assign) BOOL isCompiling;
+@property (nonatomic, assign) BOOL isUploading;
+
+@property (nonatomic, assign) NSInteger allUploadIPACount;
+@property (nonatomic, assign) NSInteger completeUploadIPACount;
+
 @end
 
 @implementation ESCMainViewController
@@ -45,49 +51,12 @@
     cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
     return cell;
 }
+
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
-    [self createIPAFile];
-    [self uploadToPgyer];
-}
-
-- (void)createIPAFile {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        if (model.isCreateIPA) {
-            NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-            system(filePath.UTF8String);
-            NSString *logStr = [NSString stringWithFormat:@"生成%@项目ipa包",model.projectName];
-            [self addLog:logStr];
-            [self uploadData];
-        }
-    }
-
-}
-
-- (void)uploadToPgyer {
-    NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
-    NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        __weak __typeof(self)weakSelf = self;
-        if (model.isUploadIPA) {
-            [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
-                double currentProgress = progress.fractionCompleted;
-                model.uploadProgress = currentProgress;
-                [weakSelf.tableView reloadData];
-            } success:^(NSDictionary *result){
-                model.uploadState = @"上传成功";
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包",model.projectName];
-                [weakSelf addLog:logStr];
-                NSString *resultString = [result mj_JSONString];
-                [weakSelf writeLog:resultString withPath:model.historyLogPath];
-                [weakSelf.tableView reloadData];
-            } failure:^(NSError *error) {
-                model.uploadState = @"上传失败";
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.projectName];
-                [weakSelf addLog:logStr];
-                [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
-            }];
-        }
-    }
+    __weak typeof(self)weakSelf = self;
+    [self createIPAFileComplete:^{
+        [weakSelf uploadToPgyer];
+    }];
 }
 
 - (IBAction)didClickAddNewTarget:(id)sender {
@@ -104,7 +73,9 @@
 }
 
 - (IBAction)didClickCreateIPAButton:(id)sender {
-    [self createIPAFile];
+    [self createIPAFileComplete:^{
+        
+    }];
 }
 
 - (IBAction)didClickUploadPgyerButton:(id)sender {
@@ -119,7 +90,89 @@
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
     }
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+- (void)createIPAFileComplete:(void(^)())complete {
+    if (self.isCompiling == YES) {
+        NSString *str = @"正在打包";
+        [self addLog:str];
+        return;
+    }
+    self.isCompiling = YES;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+            if (model.isCreateIPA) {
+                
+                NSDate *date = [NSDate date];
+                NSString *dateString = [dateFormatter stringFromDate:date];
+                NSString *logStr = [NSString stringWithFormat:@"%@:正在编译%@项目ipa包",dateString,model.projectName];
+                [self addLog:logStr];
+                NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
+                system(filePath.UTF8String);
+                date = [NSDate date];
+                dateString = [dateFormatter stringFromDate:date];
+                logStr = [NSString stringWithFormat:@"%@:生成%@项目ipa包",dateString,model.projectName];
+                [self addLog:logStr];
+                [self uploadData];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.isCompiling = NO;
+        });
+        complete();
+    });
+    
+}
+
+- (void)uploadToPgyer {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.isUploading) {
+            NSString *str = @"正在上传";
+            [self addLog:str];
+            return;
+        }
+        self.isUploading = YES;
+        self.allUploadIPACount = 0;
+        self.completeUploadIPACount = 0;
+        NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+        NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+            __weak __typeof(self)weakSelf = self;
+            if (model.isUploadIPA) {
+                self.allUploadIPACount++;
+                [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted;
+                    model.uploadProgress = currentProgress;
+                    [weakSelf.tableView reloadData];
+                } success:^(NSDictionary *result){
+                    self.completeUploadIPACount++;
+                    if (self.completeUploadIPACount == self.allUploadIPACount) {
+                        self.isUploading = NO;
+                    }
+                    model.uploadState = @"上传成功";
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包",model.projectName];
+                    [weakSelf addLog:logStr];
+                    NSString *resultString = [result mj_JSONString];
+                    [weakSelf writeLog:resultString withPath:model.historyLogPath];
+                    [weakSelf.tableView reloadData];
+                } failure:^(NSError *error) {
+                    self.completeUploadIPACount++;
+                    if (self.completeUploadIPACount == self.allUploadIPACount) {
+                        self.isUploading = NO;
+                    }
+                    model.uploadState = @"上传失败";
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.projectName];
+                    [weakSelf addLog:logStr];
+                    [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
+                }];
+            }
+        }
+    });
 }
 
 - (void)writeLog:(NSString *)string withPath:(NSString *)path{
@@ -128,9 +181,11 @@
 }
 
 - (void)addLog:(NSString *)string {
-    NSString *temStrin = self.logTextView.string;
-    temStrin = [temStrin stringByAppendingFormat:@"%@\n",string];
-    self.logTextView.string = temStrin;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *temStrin = self.logTextView.string;
+        temStrin = [temStrin stringByAppendingFormat:@"%@\n",string];
+        self.logTextView.string = temStrin;
+    });
 }
 
 #pragma mark - ESCMainTableCellViewDelegate

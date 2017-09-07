@@ -59,7 +59,9 @@ static ESCNetWorkManager *staticNetWorkManager;
         if (result) {
             NSLog(@"success");
         }else {
-            NSLog(@"%@",error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(error);
+            });
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -67,17 +69,19 @@ static ESCNetWorkManager *staticNetWorkManager;
         });
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
-            if (code == 0) {
-                success(responseObject);
-            }else {
-                NSString *errorString = [responseObject mj_JSONString];
-                if (errorString == nil) {
-                    errorString = @"上传失败";
+            dispatch_async(dispatch_get_main_queue(), ^{                
+                NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
+                if (code == 0) {
+                    success(responseObject);
+                }else {
+                    NSString *errorString = [responseObject mj_JSONString];
+                    if (errorString == nil) {
+                        errorString = @"上传失败";
+                    }
+                    NSError *error = [NSError errorWithDomain:@"error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorString}];
+                    failure(error);
                 }
-                NSError *error = [NSError errorWithDomain:@"error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorString}];
-                failure(error);
-            }
+            });
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
