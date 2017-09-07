@@ -16,8 +16,6 @@
 @property (weak) IBOutlet NSPathControl *ipaPathControl;
 @property (weak) IBOutlet NSButton *xcodeprojButton;
 @property (weak) IBOutlet NSButton *xcworkspaceButton;
-@property (weak) IBOutlet NSButton *debugButton;
-@property (weak) IBOutlet NSButton *releaseButton;
 @property (weak) IBOutlet NSTextField *schemesTextField;
 @property (weak) IBOutlet NSTextField *appNameTextField;
 
@@ -47,8 +45,6 @@
     
     self.xcodeprojButton.state = !configurationModel.projectType;
     self.xcworkspaceButton.state = configurationModel.projectType;
-    self.debugButton.state = configurationModel.configuration;
-    self.releaseButton.state = !configurationModel.configuration;
     if (configurationModel.schemes) {
         self.schemesTextField.stringValue = configurationModel.schemes;
     }
@@ -76,15 +72,14 @@
         configurationModel.projectType = ESCXCodeProjectTypeWorkspace;
     }
     
-    if (self.debugButton.state) {
-        configurationModel.configuration = ESCXcodeBuildConfigurationDebug;
-    }else {
-        configurationModel.configuration = ESCXcodeBuildConfigurationRelease;
-    }
-    
     NSString *schemes = self.schemesTextField.stringValue;
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
+    
+    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+    [temArray addObject:configurationModel];
+    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+    
     [[ESCConfigManager sharedConfigManager] saveUserData];
     
     if (self.configCompleteBlock) {
@@ -98,12 +93,6 @@
 }
 - (IBAction)didClickxcworkspaceButton:(id)sender {
     self.xcodeprojButton.state = !self.xcworkspaceButton.state;
-}
-- (IBAction)didClickDebugButton:(id)sender {
-    self.releaseButton.state = !self.debugButton.state;
-}
-- (IBAction)didClickReleaseButton:(id)sender {
-    self.debugButton.state = !self.releaseButton.state;
 }
 
 @end

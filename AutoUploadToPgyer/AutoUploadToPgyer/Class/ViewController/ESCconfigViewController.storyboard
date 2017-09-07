@@ -11,7 +11,7 @@
             <objects>
                 <viewController title="配置项目" id="sWe-Bl-9jS" customClass="ESCconfigViewController" sceneMemberID="viewController">
                     <view key="view" id="g35-gl-wLE">
-                        <rect key="frame" x="0.0" y="0.0" width="1017" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTC-yb-uJt">
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ko9-7p-9pV">
-                                <rect key="frame" x="448" y="207" width="64" height="17"/>
+                                <rect key="frame" x="224" y="207" width="64" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Schemes" id="GWq-L7-33h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +90,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogb-rr-Nsu">
-                                <rect key="frame" x="520" y="204" width="150" height="22"/>
+                                <rect key="frame" x="296" y="204" width="150" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="bG0-en-M0Y"/>
                                 </constraints>
@@ -100,36 +100,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZx-9a-lMI">
-                                <rect key="frame" x="234" y="207" width="98" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Configurations" id="zca-Gy-J0i">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="9fY-Ek-7Yn">
-                                <rect key="frame" x="348" y="207" width="62" height="18"/>
-                                <buttonCell key="cell" type="check" title="Debug" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8q0-dV-q7h">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="didClickDebugButton:" target="sWe-Bl-9jS" id="SyG-wN-HaA"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Eod-dA-Mty">
-                                <rect key="frame" x="348" y="162" width="70" height="18"/>
-                                <buttonCell key="cell" type="check" title="Release" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cvp-kU-c83">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="didClickReleaseButton:" target="sWe-Bl-9jS" id="C0t-CO-hjo"/>
-                                </connections>
-                            </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-1F-XJH">
-                                <rect key="frame" x="520" y="160" width="150" height="22"/>
+                                <rect key="frame" x="296" y="160" width="150" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0Mj-X3-fUQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -137,7 +109,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-Oo-EHi">
-                                <rect key="frame" x="448" y="163" width="67" height="17"/>
+                                <rect key="frame" x="224" y="163" width="67" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="appName" id="RyP-ro-hD5">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -145,7 +117,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
-                                <rect key="frame" x="527" y="57" width="94" height="32"/>
+                                <rect key="frame" x="358" y="51" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="配置完成" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4lr-BS-Yzk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -156,7 +128,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zg-ev-zv1">
-                                <rect key="frame" x="411" y="57" width="94" height="32"/>
+                                <rect key="frame" x="220" y="51" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="250-gf-iZa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -168,43 +140,35 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Eod-dA-Mty" firstAttribute="leading" secondItem="9fY-Ek-7Yn" secondAttribute="leading" id="192-dk-9Gz"/>
                             <constraint firstItem="X0t-1F-XJH" firstAttribute="centerX" secondItem="ogb-rr-Nsu" secondAttribute="centerX" id="1ep-DA-9m3"/>
+                            <constraint firstItem="9YQ-Oo-EHi" firstAttribute="centerY" secondItem="dBU-2k-8wq" secondAttribute="centerY" id="44V-Gi-UQy"/>
                             <constraint firstItem="9YQ-Oo-EHi" firstAttribute="leading" secondItem="ko9-7p-9pV" secondAttribute="leading" id="7pa-aK-KGV"/>
-                            <constraint firstItem="9fY-Ek-7Yn" firstAttribute="leading" secondItem="YZx-9a-lMI" secondAttribute="trailing" constant="20" id="Cok-ha-mPN"/>
+                            <constraint firstItem="ko9-7p-9pV" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="trailing" constant="50" id="CKf-MC-LAx"/>
                             <constraint firstItem="sMv-nJ-KD8" firstAttribute="leading" secondItem="RTC-yb-uJt" secondAttribute="trailing" constant="50" id="E0t-I1-iG1"/>
                             <constraint firstItem="Wi5-rP-QD7" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="leading" id="Edb-6d-HJ9"/>
-                            <constraint firstItem="9fY-Ek-7Yn" firstAttribute="centerY" secondItem="YZx-9a-lMI" secondAttribute="centerY" id="FD4-zX-Szm"/>
                             <constraint firstItem="sdF-1w-XkN" firstAttribute="top" secondItem="g35-gl-wLE" secondAttribute="top" constant="20" id="FkU-2e-hsQ"/>
                             <constraint firstItem="RTC-yb-uJt" firstAttribute="centerY" secondItem="sdF-1w-XkN" secondAttribute="centerY" id="KCD-FE-nYg"/>
                             <constraint firstItem="ko9-7p-9pV" firstAttribute="centerY" secondItem="fpk-D3-dSO" secondAttribute="centerY" id="KvA-1F-rSV"/>
                             <constraint firstItem="Wi5-rP-QD7" firstAttribute="top" secondItem="sdF-1w-XkN" secondAttribute="bottom" constant="40" id="N19-It-4Za"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="leading" id="Oyt-LR-hjY"/>
-                            <constraint firstItem="YZx-9a-lMI" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="trailing" constant="60" id="SSY-Vw-HGL"/>
-                            <constraint firstItem="9YQ-Oo-EHi" firstAttribute="centerY" secondItem="Eod-dA-Mty" secondAttribute="centerY" id="Sfx-mk-lBS"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="top" secondItem="fpk-D3-dSO" secondAttribute="bottom" constant="30" id="Sz5-df-VDo"/>
                             <constraint firstItem="sMv-nJ-KD8" firstAttribute="centerY" secondItem="RTC-yb-uJt" secondAttribute="centerY" id="UNa-Ia-nVE"/>
                             <constraint firstItem="HyV-Rt-6N1" firstAttribute="centerY" secondItem="sMv-nJ-KD8" secondAttribute="centerY" id="aTq-9w-JEs"/>
                             <constraint firstItem="X0t-1F-XJH" firstAttribute="width" secondItem="ogb-rr-Nsu" secondAttribute="width" id="afU-tN-3M9"/>
                             <constraint firstItem="ogb-rr-Nsu" firstAttribute="centerY" secondItem="ko9-7p-9pV" secondAttribute="centerY" id="bYi-5C-vTJ"/>
-                            <constraint firstItem="ko9-7p-9pV" firstAttribute="leading" secondItem="YZx-9a-lMI" secondAttribute="trailing" constant="120" id="cPX-fc-e8X"/>
-                            <constraint firstItem="X0t-1F-XJH" firstAttribute="centerY" secondItem="Eod-dA-Mty" secondAttribute="centerY" id="dU8-4a-YqO"/>
-                            <constraint firstItem="Eod-dA-Mty" firstAttribute="centerY" secondItem="dBU-2k-8wq" secondAttribute="centerY" id="gFP-bq-9kb"/>
+                            <constraint firstItem="X0t-1F-XJH" firstAttribute="centerY" secondItem="9YQ-Oo-EHi" secondAttribute="centerY" id="gbw-1Z-QD8"/>
                             <constraint firstItem="sdF-1w-XkN" firstAttribute="leading" secondItem="g35-gl-wLE" secondAttribute="leading" constant="20" id="jVH-2F-GbI"/>
                             <constraint firstItem="ogb-rr-Nsu" firstAttribute="leading" secondItem="ko9-7p-9pV" secondAttribute="trailing" constant="10" id="l7d-VC-rMT"/>
                             <constraint firstItem="HyV-Rt-6N1" firstAttribute="leading" secondItem="sMv-nJ-KD8" secondAttribute="trailing" constant="50" id="la0-Lz-9Vs"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="centerY" secondItem="Wi5-rP-QD7" secondAttribute="centerY" id="qae-wo-1TJ"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="leading" secondItem="Wi5-rP-QD7" secondAttribute="trailing" constant="20" id="r4E-7f-dOf"/>
-                            <constraint firstItem="YZx-9a-lMI" firstAttribute="centerY" secondItem="fpk-D3-dSO" secondAttribute="centerY" id="sV5-xq-1aU"/>
                             <constraint firstItem="RTC-yb-uJt" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="trailing" constant="20" id="zoS-Vx-RYh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="appNameTextField" destination="X0t-1F-XJH" id="dUW-p7-xqY"/>
-                        <outlet property="debugButton" destination="9fY-Ek-7Yn" id="Geo-iH-rs3"/>
                         <outlet property="ipaPathControl" destination="HyV-Rt-6N1" id="rSs-aK-KMV"/>
                         <outlet property="projectPathControl" destination="RTC-yb-uJt" id="4pJ-af-4Z0"/>
-                        <outlet property="releaseButton" destination="Eod-dA-Mty" id="jfZ-lq-Dde"/>
                         <outlet property="schemesTextField" destination="ogb-rr-Nsu" id="p9t-PW-ugT"/>
                         <outlet property="xcodeprojButton" destination="fpk-D3-dSO" id="kOT-ZB-jQ6"/>
                         <outlet property="xcworkspaceButton" destination="dBU-2k-8wq" id="KqZ-Ub-8Ft"/>
@@ -212,7 +176,7 @@
                 </viewController>
                 <customObject id="DF3-o6-L2L" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-41.5" y="1372"/>
+            <point key="canvasLocation" x="-200" y="1372"/>
         </scene>
     </scenes>
 </document>
