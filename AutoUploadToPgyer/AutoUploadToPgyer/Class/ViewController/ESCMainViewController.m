@@ -200,26 +200,6 @@
     [self.tableView reloadData];
 }
 
-- (void)uploadFirstSuccess {
-//    NSString *string = [[NSBundle mainBundle] pathForSoundResource:@"G.E.M.邓紫棋 - 喜欢你.mp3"];
-//    NSData *data = [NSData dataWithContentsOfFile:string];
-//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data error:nil];
-//    self.firstPlayer = player;
-//    [self.firstPlayer prepareToPlay];
-//    [self.firstPlayer play];
-//    [self.secondPlayer stop];
-}
-
-- (void)uploadSecondSuccess {
-//    NSString *string = [[NSBundle mainBundle] pathForSoundResource:@"G.E.M.邓紫棋 - A.I.N.Y. 爱你.mp3"];
-//    NSData *data = [NSData dataWithContentsOfFile:string];
-//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data error:nil];
-//    self.secondPlayer = player;
-//    [self.secondPlayer prepareToPlay];
-//    [self.secondPlayer play];
-//    [self.firstPlayer stop];
-}
-
 - (NSDateFormatter *)dateFormatter {
     if (_dateFormatter == nil) {
         _dateFormatter = [[NSDateFormatter alloc] init];
