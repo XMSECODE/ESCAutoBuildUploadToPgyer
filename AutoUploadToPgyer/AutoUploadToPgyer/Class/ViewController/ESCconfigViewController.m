@@ -12,12 +12,12 @@
 
 @interface ESCconfigViewController ()
 
-@property (weak) IBOutlet NSPathControl *projectPathControl;
-@property (weak) IBOutlet NSPathControl *ipaPathControl;
 @property (weak) IBOutlet NSButton *xcodeprojButton;
 @property (weak) IBOutlet NSButton *xcworkspaceButton;
 @property (weak) IBOutlet NSTextField *schemesTextField;
 @property (weak) IBOutlet NSTextField *appNameTextField;
+@property (weak) IBOutlet NSTextField *projectPathTextField;
+@property (weak) IBOutlet NSTextField *ipaPathTextField;
 
 @end
 
@@ -34,13 +34,11 @@
     ESCConfigurationModel *configurationModel = self.configurationModel;
 
     if (configurationModel.projectPath) {
-        NSURL *url = [NSURL URLWithString:configurationModel.projectPath];
-        self.projectPathControl.URL = url;
+        self.projectPathTextField.stringValue = configurationModel.projectPath;
     }
     
     if (configurationModel.ipaPath) {
-        NSURL *url = [NSURL URLWithString:configurationModel.ipaPath];
-        self.ipaPathControl.URL = url;
+        self.ipaPathTextField.stringValue = configurationModel.ipaPath;
     }
     
     self.xcodeprojButton.state = !configurationModel.projectType;
@@ -60,10 +58,10 @@
 - (IBAction)didClickCheckProject:(id)sender {
     ESCConfigurationModel *configurationModel = self.configurationModel;
     
-    NSString *projectPath = self.projectPathControl.URL.path;
+    NSString *projectPath = self.projectPathTextField.stringValue;
     configurationModel.projectPath = projectPath;
     
-    NSString *ipaPath = self.ipaPathControl.URL.path;
+    NSString *ipaPath = self.ipaPathTextField.stringValue;
     configurationModel.ipaPath = ipaPath;
     
     if (self.xcodeprojButton.state) {
