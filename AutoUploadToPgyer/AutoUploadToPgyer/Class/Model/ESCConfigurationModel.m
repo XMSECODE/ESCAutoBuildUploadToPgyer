@@ -10,6 +10,9 @@
 
 @interface ESCConfigurationModel ()
 
+@property (nonatomic, readwrite,copy) NSString *historyLogPath;
+
+
 @end
 
 @implementation ESCConfigurationModel
