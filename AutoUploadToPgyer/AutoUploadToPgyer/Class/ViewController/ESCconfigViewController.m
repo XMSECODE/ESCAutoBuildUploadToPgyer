@@ -19,14 +19,22 @@
 @property (weak) IBOutlet NSTextField *projectPathTextField;
 @property (weak) IBOutlet NSTextField *ipaPathTextField;
 
+@property (assign) BOOL isCreatNew;
+
 @end
 
 @implementation ESCconfigViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    if (self.configurationModel == nil) {
+        self.isCreatNew = YES;
+        self.configurationModel = [[ESCConfigurationModel alloc]init];
+    }
+
     [self setupUI];
+
     
 }
 
@@ -75,9 +83,10 @@
     configurationModel.appName = self.appNameTextField.stringValue;
     
     NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
-    [temArray addObject:configurationModel];
-    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
-    
+    if (self.isCreatNew) {
+        [temArray addObject:configurationModel];
+        [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+    }
     [[ESCConfigManager sharedConfigManager] saveUserData];
     
     if (self.configCompleteBlock) {

@@ -61,8 +61,6 @@
 
 - (IBAction)didClickAddNewTarget:(id)sender {
     ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
-    ESCConfigurationModel *newModel = [[ESCConfigurationModel alloc] init];
-    viewController.configurationModel = newModel;
     __weak typeof(self)weakSelf = self;
     [viewController setConfigCompleteBlock:^{
         [weakSelf.tableView reloadData];
