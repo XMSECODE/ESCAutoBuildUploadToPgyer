@@ -49,6 +49,11 @@
     ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
     cell.delegate = self;
     cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
+    if(row % 2 == 0){
+        cell.layer.backgroundColor = [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor;
+    }else {
+        cell.layer.backgroundColor = [NSColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1].CGColor;
+    }
     return cell;
 }
 
