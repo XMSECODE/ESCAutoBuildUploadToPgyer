@@ -39,11 +39,11 @@
     
     NSString *ipaFilePath = [NSString stringWithFormat:@"%@/%@",ipaPath,dateString];
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"buildinfo.plist" ofType:nil];
+    NSString *plistPath = [self createBuildinfoWithConfigurationModel:configurationModel];
     
     NSString *archiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild archive -%@ %@ -scheme %@ -archivePath %@)\"",projectTypeString,projectPath,configurationModel.schemes,archiveFilePath];
     
-    NSString *exportArchiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild -exportArchive -archivePath %@ -exportPath %@ -exportOptionsPlist %@)\"",archiveFilePath,ipaFilePath,plistPath];
+    NSString *exportArchiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild -exportArchive -archivePath %@ -exportPath %@ -exportOptionsPlist %@ -allowProvisioningUpdates)\"",archiveFilePath,ipaFilePath,plistPath];
 
     
     NSString *shellString = [NSString stringWithFormat:@"#!/bin/sh\n\n%@\n\n%@\n",archiveShellString,exportArchiveShellString];
@@ -57,6 +57,22 @@
         return nil;
     }else {
         return temShellPath;
+    }
+}
+
++ (NSString *)createBuildinfoWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
+    //provisioningProfiles
+    if (configurationModel.signingCertificate.length > 0) {
+        NSString *temPlistPath = [NSString stringWithFormat:@"%@/buildinfo.plist",configurationModel.ipaPath];
+        NSDictionary *dict = @{@"method":@"ad-hoc",
+                               @"provisioningProfiles":configurationModel.signingCertificate,
+                               @"compileBitcode":@(NO)
+                               };
+        [dict writeToFile:temPlistPath atomically:YES];
+        return temPlistPath;
+    }else {
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"buildinfo.plist" ofType:nil];
+        return plistPath;
     }
 }
 

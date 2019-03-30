@@ -13,11 +13,18 @@
 @interface ESCconfigViewController ()
 
 @property (weak) IBOutlet NSButton *xcodeprojButton;
+
 @property (weak) IBOutlet NSButton *xcworkspaceButton;
+
 @property (weak) IBOutlet NSTextField *schemesTextField;
+
 @property (weak) IBOutlet NSTextField *appNameTextField;
+
 @property (weak) IBOutlet NSTextField *projectPathTextField;
+
 @property (weak) IBOutlet NSTextField *ipaPathTextField;
+
+@property (weak) IBOutlet NSTextField *signingCertificateTextField;
 
 @property (assign) BOOL isCreatNew;
 
@@ -57,6 +64,9 @@
     if (configurationModel.appName) {
         self.appNameTextField.stringValue = configurationModel.appName;
     }
+    if (configurationModel.signingCertificate) {
+        self.signingCertificateTextField.stringValue = configurationModel.signingCertificate;
+    }
     
 }
 - (IBAction)didClickCancelButton:(id)sender {
@@ -71,6 +81,8 @@
     
     NSString *ipaPath = self.ipaPathTextField.stringValue;
     configurationModel.ipaPath = ipaPath;
+    
+    configurationModel.signingCertificate = self.signingCertificateTextField.stringValue;
     
     if (self.xcodeprojButton.state) {
         configurationModel.projectType = ESCXCodeProjectTypeProj;

@@ -56,4 +56,6 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* uploadState;
 
+@property(nonatomic,copy)NSString* signingCertificate;
+
 @end

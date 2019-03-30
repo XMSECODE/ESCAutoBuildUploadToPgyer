@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sWe-Bl-9jS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sWe-Bl-9jS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController title="配置项目" id="sWe-Bl-9jS" customClass="ESCconfigViewController" sceneMemberID="viewController">
                     <view key="view" id="g35-gl-wLE">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="821" height="311"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdF-1w-XkN">
-                                <rect key="frame" x="18" y="263" width="84" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sdF-1w-XkN">
+                                <rect key="frame" x="18" y="274" width="84" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Hdm-uW-cgS"/>
                                 </constraints>
@@ -25,8 +25,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wi5-rP-QD7">
-                                <rect key="frame" x="18" y="109" width="62" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wi5-rP-QD7">
+                                <rect key="frame" x="18" y="120" width="62" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="项目类型" id="rG7-kI-cGS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,7 +34,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="fpk-D3-dSO">
-                                <rect key="frame" x="96" y="109" width="82" height="18"/>
+                                <rect key="frame" x="96" y="120" width="82" height="18"/>
                                 <buttonCell key="cell" type="check" title="xcodeproj" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dhg-tQ-SkA">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dBU-2k-8wq">
-                                <rect key="frame" x="96" y="65" width="101" height="18"/>
+                                <rect key="frame" x="96" y="76" width="101" height="18"/>
                                 <buttonCell key="cell" type="check" title="xcworkspace" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vSZ-VS-lme">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -53,35 +53,35 @@
                                     <action selector="didClickxcworkspaceButton:" target="sWe-Bl-9jS" id="IMj-OS-LND"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ko9-7p-9pV">
-                                <rect key="frame" x="224" y="110" width="64" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ko9-7p-9pV">
+                                <rect key="frame" x="224" y="120" width="64" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Schemes" id="GWq-L7-33h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogb-rr-Nsu">
-                                <rect key="frame" x="296" y="107" width="150" height="22"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ogb-rr-Nsu">
+                                <rect key="frame" x="296" y="118" width="150" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="bG0-en-M0Y"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jyb-mH-J7a">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-1F-XJH">
-                                <rect key="frame" x="296" y="63" width="150" height="22"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-1F-XJH">
+                                <rect key="frame" x="296" y="74" width="150" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0Mj-X3-fUQ">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-Oo-EHi">
-                                <rect key="frame" x="224" y="66" width="67" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-Oo-EHi">
+                                <rect key="frame" x="224" y="76" width="67" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="appName" id="RyP-ro-hD5">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +89,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zg-ev-zv1">
-                                <rect key="frame" x="107" y="13" width="94" height="32"/>
+                                <rect key="frame" x="107" y="24" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="250-gf-iZa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -99,40 +99,40 @@
                                     <action selector="didClickCancelButton:" target="sWe-Bl-9jS" id="zWy-Yj-MxK"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMv-nJ-KD8">
-                                <rect key="frame" x="18" y="186" width="84" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sMv-nJ-KD8">
+                                <rect key="frame" x="18" y="197" width="84" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="ipa目录" id="iFf-6o-xKl">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scy-kr-cRf">
-                                <rect key="frame" x="120" y="230" width="550" height="50"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="scy-kr-cRf">
+                                <rect key="frame" x="120" y="241" width="550" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0ob-AR-o0J"/>
                                     <constraint firstAttribute="width" constant="550" id="api-Lj-2lz"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString=".xcodeproj/.xcworkspace文件路径" drawsBackground="YES" id="7V3-FF-9eh">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2C-V0-L5S">
-                                <rect key="frame" x="120" y="153" width="550" height="50"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="w2C-V0-L5S">
+                                <rect key="frame" x="120" y="164" width="550" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="550" id="3vx-DG-48w"/>
                                     <constraint firstAttribute="height" constant="50" id="WkI-g8-RTV"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString=".ipa文件存放路径" drawsBackground="YES" id="9iF-dw-qAk">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
-                                <rect key="frame" x="232" y="13" width="94" height="32"/>
+                                <rect key="frame" x="232" y="24" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="配置完成" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4lr-BS-Yzk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -142,6 +142,25 @@
                                     <action selector="didClickCheckProject:" target="sWe-Bl-9jS" id="eeB-8f-JOK"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tdx-o2-dLA">
+                                <rect key="frame" x="494" y="120" width="119" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Signing certificate" id="o16-xm-awp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uUJ-ix-qUJ">
+                                <rect key="frame" x="621" y="118" width="150" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="v3V-cN-Gcr"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="UP42339X64" drawsBackground="YES" id="vOJ-oL-iuO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="w2C-V0-L5S" firstAttribute="leading" secondItem="scy-kr-cRf" secondAttribute="leading" id="0YZ-ur-Nke"/>
@@ -152,11 +171,15 @@
                             <constraint firstItem="ko9-7p-9pV" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="trailing" constant="50" id="CKf-MC-LAx"/>
                             <constraint firstItem="Wi5-rP-QD7" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="leading" id="Edb-6d-HJ9"/>
                             <constraint firstItem="sdF-1w-XkN" firstAttribute="top" secondItem="g35-gl-wLE" secondAttribute="top" constant="20" id="FkU-2e-hsQ"/>
+                            <constraint firstItem="uUJ-ix-qUJ" firstAttribute="centerY" secondItem="ogb-rr-Nsu" secondAttribute="centerY" id="Gc0-sv-JE6"/>
+                            <constraint firstItem="uUJ-ix-qUJ" firstAttribute="centerY" secondItem="Tdx-o2-dLA" secondAttribute="centerY" id="KMH-5I-gDy"/>
                             <constraint firstItem="sMv-nJ-KD8" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="leading" id="KV6-8K-NhS"/>
                             <constraint firstItem="ko9-7p-9pV" firstAttribute="centerY" secondItem="fpk-D3-dSO" secondAttribute="centerY" id="KvA-1F-rSV"/>
                             <constraint firstItem="sMv-nJ-KD8" firstAttribute="width" secondItem="sdF-1w-XkN" secondAttribute="width" id="LPF-o2-h7C"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="leading" secondItem="fpk-D3-dSO" secondAttribute="leading" id="Oyt-LR-hjY"/>
+                            <constraint firstItem="Tdx-o2-dLA" firstAttribute="centerY" secondItem="ogb-rr-Nsu" secondAttribute="centerY" id="SPo-TW-H69"/>
                             <constraint firstItem="dBU-2k-8wq" firstAttribute="top" secondItem="fpk-D3-dSO" secondAttribute="bottom" constant="30" id="Sz5-df-VDo"/>
+                            <constraint firstItem="uUJ-ix-qUJ" firstAttribute="leading" secondItem="Tdx-o2-dLA" secondAttribute="trailing" constant="10" id="UzI-jx-flw"/>
                             <constraint firstItem="X0t-1F-XJH" firstAttribute="width" secondItem="ogb-rr-Nsu" secondAttribute="width" id="afU-tN-3M9"/>
                             <constraint firstItem="ogb-rr-Nsu" firstAttribute="centerY" secondItem="ko9-7p-9pV" secondAttribute="centerY" id="bYi-5C-vTJ"/>
                             <constraint firstItem="X0t-1F-XJH" firstAttribute="centerY" secondItem="9YQ-Oo-EHi" secondAttribute="centerY" id="gbw-1Z-QD8"/>
@@ -168,6 +191,7 @@
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="leading" secondItem="Wi5-rP-QD7" secondAttribute="trailing" constant="20" id="r4E-7f-dOf"/>
                             <constraint firstItem="w2C-V0-L5S" firstAttribute="top" secondItem="sMv-nJ-KD8" secondAttribute="top" id="vhg-tL-QF1"/>
                             <constraint firstItem="Wi5-rP-QD7" firstAttribute="top" secondItem="sMv-nJ-KD8" secondAttribute="bottom" constant="60" id="vvM-Nl-LBF"/>
+                            <constraint firstItem="Tdx-o2-dLA" firstAttribute="leading" secondItem="ogb-rr-Nsu" secondAttribute="trailing" constant="50" id="zev-37-Cz4"/>
                         </constraints>
                     </view>
                     <connections>
@@ -175,13 +199,14 @@
                         <outlet property="ipaPathTextField" destination="w2C-V0-L5S" id="Fjp-7W-xeR"/>
                         <outlet property="projectPathTextField" destination="scy-kr-cRf" id="LUy-LA-aRf"/>
                         <outlet property="schemesTextField" destination="ogb-rr-Nsu" id="p9t-PW-ugT"/>
+                        <outlet property="signingCertificateTextField" destination="uUJ-ix-qUJ" id="sl4-d2-g7d"/>
                         <outlet property="xcodeprojButton" destination="fpk-D3-dSO" id="kOT-ZB-jQ6"/>
                         <outlet property="xcworkspaceButton" destination="dBU-2k-8wq" id="KqZ-Ub-8Ft"/>
                     </connections>
                 </viewController>
                 <customObject id="DF3-o6-L2L" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="1379"/>
+            <point key="canvasLocation" x="-136.5" y="1384.5"/>
         </scene>
     </scenes>
 </document>
