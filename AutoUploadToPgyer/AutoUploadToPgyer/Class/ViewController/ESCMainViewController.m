@@ -20,13 +20,21 @@
 @interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
+
 @property (unsafe_unretained) IBOutlet NSTextView *logTextView;
+
 @property(nonatomic,strong)NSDateFormatter* dateFormatter;
 
+@property (weak) IBOutlet NSButton *selectAllBuildButton;
+
+@property (weak) IBOutlet NSButton *selectAllUploadButton;
+
 @property (nonatomic, assign) BOOL isCompiling;
+
 @property (nonatomic, assign) BOOL isUploading;
 
 @property (nonatomic, assign) NSInteger allUploadIPACount;
+
 @property (nonatomic, assign) NSInteger completeUploadIPACount;
 
 @end
@@ -39,6 +47,8 @@
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     
     [self uploadData];
+    
+    [self checkIsAllSelected];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -114,6 +124,20 @@
             }];
         }
     }];
+}
+
+- (IBAction)didClickSelectAllBuildButton:(NSButton *)sender {
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        model.isCreateIPA = sender.state;
+    }
+    [self.tableView reloadData];
+}
+
+- (IBAction)didClickSelectAllUploadButton:(NSButton *)sender {
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        model.isUploadIPA = sender.state;
+    }
+    [self.tableView reloadData];
 }
 
 - (void)uploadData {
@@ -228,6 +252,29 @@
     [temArray removeObject:model];
     [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
     [self.tableView reloadData];
+}
+
+- (void)mainTableCellViewdidClickSelectBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    [self checkIsAllSelected];
+}
+
+- (void)mainTableCellViewdidClickUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    [self checkIsAllSelected];
+}
+
+- (void)checkIsAllSelected {
+    BOOL buildIsAllSelected = YES;
+    BOOL uploadIsAllSelected = YES;
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        if (model.isUploadIPA == NO) {
+            uploadIsAllSelected = NO;
+        }
+        if (model.isCreateIPA == NO) {
+            buildIsAllSelected = NO;
+        }
+    }
+    self.selectAllBuildButton.state = buildIsAllSelected;
+    self.selectAllUploadButton.state = uploadIsAllSelected;
 }
 
 - (NSDateFormatter *)dateFormatter {

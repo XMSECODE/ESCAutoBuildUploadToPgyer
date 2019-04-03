@@ -10,7 +10,9 @@
 #import "ESCConfigManager.h"
 
 @interface ESCPgyerConfigViewController ()
+
 @property (weak) IBOutlet NSTextField *uKeyTextField;
+
 @property (weak) IBOutlet NSTextField *_api_kTextField;
 
 @end
