@@ -140,6 +140,10 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)didClickClearLogButton:(NSButton *)sender {
+    self.logTextView.string = @"";
+}
+
 - (void)uploadData {
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];

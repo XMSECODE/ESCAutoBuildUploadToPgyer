@@ -980,7 +980,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPA-P8-lTq">
-                                <rect key="frame" x="553" y="30" width="550" height="120"/>
+                                <rect key="frame" x="553" y="36" width="550" height="120"/>
                                 <clipView key="contentView" drawsBackground="NO" id="jRi-pe-gJd">
                                     <rect key="frame" x="1" y="1" width="533" height="118"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1049,6 +1049,16 @@
                                     <action selector="didClickSelectAllUploadButton:" target="4X5-1k-l7B" id="beg-PZ-voC"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aug-Bm-yLp">
+                                <rect key="frame" x="1011" y="1" width="98" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Log" bezelStyle="rounded" alignment="center" borderStyle="border" allowsMixedState="YES" imageScaling="proportionallyDown" inset="2" id="HnU-KM-bVl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickClearLogButton:" target="4X5-1k-l7B" id="WUg-JO-8AQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
@@ -1070,16 +1080,18 @@
                             <constraint firstItem="OIR-BR-TrH" firstAttribute="centerY" secondItem="x7Y-vc-MIP" secondAttribute="centerY" id="Rme-SB-Hbx"/>
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="20" id="SiH-v0-dK9"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="leading" secondItem="itu-Te-zXD" secondAttribute="trailing" constant="40" id="TYe-Ph-p3h"/>
-                            <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="30" id="Xj1-P8-XYf"/>
+                            <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="36" id="Xj1-P8-XYf"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="top" secondItem="cvF-lb-Y94" secondAttribute="bottom" constant="10" id="Z1A-js-g2L"/>
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="centerX" secondItem="zej-sw-RWW" secondAttribute="centerX" id="Zbu-kz-VVd"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="centerY" secondItem="HXr-43-2jn" secondAttribute="centerY" id="Zcw-2c-hu1"/>
+                            <constraint firstItem="aug-Bm-yLp" firstAttribute="trailing" secondItem="vPA-P8-lTq" secondAttribute="trailing" id="Zun-kU-FkF"/>
                             <constraint firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" constant="20" id="aFV-9i-Z4L"/>
                             <constraint firstItem="vPA-P8-lTq" firstAttribute="leading" secondItem="OIR-BR-TrH" secondAttribute="trailing" constant="50" id="gaW-Lo-Aqa"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="10" id="iqt-Go-CBS"/>
                             <constraint firstItem="Z1u-tT-v2d" firstAttribute="centerX" secondItem="itu-Te-zXD" secondAttribute="centerX" id="kjP-VR-3bg"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" constant="20" id="mNz-LW-Ovh"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="q1J-Ro-hoC"/>
+                            <constraint firstAttribute="bottom" secondItem="aug-Bm-yLp" secondAttribute="bottom" constant="8" id="rhq-ih-NEp"/>
                             <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="20" id="wqq-qq-pgx"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="zMS-72-6eJ"/>
                         </constraints>
