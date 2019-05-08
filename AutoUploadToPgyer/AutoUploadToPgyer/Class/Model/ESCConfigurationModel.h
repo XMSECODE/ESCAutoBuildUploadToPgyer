@@ -58,4 +58,23 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* signingCertificate;
 
+@property(nonatomic,assign)int totalSize;
+
+@property(nonatomic,assign)int sendSize;
+
+@property (nonatomic, strong)NSMutableArray <NSDictionary *>*networkRecordArray;
+
+@property(nonatomic,copy)NSString* networkRate;
+
+//剩余时间
+@property(nonatomic,assign)int needRemainTime;
+
+//剩余时间
+@property(nonatomic,copy)NSString *needRemainTimeString;
+
+- (void)calculateNetWorkRate;
+
+- (void)resetNetworkRate;
+
+
 @end

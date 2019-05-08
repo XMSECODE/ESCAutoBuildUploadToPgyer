@@ -196,12 +196,18 @@
         for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
             __weak __typeof(self)weakSelf = self;
             if (model.isUploadIPA) {
+                [model resetNetworkRate];
                 NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
                 [self addLog:logStr];
                 self.allUploadIPACount++;
                 [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
                     double currentProgress = progress.fractionCompleted;
+                    int total = (int)progress.totalUnitCount;
+                    int complete = (int)progress.completedUnitCount;
+                    model.totalSize = total;
+                    model.sendSize = complete;
                     model.uploadProgress = currentProgress;
+                    [model calculateNetWorkRate];
                     [weakSelf.tableView reloadData];
                 } success:^(NSDictionary *result){
                     weakSelf.completeUploadIPACount++;

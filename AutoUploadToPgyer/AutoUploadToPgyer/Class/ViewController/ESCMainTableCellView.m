@@ -17,10 +17,10 @@
 @property (weak) IBOutlet NSTextField *offTimeTextField;
 @property (weak) IBOutlet NSTextField *sizeTextField;
 @property (weak) IBOutlet NSTextField *uploadProgressTextField;
-@property (weak) IBOutlet NSProgressIndicator *uploadProgressIndicator;
 @property (weak) IBOutlet NSTextField *uploadStateTextField;
 @property (weak) IBOutlet NSButton *createIPAButton;
 @property (weak) IBOutlet NSButton *uploadIPAButton;
+@property (weak) IBOutlet NSTextField *timeTextField;
 
 @end
 
@@ -65,11 +65,10 @@
     self.offTimeTextField.stringValue = [self checkString:configurationModel.offTime];
     self.sizeTextField.stringValue = [self checkString:configurationModel.sizeString];
     self.uploadProgressTextField.stringValue = [NSString stringWithFormat:@"%.2lf%@",configurationModel.uploadProgress * 100,@"%"];
-    self.uploadProgressIndicator.doubleValue = configurationModel.uploadProgress;
     self.uploadStateTextField.stringValue = [self checkString:configurationModel.uploadState];
     self.createIPAButton.state = configurationModel.isCreateIPA;
     self.uploadIPAButton.state = configurationModel.isUploadIPA;
-    
+    self.timeTextField.stringValue = [self checkString:configurationModel.needRemainTimeString];
 }
 
 - (NSString *)checkString:(NSString *)string {

@@ -64,6 +64,7 @@ static ESCNetWorkManager *staticNetWorkManager;
             });
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        NSLog(@"%@",uploadProgress);
         dispatch_async(dispatch_get_main_queue(), ^{
             cuploadProgress(uploadProgress);
         });

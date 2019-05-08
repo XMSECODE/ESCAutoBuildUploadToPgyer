@@ -752,12 +752,6 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <progressIndicator wantsLayer="YES" maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-qD-Ag2">
-                                                                    <rect key="frame" x="715" y="15" width="80" height="20"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="80" id="kQg-sZ-MYf"/>
-                                                                    </constraints>
-                                                                </progressIndicator>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k7l-zp-1B0">
                                                                     <rect key="frame" x="813" y="17" width="74" height="17"/>
                                                                     <constraints>
@@ -845,20 +839,30 @@
                                                                         <action selector="didClickDeleteButton:" target="its-9X-94c" id="6yA-tl-gKP"/>
                                                                     </connections>
                                                                 </button>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RbK-Jq-xAG">
+                                                                    <rect key="frame" x="713" y="17" width="84" height="17"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="80" id="24r-cf-Sdl"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="7iQ-Zx-4pV">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="4zS-qD-Ag2" firstAttribute="leading" secondItem="fwz-0C-UJU" secondAttribute="trailing" constant="20" id="0jH-zK-zjO"/>
-                                                                <constraint firstItem="4zS-qD-Ag2" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="6hz-b0-EgO"/>
                                                                 <constraint firstItem="LoB-XQ-reG" firstAttribute="leading" secondItem="BoE-Ee-eHy" secondAttribute="trailing" constant="20" id="By4-ig-qya"/>
                                                                 <constraint firstItem="nDa-IR-eu7" firstAttribute="leading" secondItem="k7l-zp-1B0" secondAttribute="trailing" constant="20" id="DjL-9z-ifw"/>
                                                                 <constraint firstItem="k7l-zp-1B0" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="E9R-d8-EaE"/>
-                                                                <constraint firstItem="k7l-zp-1B0" firstAttribute="leading" secondItem="4zS-qD-Ag2" secondAttribute="trailing" constant="20" id="EzE-S2-eGv"/>
                                                                 <constraint firstItem="NfO-QZ-2hT" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="GCa-lT-72D"/>
                                                                 <constraint firstItem="6sf-QJ-M9h" firstAttribute="centerY" secondItem="ykb-d3-1bM" secondAttribute="centerY" id="K1p-RC-9Nk"/>
+                                                                <constraint firstItem="RbK-Jq-xAG" firstAttribute="leading" secondItem="fwz-0C-UJU" secondAttribute="trailing" constant="20" id="Ni6-vj-ndo"/>
                                                                 <constraint firstItem="ykb-d3-1bM" firstAttribute="leading" secondItem="NfO-QZ-2hT" secondAttribute="trailing" constant="30" id="PTE-AS-NgW"/>
                                                                 <constraint firstItem="srh-Ix-gjp" firstAttribute="leading" secondItem="6sf-QJ-M9h" secondAttribute="trailing" constant="20" id="Phn-wN-Sz1"/>
                                                                 <constraint firstItem="fwz-0C-UJU" firstAttribute="leading" secondItem="htR-Kj-NiI" secondAttribute="trailing" constant="20" id="Y5J-CC-czG"/>
                                                                 <constraint firstItem="srh-Ix-gjp" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="c7F-4g-mdR"/>
+                                                                <constraint firstItem="k7l-zp-1B0" firstAttribute="leading" secondItem="RbK-Jq-xAG" secondAttribute="trailing" constant="20" id="cwt-vZ-vdT"/>
                                                                 <constraint firstItem="qwK-iB-aBX" firstAttribute="leading" secondItem="nDa-IR-eu7" secondAttribute="trailing" constant="40" id="dr6-6j-yR7"/>
                                                                 <constraint firstItem="6sf-QJ-M9h" firstAttribute="leading" secondItem="ykb-d3-1bM" secondAttribute="trailing" constant="20" id="eHy-Te-GiK"/>
                                                                 <constraint firstItem="fwz-0C-UJU" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="f3D-ox-ohR"/>
@@ -870,6 +874,7 @@
                                                                 <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="20" id="pMB-JP-FcR"/>
                                                                 <constraint firstItem="ykb-d3-1bM" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="r6e-s5-s3W"/>
                                                                 <constraint firstItem="nDa-IR-eu7" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="tRN-Kl-Y1T"/>
+                                                                <constraint firstItem="RbK-Jq-xAG" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="vxU-7p-Ll7"/>
                                                                 <constraint firstItem="htR-Kj-NiI" firstAttribute="leading" secondItem="srh-Ix-gjp" secondAttribute="trailing" constant="20" id="zKq-nH-VjP"/>
                                                             </constraints>
                                                             <accessibility identifier="ESCMainTableCellViewID"/>
@@ -880,8 +885,8 @@
                                                                 <outlet property="offTimeTextField" destination="srh-Ix-gjp" id="hQB-jw-uOf"/>
                                                                 <outlet property="projectName" destination="NfO-QZ-2hT" id="QzI-sP-rO6"/>
                                                                 <outlet property="sizeTextField" destination="htR-Kj-NiI" id="Kek-lI-Khs"/>
+                                                                <outlet property="timeTextField" destination="RbK-Jq-xAG" id="bYr-AH-3kP"/>
                                                                 <outlet property="uploadIPAButton" destination="BoE-Ee-eHy" id="wnH-YY-KcA"/>
-                                                                <outlet property="uploadProgressIndicator" destination="4zS-qD-Ag2" id="S6D-49-kHH"/>
                                                                 <outlet property="uploadProgressTextField" destination="fwz-0C-UJU" id="LQX-Ca-Z1l"/>
                                                                 <outlet property="uploadStateTextField" destination="k7l-zp-1B0" id="NSR-7L-ze8"/>
                                                             </connections>
