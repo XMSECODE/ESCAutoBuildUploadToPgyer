@@ -8,8 +8,9 @@
 
 #import "ESCMainTableCellView.h"
 #import "ESCConfigurationModel.h"
+#import "ESCRightMouseDownMenuView.h"
 
-@interface ESCMainTableCellView ()
+@interface ESCMainTableCellView () <ESCRightMouseDownMenuViewDelegate>
 
 @property (weak) IBOutlet NSTextField *projectName;
 @property (weak) IBOutlet NSTextField *ipaNameTextField;
@@ -22,14 +23,51 @@
 @property (weak) IBOutlet NSButton *uploadIPAButton;
 @property (weak) IBOutlet NSTextField *timeTextField;
 
+@property(nonatomic,weak)ESCRightMouseDownMenuView* menuView;
+
 @end
 
 @implementation ESCMainTableCellView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMouseDownNotification:) name:@"mouseDownNotificationName" object:nil];
+}
+
+- (void)receiveMouseDownNotification:(NSNotification *)notification {
+    if (self.menuView) {
+        [self.menuView removeFromSuperview];
+    }
+}
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
 }
+
+- (void)mouseDown:(NSEvent *)event {
+    if (self.menuView) {
+        [self.menuView removeFromSuperview];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mouseDownNotificationName" object:nil];
+}
+
+- (void)rightMouseDown:(NSEvent *)event {
+    NSPoint windowPoint= event.locationInWindow;
+    NSPoint local_point = [self convertPoint:windowPoint fromView:nil];
+    if (self.menuView) {
+        [self.menuView removeFromSuperview];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mouseDownNotificationName" object:nil];
+    //弹框
+    ESCRightMouseDownMenuView *menuView = [[ESCRightMouseDownMenuView alloc] initWithFrame:NSMakeRect(local_point.x, 2, 100, 66)];
+    [self addSubview:menuView];
+    self.menuView = menuView;
+    self.menuView.delegate = self;
+    
+}
+
 - (IBAction)didClickDeleteButton:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickDeleteButton:configurationModel:)]) {
         [self.delegate mainTableCellViewdidClickDeleteButton:self configurationModel:self.configurationModel];
@@ -76,6 +114,25 @@
         return @"";
     }
     return string;
+}
+
+#pragma mark - ESCRightMouseDownMenuViewDelegate
+- (void)ESCRightMouseDownMenuViewdidClickBuildButton:(ESCRightMouseDownMenuView *)view  {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickRightMenuBuildButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickRightMenuBuildButton:self configurationModel:self.configurationModel];
+    }
+}
+
+- (void)ESCRightMouseDownMenuViewdidClickUploadButton:(ESCRightMouseDownMenuView *)view {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickRightMenuUploadButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickRightMenuUploadButton:self configurationModel:self.configurationModel];
+    }
+}
+
+- (void)ESCRightMouseDownMenuViewdidClickBuildAndUploadButton:(ESCRightMouseDownMenuView *)view {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickRightMenuBuildAndUploadButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickRightMenuBuildAndUploadButton:self configurationModel:self.configurationModel];
+    }
 }
 
 @end

@@ -37,12 +37,20 @@
 
 @property (nonatomic, assign) NSInteger completeUploadIPACount;
 
+@property(nonatomic,strong)dispatch_queue_t build_queue;
+
+@property(nonatomic,strong)dispatch_queue_t upload_queue;
+
 @end
 
 @implementation ESCMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.build_queue = dispatch_queue_create("build queue", NULL);
+    self.upload_queue = dispatch_queue_create("upload queue", NULL);
+    
     self.tableView.rowHeight = 70;
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     
@@ -160,16 +168,10 @@
         return;
     }
     self.isCompiling = YES;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(self.build_queue, ^{
         for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
             if (model.isCreateIPA) {
-                NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
-                [self addLog:logStr];
-                NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-                system(filePath.UTF8String);
-                logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
-                [self addLog:logStr];
-                [self uploadData];
+                [self buildTargetWithModel:model];
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -180,6 +182,16 @@
     
 }
 
+- (void)buildTargetWithModel:(ESCConfigurationModel *)model {
+    NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
+    [self addLog:logStr];
+    NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
+    system(filePath.UTF8String);
+    logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
+    [self addLog:logStr];
+    [self uploadData];
+}
+
 - (void)uploadToPgyer {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.isUploading) {
@@ -187,52 +199,59 @@
             [self addLog:str];
             return;
         }
-
         self.isUploading = YES;
         self.allUploadIPACount = 0;
         self.completeUploadIPACount = 0;
-        NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
-        NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
         for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-            __weak __typeof(self)weakSelf = self;
             if (model.isUploadIPA) {
-                [model resetNetworkRate];
-                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
-                [self addLog:logStr];
                 self.allUploadIPACount++;
-                [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
-                    double currentProgress = progress.fractionCompleted;
-                    int total = (int)progress.totalUnitCount;
-                    int complete = (int)progress.completedUnitCount;
-                    model.totalSize = total;
-                    model.sendSize = complete;
-                    model.uploadProgress = currentProgress;
-                    [model calculateNetWorkRate];
-                    [weakSelf.tableView reloadData];
-                } success:^(NSDictionary *result){
-                    weakSelf.completeUploadIPACount++;
-                    if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
-                        weakSelf.isUploading = NO;
-                    }
-                    model.uploadState = @"上传成功";
-                    NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
-                    [weakSelf addLog:logStr];
-                    NSString *resultString = [result mj_JSONString];
-                    [weakSelf writeLog:resultString withPath:model.historyLogPath];
-                    [weakSelf.tableView reloadData];
-                } failure:^(NSError *error) {
-                    weakSelf.completeUploadIPACount++;
-                    if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
-                        weakSelf.isUploading = NO;
-                    }
-                    model.uploadState = @"上传失败";
-                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
-                    [weakSelf addLog:logStr];
-                    [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
-                }];
+                dispatch_async(self.upload_queue, ^{
+                    [self uploadIpaWithModel:model];
+                });
             }
         }
     });
+}
+
+- (void)uploadIpaWithModel:(ESCConfigurationModel *)model {
+    __weak __typeof(self)weakSelf = self;
+    [model resetNetworkRate];
+    
+    NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
+    [self addLog:logStr];
+    
+    NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+    NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
+        double currentProgress = progress.fractionCompleted;
+        int total = (int)progress.totalUnitCount;
+        int complete = (int)progress.completedUnitCount;
+        model.totalSize = total;
+        model.sendSize = complete;
+        model.uploadProgress = currentProgress;
+        [model calculateNetWorkRate];
+        [weakSelf.tableView reloadData];
+    } success:^(NSDictionary *result){
+        weakSelf.completeUploadIPACount++;
+        if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
+            weakSelf.isUploading = NO;
+        }
+        model.uploadState = @"上传成功";
+        NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
+        [weakSelf addLog:logStr];
+        NSString *resultString = [result mj_JSONString];
+        [weakSelf writeLog:resultString withPath:model.historyLogPath];
+        [weakSelf.tableView reloadData];
+    } failure:^(NSError *error) {
+        weakSelf.completeUploadIPACount++;
+        if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
+            weakSelf.isUploading = NO;
+        }
+        model.uploadState = @"上传失败";
+        NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+        [weakSelf addLog:logStr];
+        [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
+    }];
 }
 
 - (void)writeLog:(NSString *)string withPath:(NSString *)path{
@@ -270,6 +289,27 @@
 
 - (void)mainTableCellViewdidClickUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     [self checkIsAllSelected];
+}
+
+- (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    dispatch_async(self.upload_queue, ^{
+        [self uploadIpaWithModel:model];
+    });
+}
+
+- (void)mainTableCellViewdidClickRightMenuBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    dispatch_async(self.build_queue, ^{    
+        [self buildTargetWithModel:model];
+    });
+}
+
+- (void)mainTableCellViewdidClickRightMenuBuildAndUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    dispatch_async(self.build_queue, ^{
+        [self buildTargetWithModel:model];
+        dispatch_async(self.upload_queue, ^{
+            [self uploadIpaWithModel:model];
+        });
+    });
 }
 
 - (void)checkIsAllSelected {

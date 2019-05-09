@@ -22,6 +22,12 @@ static NSString *ESCMainTableCellViewID = @"ESCMainTableCellViewID";
 
 - (void)mainTableCellViewdidClickUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
 
+- (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
+
+- (void)mainTableCellViewdidClickRightMenuBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
+
+- (void)mainTableCellViewdidClickRightMenuBuildAndUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
+
 @end
 
 @interface ESCMainTableCellView : NSTableCellView
