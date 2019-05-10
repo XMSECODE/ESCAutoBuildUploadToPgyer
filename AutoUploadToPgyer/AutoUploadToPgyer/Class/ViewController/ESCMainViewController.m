@@ -17,6 +17,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ESCNetWorkManager.h"
 
+typedef enum : NSUInteger {
+    ESCSortAlgorithmTypeLRU
+} ESCSortAlgorithmType;
+
+
 @interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -41,6 +46,12 @@
 
 @property(nonatomic,strong)dispatch_queue_t upload_queue;
 
+@property (weak) IBOutlet NSButton *LRUButton;
+
+@property(nonatomic,assign)BOOL isStartSort;
+
+@property(nonatomic,assign)ESCSortAlgorithmType sortType;
+
 @end
 
 @implementation ESCMainViewController
@@ -57,6 +68,13 @@
     [self uploadData];
     
     [self checkIsAllSelected];
+    
+     int selectSortType = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SortType"] intValue];
+    if (selectSortType == 1) {
+        self.sortType = ESCSortAlgorithmTypeLRU;
+        self.LRUButton.state = 1;
+        self.isStartSort = YES;
+    }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -152,6 +170,16 @@
     self.logTextView.string = @"";
 }
 
+- (IBAction)didClickLRUButton:(id)sender {
+    self.isStartSort = self.LRUButton.state;
+    if (self.LRUButton.state == YES) {
+        self.sortType = ESCSortAlgorithmTypeLRU;
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"SortType"];
+    }else {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"SortType"];
+    }
+}
+
 - (void)uploadData {
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
@@ -183,6 +211,9 @@
 }
 
 - (void)buildTargetWithModel:(ESCConfigurationModel *)model {
+    if(self.isStartSort == YES) {
+        [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
+    }
     NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
     [self addLog:logStr];
     NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
@@ -216,7 +247,9 @@
 - (void)uploadIpaWithModel:(ESCConfigurationModel *)model {
     __weak __typeof(self)weakSelf = self;
     [model resetNetworkRate];
-    
+    if(self.isStartSort == YES) {
+        [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
+    }
     NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
     [self addLog:logStr];
     

@@ -1064,6 +1064,16 @@
                                     <action selector="didClickClearLogButton:" target="4X5-1k-l7B" id="WUg-JO-8AQ"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="uTH-Xz-3x4">
+                                <rect key="frame" x="918" y="166" width="101" height="18"/>
+                                <buttonCell key="cell" type="check" title="LRU算法排序" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Aew-lH-mDm">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickLRUButton:" target="4X5-1k-l7B" id="e6m-zX-Vdl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
@@ -1085,6 +1095,7 @@
                             <constraint firstItem="OIR-BR-TrH" firstAttribute="centerY" secondItem="x7Y-vc-MIP" secondAttribute="centerY" id="Rme-SB-Hbx"/>
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="20" id="SiH-v0-dK9"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="leading" secondItem="itu-Te-zXD" secondAttribute="trailing" constant="40" id="TYe-Ph-p3h"/>
+                            <constraint firstItem="HXr-43-2jn" firstAttribute="leading" secondItem="uTH-Xz-3x4" secondAttribute="trailing" constant="20" id="UBI-yK-DKS"/>
                             <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="36" id="Xj1-P8-XYf"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="top" secondItem="cvF-lb-Y94" secondAttribute="bottom" constant="10" id="Z1A-js-g2L"/>
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="centerX" secondItem="zej-sw-RWW" secondAttribute="centerX" id="Zbu-kz-VVd"/>
@@ -1097,11 +1108,13 @@
                             <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" constant="20" id="mNz-LW-Ovh"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="q1J-Ro-hoC"/>
                             <constraint firstAttribute="bottom" secondItem="aug-Bm-yLp" secondAttribute="bottom" constant="8" id="rhq-ih-NEp"/>
+                            <constraint firstItem="HXr-43-2jn" firstAttribute="centerY" secondItem="uTH-Xz-3x4" secondAttribute="centerY" id="tWw-wD-EiB"/>
                             <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="20" id="wqq-qq-pgx"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="zMS-72-6eJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LRUButton" destination="uTH-Xz-3x4" id="Wi4-YM-516"/>
                         <outlet property="logTextView" destination="2qC-le-lGW" id="wm8-4v-6Jk"/>
                         <outlet property="selectAllBuildButton" destination="HXr-43-2jn" id="QfW-Jt-qpI"/>
                         <outlet property="selectAllUploadButton" destination="bBG-VY-ars" id="Quy-cf-RlV"/>

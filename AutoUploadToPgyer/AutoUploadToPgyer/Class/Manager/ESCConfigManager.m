@@ -39,6 +39,24 @@ static ESCConfigManager *staticESCConfigManager;
     self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
 }
 
+- (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model {
+    NSInteger index = [self.modelArray indexOfObject:model];
+    if (index != 0) {
+        NSMutableArray *temArray = [NSMutableArray array];
+        for (int i = 0; i < self.modelArray.count; i++) {
+            if (i != index - 1 && i != index) {
+                [temArray addObject:self.modelArray[i]];
+            }else {
+                [temArray addObject:model];
+                [temArray addObject:self.modelArray[i]];
+                i++;
+            }
+        }
+        self.modelArray = temArray;
+        [self saveUserData];
+    }
+}
+
 - (void)saveUserData {
     NSMutableArray *temArray = [NSMutableArray array];
     for (ESCConfigurationModel *model in self.modelArray) {
