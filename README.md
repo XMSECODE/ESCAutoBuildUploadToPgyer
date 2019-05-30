@@ -1,3 +1,3 @@
 # ESCAutoUploadToPgyer
-iOS自动打包上传蒲公英工具
+iOS自动编译打包上传蒲公英工具
 使用shell脚本语言编译
