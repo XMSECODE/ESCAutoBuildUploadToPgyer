@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSButton *createIPAButton;
 @property (weak) IBOutlet NSButton *uploadIPAButton;
 @property (weak) IBOutlet NSTextField *timeTextField;
+@property (weak) IBOutlet NSButton *bothButton;
 
 @property(nonatomic,weak)ESCRightMouseDownMenuView* menuView;
 
@@ -82,6 +83,11 @@
 
 - (IBAction)didClickCreateIPAButton:(id)sender {
     self.configurationModel.isCreateIPA = self.createIPAButton.state;
+    if (self.configurationModel.isCreateIPA == YES && self.configurationModel.isUploadIPA == YES) {
+        self.bothButton.state = 1;
+    }else {
+        self.bothButton.state = 0;
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickSelectBuildButton:configurationModel:)]) {
         [self.delegate mainTableCellViewdidClickSelectBuildButton:self configurationModel:self.configurationModel];
     }
@@ -89,8 +95,22 @@
 
 - (IBAction)didClickUploadIPAButton:(id)sender {
     self.configurationModel.isUploadIPA = self.uploadIPAButton.state;
+    if (self.configurationModel.isCreateIPA == YES && self.configurationModel.isUploadIPA == YES) {
+        self.bothButton.state = 1;
+    }else {
+        self.bothButton.state = 0;
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickUploadButton:configurationModel:)]) {
         [self.delegate mainTableCellViewdidClickUploadButton:self configurationModel:self.configurationModel];
+    }
+}
+- (IBAction)didClickBothButton:(id)sender {
+    self.configurationModel.isUploadIPA = self.bothButton.state;
+    self.configurationModel.isCreateIPA = self.bothButton.state;
+    self.createIPAButton.state = self.bothButton.state;
+    self.uploadIPAButton.state = self.bothButton.state;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickBothButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickBothButton:self configurationModel:self.configurationModel];
     }
 }
 
@@ -106,6 +126,11 @@
     self.uploadStateTextField.stringValue = [self checkString:configurationModel.uploadState];
     self.createIPAButton.state = configurationModel.isCreateIPA;
     self.uploadIPAButton.state = configurationModel.isUploadIPA;
+    if (configurationModel.isCreateIPA == YES && configurationModel.isUploadIPA == YES) {
+        self.bothButton.state = 1;
+    }else {
+        self.bothButton.state = 0;
+    }
     self.timeTextField.stringValue = [self checkString:configurationModel.needRemainTimeString];
 }
 

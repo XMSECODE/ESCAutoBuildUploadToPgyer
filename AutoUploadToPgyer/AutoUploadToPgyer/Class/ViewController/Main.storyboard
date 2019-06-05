@@ -787,7 +787,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="BoE-Ee-eHy">
-                                                                    <rect key="frame" x="1123" y="16" width="67" height="18"/>
+                                                                    <rect key="frame" x="1113" y="16" width="67" height="18"/>
                                                                     <buttonCell key="cell" type="check" title="上传ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wQp-ey-UnS">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -830,7 +830,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LoB-XQ-reG">
-                                                                    <rect key="frame" x="1202" y="8" width="67" height="32"/>
+                                                                    <rect key="frame" x="1239" y="8" width="67" height="32"/>
                                                                     <buttonCell key="cell" type="push" title="删除" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ARC-Mj-t2U">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -850,9 +850,19 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="kgF-R5-GPz">
+                                                                    <rect key="frame" x="1186" y="16" width="51" height="18"/>
+                                                                    <buttonCell key="cell" type="check" title="Both" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ZET-RF-3SO">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="didClickBothButton:" target="its-9X-94c" id="gxf-EW-j24"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="LoB-XQ-reG" firstAttribute="leading" secondItem="BoE-Ee-eHy" secondAttribute="trailing" constant="20" id="By4-ig-qya"/>
+                                                                <constraint firstItem="LoB-XQ-reG" firstAttribute="leading" secondItem="kgF-R5-GPz" secondAttribute="trailing" constant="10" id="4LC-el-tqh"/>
                                                                 <constraint firstItem="nDa-IR-eu7" firstAttribute="leading" secondItem="k7l-zp-1B0" secondAttribute="trailing" constant="20" id="DjL-9z-ifw"/>
                                                                 <constraint firstItem="k7l-zp-1B0" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="E9R-d8-EaE"/>
                                                                 <constraint firstItem="NfO-QZ-2hT" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="GCa-lT-72D"/>
@@ -871,14 +881,17 @@
                                                                 <constraint firstItem="BoE-Ee-eHy" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="j6f-Yp-bVB"/>
                                                                 <constraint firstItem="htR-Kj-NiI" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="meg-WC-qEb"/>
                                                                 <constraint firstItem="qwK-iB-aBX" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="p02-Ui-pbC"/>
-                                                                <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="20" id="pMB-JP-FcR"/>
+                                                                <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="10" id="pMB-JP-FcR"/>
                                                                 <constraint firstItem="ykb-d3-1bM" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="r6e-s5-s3W"/>
+                                                                <constraint firstItem="kgF-R5-GPz" firstAttribute="leading" secondItem="BoE-Ee-eHy" secondAttribute="trailing" constant="10" id="sDN-0y-FaT"/>
                                                                 <constraint firstItem="nDa-IR-eu7" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="tRN-Kl-Y1T"/>
+                                                                <constraint firstItem="kgF-R5-GPz" firstAttribute="centerY" secondItem="BoE-Ee-eHy" secondAttribute="centerY" id="uVq-JN-DTd"/>
                                                                 <constraint firstItem="RbK-Jq-xAG" firstAttribute="centerY" secondItem="its-9X-94c" secondAttribute="centerY" id="vxU-7p-Ll7"/>
                                                                 <constraint firstItem="htR-Kj-NiI" firstAttribute="leading" secondItem="srh-Ix-gjp" secondAttribute="trailing" constant="20" id="zKq-nH-VjP"/>
                                                             </constraints>
                                                             <accessibility identifier="ESCMainTableCellViewID"/>
                                                             <connections>
+                                                                <outlet property="bothButton" destination="kgF-R5-GPz" id="2Ti-Oq-lPx"/>
                                                                 <outlet property="createDateTextField" destination="6sf-QJ-M9h" id="lpP-R2-HIj"/>
                                                                 <outlet property="createIPAButton" destination="qwK-iB-aBX" id="EKY-AV-uYB"/>
                                                                 <outlet property="ipaNameTextField" destination="ykb-d3-1bM" id="KFV-rA-Ugw"/>
@@ -1045,7 +1058,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bBG-VY-ars">
-                                <rect key="frame" x="1145" y="166" width="94" height="18"/>
+                                <rect key="frame" x="1125" y="166" width="94" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选上传ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Q0m-a8-RAL">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1074,6 +1087,16 @@
                                     <action selector="didClickLRUButton:" target="4X5-1k-l7B" id="e6m-zX-Vdl"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Izq-5x-Q7l">
+                                <rect key="frame" x="1220" y="166" width="77" height="18"/>
+                                <buttonCell key="cell" type="check" title="全选Both" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CCK-dY-IZo">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="didClickSelectAllBothButton:" target="4X5-1k-l7B" id="xw1-WV-yrL"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
@@ -1096,6 +1119,7 @@
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="20" id="SiH-v0-dK9"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="leading" secondItem="itu-Te-zXD" secondAttribute="trailing" constant="40" id="TYe-Ph-p3h"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="leading" secondItem="uTH-Xz-3x4" secondAttribute="trailing" constant="20" id="UBI-yK-DKS"/>
+                            <constraint firstItem="Izq-5x-Q7l" firstAttribute="centerY" secondItem="bBG-VY-ars" secondAttribute="centerY" id="Xa2-pW-zSC"/>
                             <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="36" id="Xj1-P8-XYf"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="top" secondItem="cvF-lb-Y94" secondAttribute="bottom" constant="10" id="Z1A-js-g2L"/>
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="centerX" secondItem="zej-sw-RWW" secondAttribute="centerX" id="Zbu-kz-VVd"/>
@@ -1105,17 +1129,19 @@
                             <constraint firstItem="vPA-P8-lTq" firstAttribute="leading" secondItem="OIR-BR-TrH" secondAttribute="trailing" constant="50" id="gaW-Lo-Aqa"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="10" id="iqt-Go-CBS"/>
                             <constraint firstItem="Z1u-tT-v2d" firstAttribute="centerX" secondItem="itu-Te-zXD" secondAttribute="centerX" id="kjP-VR-3bg"/>
-                            <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" constant="20" id="mNz-LW-Ovh"/>
+                            <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" id="mNz-LW-Ovh"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="q1J-Ro-hoC"/>
                             <constraint firstAttribute="bottom" secondItem="aug-Bm-yLp" secondAttribute="bottom" constant="8" id="rhq-ih-NEp"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="centerY" secondItem="uTH-Xz-3x4" secondAttribute="centerY" id="tWw-wD-EiB"/>
-                            <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="20" id="wqq-qq-pgx"/>
+                            <constraint firstItem="BoE-Ee-eHy" firstAttribute="leading" secondItem="qwK-iB-aBX" secondAttribute="trailing" constant="10" id="wqq-qq-pgx"/>
+                            <constraint firstItem="Izq-5x-Q7l" firstAttribute="leading" secondItem="bBG-VY-ars" secondAttribute="trailing" constant="5" id="wx5-sw-3SO"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="zMS-72-6eJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="LRUButton" destination="uTH-Xz-3x4" id="Wi4-YM-516"/>
                         <outlet property="logTextView" destination="2qC-le-lGW" id="wm8-4v-6Jk"/>
+                        <outlet property="selectAllBothButton" destination="Izq-5x-Q7l" id="3nR-AO-gNa"/>
                         <outlet property="selectAllBuildButton" destination="HXr-43-2jn" id="QfW-Jt-qpI"/>
                         <outlet property="selectAllUploadButton" destination="bBG-VY-ars" id="Quy-cf-RlV"/>
                         <outlet property="tableView" destination="Dqm-vh-eSj" id="oZf-ga-WFk"/>

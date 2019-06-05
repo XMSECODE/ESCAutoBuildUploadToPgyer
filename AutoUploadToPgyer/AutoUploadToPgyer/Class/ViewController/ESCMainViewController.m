@@ -34,6 +34,8 @@ typedef enum : NSUInteger {
 
 @property (weak) IBOutlet NSButton *selectAllUploadButton;
 
+@property (weak) IBOutlet NSButton *selectAllBothButton;
+
 @property (nonatomic, assign) BOOL isCompiling;
 
 @property (nonatomic, assign) BOOL isUploading;
@@ -163,6 +165,16 @@ typedef enum : NSUInteger {
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         model.isUploadIPA = sender.state;
     }
+    [self.tableView reloadData];
+}
+
+- (IBAction)didClickSelectAllBothButton:(NSButton *)sender {
+    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+        model.isUploadIPA = sender.state;
+        model.isCreateIPA = sender.state;
+    }
+    self.selectAllUploadButton.state = sender.state;
+    self.selectAllBuildButton.state = sender.state;
     [self.tableView reloadData];
 }
 
@@ -324,6 +336,10 @@ typedef enum : NSUInteger {
     [self checkIsAllSelected];
 }
 
+- (void)mainTableCellViewdidClickBothButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    [self checkIsAllSelected];
+}
+
 - (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     dispatch_async(self.upload_queue, ^{
         [self uploadIpaWithModel:model];
@@ -358,6 +374,11 @@ typedef enum : NSUInteger {
     }
     self.selectAllBuildButton.state = buildIsAllSelected;
     self.selectAllUploadButton.state = uploadIsAllSelected;
+    if (self.selectAllBuildButton.state == 1 && self.selectAllUploadButton.state == 1) {
+        self.selectAllBothButton.state = 1;
+    }else {
+        self.selectAllBothButton.state = 0;
+    }
 }
 
 - (NSDateFormatter *)dateFormatter {
