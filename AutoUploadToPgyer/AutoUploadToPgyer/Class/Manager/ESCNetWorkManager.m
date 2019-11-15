@@ -48,8 +48,8 @@ static ESCNetWorkManager *staticNetWorkManager;
                       failure:(void (^)(NSError *error))failure{
     NSDictionary *pare = @{@"uKey":uKey,
                            @"_api_key":api_key,
-                           @"installType":@"3",
-                           @"password":@"",
+                           @"installType":@"2",
+                           @"password":@"123456",
                            @"updateDescription":@""
                            };
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
