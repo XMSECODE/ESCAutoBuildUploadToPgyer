@@ -48,7 +48,7 @@ static ESCNetWorkManager *staticNetWorkManager;
                       failure:(void (^)(NSError *error))failure{
     NSDictionary *pare = @{@"uKey":uKey,
                            @"_api_key":api_key,
-                           @"installType":@"1",
+                           @"installType":@"3",
                            @"password":@"",
                            @"updateDescription":@""
                            };
