@@ -136,10 +136,12 @@ typedef enum : NSUInteger {
             NSString *pathString = [openPanel.URLs.firstObject path];
             NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
             NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-
+            NSString *password = [ESCConfigManager sharedConfigManager].password;
+            
             NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
             [weakSelf addLog:logStr];
-            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
+            
+            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString uKey:ukey api_key:api_k password:password progress:^(NSProgress *progress) {
                 double currentProgress = progress.fractionCompleted * 100;
                 NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
                 [weakSelf addLog:logStr];
@@ -267,7 +269,8 @@ typedef enum : NSUInteger {
     
     NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
     NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k progress:^(NSProgress *progress) {
+    NSString *password = [ESCConfigManager sharedConfigManager].password;
+    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k password:password progress:^(NSProgress *progress) {
         double currentProgress = progress.fractionCompleted;
         int total = (int)progress.totalUnitCount;
         int complete = (int)progress.completedUnitCount;

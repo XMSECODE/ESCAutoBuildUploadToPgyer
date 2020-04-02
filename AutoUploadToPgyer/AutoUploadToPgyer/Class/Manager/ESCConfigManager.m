@@ -12,6 +12,7 @@
 
 static NSString *ESCPgyerUKey = @"ESCPgyerUKey";
 static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
+static NSString *ESCPgyerPassword_key = @"ESCPgyerPassword_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
 
 @interface ESCConfigManager ()
@@ -37,6 +38,7 @@ static ESCConfigManager *staticESCConfigManager;
     
     self.api_k = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerapi_key];
     self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
+    self.password = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerPassword_key];
 }
 
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model {
@@ -79,6 +81,11 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setApi_k:(NSString *)api_k {
     _api_k = [api_k copy];
     [[NSUserDefaults standardUserDefaults] setObject:_api_k forKey:ESCPgyerapi_key];
+}
+
+- (void)setPassword:(NSString *)password {
+    _password = [password copy];
+    [[NSUserDefaults standardUserDefaults] setObject:_password forKey:ESCPgyerPassword_key];
 }
 
 @end

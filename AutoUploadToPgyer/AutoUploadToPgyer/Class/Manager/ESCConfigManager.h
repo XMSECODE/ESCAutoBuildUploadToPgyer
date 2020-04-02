@@ -18,6 +18,8 @@
 
 @property (nonatomic, copy) NSString *uKey;
 
+@property(nonatomic,copy)NSString* password;
+
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model;
 
 + (instancetype)sharedConfigManager;

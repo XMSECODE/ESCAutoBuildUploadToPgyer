@@ -43,15 +43,25 @@ static ESCNetWorkManager *staticNetWorkManager;
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
                              uKey:(NSString *)uKey
                           api_key:(NSString *)api_key
-                     progress:(void (^)(NSProgress * progress))cuploadProgress
-                      success:(void (^)(NSDictionary *result))success
-                      failure:(void (^)(NSError *error))failure{
-    NSDictionary *pare = @{@"uKey":uKey,
-                           @"_api_key":api_key,
-                           @"installType":@"2",
-                           @"password":@"123456",
-                           @"updateDescription":@""
-                           };
+                         password:(NSString *)password
+                         progress:(void (^)(NSProgress * progress))cuploadProgress
+                          success:(void (^)(NSDictionary *result))success
+                          failure:(void (^)(NSError *error))failure{
+    NSDictionary *pare = nil;
+    if (password == nil || password.length <= 0) {
+        pare = @{@"uKey":uKey,
+                 @"_api_key":api_key,
+                 @"installType":@"1",
+                 @"updateDescription":@""
+        };
+    }else {
+        pare = @{@"uKey":uKey,
+                 @"_api_key":api_key,
+                 @"installType":@"2",
+                 @"password":password,
+                 @"updateDescription":@""
+        };
+    }
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
         NSError *error;
@@ -64,13 +74,13 @@ static ESCNetWorkManager *staticNetWorkManager;
             });
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        NSLog(@"%@",uploadProgress);
+        //        NSLog(@"%@",uploadProgress);
         dispatch_async(dispatch_get_main_queue(), ^{
             cuploadProgress(uploadProgress);
         });
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            dispatch_async(dispatch_get_main_queue(), ^{                
+            dispatch_async(dispatch_get_main_queue(), ^{
                 NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
                 if (code == 0) {
                     success(responseObject);
