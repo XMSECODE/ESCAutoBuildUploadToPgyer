@@ -26,6 +26,10 @@
 
 @property (weak) IBOutlet NSTextField *signingCertificateTextField;
 
+@property (weak) IBOutlet NSTextField *bundleIdTextField;
+
+@property (weak) IBOutlet NSTextField *provisioningProfileNameTextField;
+
 @property (assign) BOOL isCreatNew;
 
 @end
@@ -67,6 +71,12 @@
     if (configurationModel.signingCertificate) {
         self.signingCertificateTextField.stringValue = configurationModel.signingCertificate;
     }
+    if (configurationModel.bundleID) {
+        self.bundleIdTextField.stringValue = configurationModel.bundleID;
+    }
+    if (configurationModel.provisioningProfileName) {
+        self.provisioningProfileNameTextField.stringValue = configurationModel.provisioningProfileName;
+    }
     
 }
 - (IBAction)didClickCancelButton:(id)sender {
@@ -83,6 +93,10 @@
     configurationModel.ipaPath = ipaPath;
     
     configurationModel.signingCertificate = self.signingCertificateTextField.stringValue;
+    
+    configurationModel.bundleID = self.bundleIdTextField.stringValue;
+    
+    configurationModel.provisioningProfileName = self.provisioningProfileNameTextField.stringValue;
     
     if (self.xcodeprojButton.state) {
         configurationModel.projectType = ESCXCodeProjectTypeProj;

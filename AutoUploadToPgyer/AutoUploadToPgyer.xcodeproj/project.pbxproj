@@ -40,7 +40,6 @@
 		F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F012FA4B2284152D002CC739 /* ESCRightMouseDownMenuView.m */; };
 		F049FC151F6641DE00147EC9 /* ESCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F049FC141F6641DE00147EC9 /* ESCMainViewController.m */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
-		F084B4101F5FC4ED00D71BCC /* buildinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */; };
 		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +110,6 @@
 		F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainViewController.h; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
-		F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = buildinfo.plist; sourceTree = "<group>"; };
 		F084B4111F5FC70600D71BCC /* ESCPgyerConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCPgyerConfigViewController.h; sourceTree = "<group>"; };
 		F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCPgyerConfigViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +150,6 @@
 				04199F1F1F5AB43C00CEFAB0 /* Other */,
 				04199F201F5AB43C00CEFAB0 /* Vender */,
 				04199EFB1F5AB21900CEFAB0 /* Assets.xcassets */,
-				F084B40F1F5FC4ED00D71BCC /* buildinfo.plist */,
 				04199F001F5AB21900CEFAB0 /* Info.plist */,
 				04199EF51F5AB21900CEFAB0 /* Supporting Files */,
 			);
@@ -367,7 +364,6 @@
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
 				04199F551F5ABD8300CEFAB0 /* Info.plist in Resources */,
-				F084B4101F5FC4ED00D71BCC /* buildinfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

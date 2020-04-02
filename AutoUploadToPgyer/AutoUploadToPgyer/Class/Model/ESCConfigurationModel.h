@@ -58,6 +58,10 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* signingCertificate;
 
+@property(nonatomic,copy)NSString* bundleID;
+
+@property(nonatomic,copy)NSString* provisioningProfileName;
+
 @property(nonatomic,assign)int totalSize;
 
 @property(nonatomic,assign)int sendSize;

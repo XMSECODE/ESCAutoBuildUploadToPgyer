@@ -20,7 +20,7 @@
     NSString *projectPath = configurationModel.projectPath;
     
     NSString *ipaPath = configurationModel.ipaPath;
-
+    
     NSString *projectTypeString;
     if (configurationModel.projectType == ESCXCodeProjectTypeProj) {
         projectTypeString = @"project";
@@ -44,10 +44,10 @@
     NSString *archiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild archive -%@ %@ -scheme %@ -archivePath %@)\"",projectTypeString,projectPath,configurationModel.schemes,archiveFilePath];
     
     NSString *exportArchiveShellString = [NSString stringWithFormat:@"\"$(xcodebuild -exportArchive -archivePath %@ -exportPath %@ -exportOptionsPlist %@ -allowProvisioningUpdates)\"",archiveFilePath,ipaFilePath,plistPath];
-
+    
     
     NSString *shellString = [NSString stringWithFormat:@"#!/bin/sh\n\n%@\n\n%@\n",archiveShellString,exportArchiveShellString];
-
+    
     NSError *error;
     NSString *temShellPath = [NSString stringWithFormat:@"%@/tem.sh",ipaPath];
     [shellString writeToFile:temShellPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -62,18 +62,21 @@
 
 + (NSString *)createBuildinfoWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     //provisioningProfiles
-    if (configurationModel.signingCertificate.length > 0) {
-        NSString *temPlistPath = [NSString stringWithFormat:@"%@/buildinfo.plist",configurationModel.ipaPath];
-        NSDictionary *dict = @{@"method":@"ad-hoc",
-                               @"provisioningProfiles":configurationModel.signingCertificate,
-                               @"compileBitcode":@(NO)
-                               };
-        [dict writeToFile:temPlistPath atomically:YES];
-        return temPlistPath;
-    }else {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"buildinfo.plist" ofType:nil];
-        return plistPath;
+    NSMutableDictionary *dict = [@{@"method":@"ad-hoc",
+                                  @"compileBitcode":@(NO)
+    } mutableCopy];
+    if (configurationModel.signingCertificate != nil && configurationModel.signingCertificate.length > 0) {
+        [dict setObject:@"signingCertificate" forKey:configurationModel.signingCertificate];
     }
+    if (configurationModel.bundleID != nil && configurationModel.bundleID.length > 0 &&
+        configurationModel.provisioningProfileName != nil && configurationModel.provisioningProfileName.length > 0) {
+        NSDictionary *provisionDic = @{configurationModel.bundleID:configurationModel.provisioningProfileName};
+        [dict setObject:provisionDic forKey:@"provisioningProfiles"];
+    }
+    
+    NSString *temPlistPath = [NSString stringWithFormat:@"%@/buildinfo.plist",configurationModel.ipaPath];
+    [dict writeToFile:temPlistPath atomically:YES];
+    return temPlistPath;
 }
 
 @end
