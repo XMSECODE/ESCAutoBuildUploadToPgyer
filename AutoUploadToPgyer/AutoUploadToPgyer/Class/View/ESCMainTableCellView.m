@@ -117,7 +117,7 @@
 - (void)setConfigurationModel:(ESCConfigurationModel *)configurationModel {
     _configurationModel = configurationModel;
     
-    self.projectName.stringValue = [self checkString:configurationModel.projectName];
+    self.projectName.stringValue = [NSString stringWithFormat:@"%@\n(%@)",configurationModel.appName,configurationModel.projectName];
     self.ipaNameTextField.stringValue = [self checkString:configurationModel.ipaName];
     self.createDateTextField.stringValue = [self checkString:configurationModel.createDateString];
     self.offTimeTextField.stringValue = [self checkString:configurationModel.offTime];
