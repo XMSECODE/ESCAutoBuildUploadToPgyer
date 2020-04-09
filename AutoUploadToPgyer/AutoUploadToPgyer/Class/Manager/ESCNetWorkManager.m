@@ -9,8 +9,10 @@
 #import "ESCNetWorkManager.h"
 #import "AFHTTPSessionManager.h"
 #import "MJExtension.h"
+                                       
+NSString *ESCPgyerUploadIPAURLPath = @"https://www.pgyer.com/apiv2/app/upload";
 
-NSString *ESCPgyerUploadIPAURLPath = @"https://qiniu-storage.pgyer.com/apiv1/app/upload";
+
 
 @interface ESCNetWorkManager ()
 
@@ -49,19 +51,12 @@ static ESCNetWorkManager *staticNetWorkManager;
                           failure:(void (^)(NSError *error))failure{
     NSDictionary *pare = nil;
     if (password == nil || password.length <= 0) {
-        pare = @{@"uKey":uKey,
-                 @"_api_key":api_key,
-                 @"installType":@"1",
-                 @"updateDescription":@""
-        };
-    }else {
-        pare = @{@"uKey":uKey,
-                 @"_api_key":api_key,
-                 @"installType":@"2",
-                 @"password":password,
-                 @"updateDescription":@""
-        };
+        password = @"123";
     }
+    pare = @{@"_api_key":api_key,
+             @"buildInstallType":@"2",
+             @"password":password
+    };
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
         NSError *error;

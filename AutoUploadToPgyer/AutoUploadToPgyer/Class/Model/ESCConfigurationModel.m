@@ -88,23 +88,23 @@
     
     double netRate = offSize * 1.0 / offTime;
     double netRatekb = netRate / 1024.0;
-    double netRatemb = netRatekb / 1024.0;
+//    double netRatemb = netRatekb / 1024.0;
     
     //剩余时间  秒
     double remainTime = (self.totalSize - self.sendSize) * 1.0 / netRate;
     self.needRemainTime = remainTime;
     
     if (self.needRemainTime <= 60) {
-        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d秒",self.needRemainTime];
+        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d秒\n%.0fkb/s",self.needRemainTime,netRatekb];
     }else if(self.needRemainTime <= 60 * 60){
         int m = self.needRemainTime / 60.0;
         int s = self.needRemainTime % 60;
-        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d分%d秒",m,s];
+        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d分%d秒\n%.0fkb/s",m,s,netRatekb];
     }else {
         int h = self.needRemainTime / 3600.0;
         int m = (self.needRemainTime % 3600) / 60.0;
         int s = self.needRemainTime % 60;
-        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d小时%d分%d秒",h,m,s];
+        self.needRemainTimeString = [NSString stringWithFormat:@"剩余%d小时%d分%d秒\n%.0fkb/s",h,m,s,netRatekb];
     }
     
 //    NSLog(@"%lf===%lf===%lf===%lf",netRate,netRatekb,netRatemb,remainTime);
