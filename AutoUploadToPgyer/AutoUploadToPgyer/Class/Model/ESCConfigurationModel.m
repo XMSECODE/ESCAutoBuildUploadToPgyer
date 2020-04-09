@@ -31,7 +31,7 @@
         return path;
     }else {
         NSError *error;
-        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:yearMask attributes:nil error:&error];
+        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (result) {
             return path;
         }else {
@@ -53,7 +53,7 @@
                                };
         [self.networkRecordArray addObject:dict];
         return;
-    }else if(self.networkRecordArray.count <= 3){
+    }else if(self.networkRecordArray.count <= 5){
         //填充数据，求平均值
         //填充数据
         NSDictionary *dict = @{@"time":@(currentTime),

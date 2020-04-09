@@ -55,7 +55,7 @@ static ESCNetWorkManager *staticNetWorkManager;
     }
     pare = @{@"_api_key":api_key,
              @"buildInstallType":@"2",
-             @"password":password
+             @"buildPassword":password
     };
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
