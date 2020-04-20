@@ -13,6 +13,7 @@
 static NSString *ESCPgyerUKey = @"ESCPgyerUKey";
 static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
 static NSString *ESCPgyerPassword_key = @"ESCPgyerPassword_key";
+static NSString *ESCCustemShellContent_key = @"ESCCustemShellContent_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
 
 @interface ESCConfigManager ()
@@ -39,6 +40,8 @@ static ESCConfigManager *staticESCConfigManager;
     self.api_k = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerapi_key];
     self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
     self.password = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerPassword_key];
+    self.custom_shell_content = [[NSUserDefaults standardUserDefaults] objectForKey:ESCCustemShellContent_key];
+
 }
 
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model {
@@ -86,6 +89,11 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setPassword:(NSString *)password {
     _password = [password copy];
     [[NSUserDefaults standardUserDefaults] setObject:_password forKey:ESCPgyerPassword_key];
+}
+
+- (void)setCustom_shell_content:(NSString *)custom_shell_content {
+    _custom_shell_content = custom_shell_content;
+    [[NSUserDefaults standardUserDefaults] setObject:_custom_shell_content forKey:ESCCustemShellContent_key];
 }
 
 @end

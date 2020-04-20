@@ -208,6 +208,20 @@ typedef enum : NSUInteger {
     }
 }
 
+- (IBAction)didClickRunCustemShellButton:(id)sender {
+    //执行自定义脚本
+    [self addLog:@"开始执行自定义脚本"];
+    system([ESCConfigManager sharedConfigManager].custom_shell_content.UTF8String);
+    [self addLog:@"自定义脚本执行完毕"];
+
+//    NSURL *url = [NSURL fileURLWithPath:@"/Users/xiang/Desktop/tem.sh"];
+//     NSTask *task = [NSTask launchedTaskWithExecutableURL:url arguments:@[] error:nil terminationHandler:^(NSTask * _Nonnull task) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self addLog:@"自定义脚本执行完毕"];
+//        });
+//    }];
+}
+
 - (void)uploadData {
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
         [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];

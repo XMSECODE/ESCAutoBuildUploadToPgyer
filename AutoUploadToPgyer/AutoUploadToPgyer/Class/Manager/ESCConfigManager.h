@@ -20,6 +20,9 @@
 
 @property(nonatomic,copy)NSString* password;
 
+@property(nonatomic,copy)NSString* custom_shell_content;
+
+
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model;
 
 + (instancetype)sharedConfigManager;
