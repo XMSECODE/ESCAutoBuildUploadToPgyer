@@ -12,6 +12,8 @@
 
 @property (weak) IBOutlet NSTextField *contentTextField;
 
+@property (weak) IBOutlet NSButton *save_button;
+
 @end
 
 @implementation ESCAppTableViewAppBuildUpdateDescriptionCellView
@@ -21,6 +23,7 @@
     if (model.buildUpdateDescription != nil) {
         self.contentTextField.stringValue = model.buildUpdateDescription;
     }
+    self.save_button.state = model.save_buildUpdateDescription;
 }
 
 
