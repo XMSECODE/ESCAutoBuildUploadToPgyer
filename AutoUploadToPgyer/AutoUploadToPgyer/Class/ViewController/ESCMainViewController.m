@@ -16,6 +16,7 @@
 #import "MJExtension.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ESCNetWorkManager.h"
+#import "ESCAppTableViewAppBuildUpdateDescriptionCellView.h"
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
@@ -84,10 +85,18 @@ typedef enum : NSUInteger {
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row NS_AVAILABLE_MAC(10_7) {
-    ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-    cell.delegate = self;
-    cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
-    return cell;
+    
+    if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
+        ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+        cell.delegate = self;
+        cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
+        return cell;
+    }else {
+        ESCAppTableViewAppBuildUpdateDescriptionCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+        cell.model = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
+        return cell;
+    }
+    
 }
 
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
@@ -141,7 +150,12 @@ typedef enum : NSUInteger {
             NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
             [weakSelf addLog:logStr];
             
-            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString uKey:ukey api_key:api_k password:password progress:^(NSProgress *progress) {
+            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
+                                                    uKey:ukey
+                                                 api_key:api_k
+                                                password:password
+                                  buildUpdateDescription:@""
+                                                progress:^(NSProgress *progress) {
                 double currentProgress = progress.fractionCompleted * 100;
                 NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
                 [weakSelf addLog:logStr];
@@ -270,7 +284,12 @@ typedef enum : NSUInteger {
     NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
     NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
     NSString *password = [ESCConfigManager sharedConfigManager].password;
-    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model] uKey:ukey api_key:api_k password:password progress:^(NSProgress *progress) {
+    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model]
+                                            uKey:ukey
+                                         api_key:api_k
+                                        password:password
+                          buildUpdateDescription:model.buildUpdateDescription
+                                        progress:^(NSProgress *progress) {
         double currentProgress = progress.fractionCompleted;
         int total = (int)progress.totalUnitCount;
         int complete = (int)progress.completedUnitCount;
@@ -283,6 +302,9 @@ typedef enum : NSUInteger {
         weakSelf.completeUploadIPACount++;
         if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
             weakSelf.isUploading = NO;
+        }
+        if (model.save_buildUpdateDescription == NO) {
+            model.buildUpdateDescription = @"";
         }
         model.uploadState = @"上传成功";
         NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];

@@ -62,6 +62,12 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* provisioningProfileName;
 
+//更新描述
+@property(nonatomic,copy)NSString* buildUpdateDescription;
+
+//是否保存更新描述字段
+@property(nonatomic,assign)BOOL save_buildUpdateDescription;
+
 @property(nonatomic,assign)int totalSize;
 
 @property(nonatomic,assign)int sendSize;

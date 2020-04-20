@@ -111,6 +111,13 @@
     
 }
 
+- (NSString *)buildUpdateDescription {
+    if (_buildUpdateDescription == nil) {
+        return @"";
+    }
+    return _buildUpdateDescription;
+}
+
 - (void)resetNetworkRate {
     self.networkRecordArray = nil;
 }

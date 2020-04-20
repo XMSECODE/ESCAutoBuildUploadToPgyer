@@ -686,24 +686,24 @@
             <objects>
                 <viewController title="项目" storyboardIdentifier="ESCMainViewController" id="4X5-1k-l7B" customClass="ESCMainViewController" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="zej-sw-RWW">
-                        <rect key="frame" x="0.0" y="0.0" width="1460" height="538"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1774" height="538"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVP-ah-Rd4">
-                                <rect key="frame" x="20" y="192" width="1420" height="231"/>
+                                <rect key="frame" x="20" y="192" width="1708" height="53"/>
                                 <clipView key="contentView" id="GL1-RQ-xb7">
-                                    <rect key="frame" x="1" y="0.0" width="1418" height="230"/>
+                                    <rect key="frame" x="1" y="0.0" width="1706" height="52"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="ESCMainTableCellViewID" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" headerView="DUQ-UZ-IGm" viewBased="YES" id="Dqm-vh-eSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="1418" height="207"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1706" height="52"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="1400" minWidth="40" maxWidth="1400" id="kKY-gm-slR">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <tableColumn identifier="ESCAppBasisInfo" width="1300" minWidth="40" maxWidth="1400" id="kKY-gm-slR">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="基本信息">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -715,7 +715,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="its-9X-94c" customClass="ESCMainTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="1400" height="50"/>
+                                                            <rect key="frame" x="1" y="1" width="1300" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="srh-Ix-gjp">
@@ -905,6 +905,57 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
+                                                <tableColumn identifier="ESCBuildUpdateDescription" width="400" minWidth="200" maxWidth="3.4028234663852886e+38" id="t8g-Hd-Pck">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="更新描述">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Wg5-Vn-BM5">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="HPn-cp-wlg" customClass="ESCAppTableViewAppBuildUpdateDescriptionCellView">
+                                                            <rect key="frame" x="1304" y="1" width="400" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h5Y-N6-zbQ">
+                                                                    <rect key="frame" x="10" y="15" width="320" height="21"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="UBb-dK-gDJ">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="contentDidChanged:" target="HPn-cp-wlg" id="vx1-Qn-ZPP"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="A6t-lB-JjD">
+                                                                    <rect key="frame" x="343" y="16" width="49" height="18"/>
+                                                                    <buttonCell key="cell" type="check" title="保存" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xmG-bt-1Ov">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="didClickSaveButton:" target="HPn-cp-wlg" id="YAd-ky-cb3"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="A6t-lB-JjD" secondAttribute="trailing" constant="10" id="3kH-lh-2Ye"/>
+                                                                <constraint firstItem="A6t-lB-JjD" firstAttribute="centerY" secondItem="HPn-cp-wlg" secondAttribute="centerY" id="THB-6V-RgM"/>
+                                                                <constraint firstItem="h5Y-N6-zbQ" firstAttribute="centerY" secondItem="HPn-cp-wlg" secondAttribute="centerY" id="U24-nh-bhO"/>
+                                                                <constraint firstItem="h5Y-N6-zbQ" firstAttribute="leading" secondItem="HPn-cp-wlg" secondAttribute="leading" constant="10" id="aRW-5o-cZJ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="h5Y-N6-zbQ" secondAttribute="trailing" constant="70" id="emh-3r-wXl"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="contentTextField" destination="h5Y-N6-zbQ" id="fEv-IX-M59"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
                                             </tableColumns>
                                             <connections>
                                                 <outlet property="dataSource" destination="4X5-1k-l7B" id="fYB-Xs-aHX"/>
@@ -914,7 +965,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Lv1-aD-5km">
-                                    <rect key="frame" x="1" y="119" width="238" height="15"/>
+                                    <rect key="frame" x="1" y="36" width="1506" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="MAw-TC-8IM">
@@ -922,12 +973,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="DUQ-UZ-IGm">
-                                    <rect key="frame" x="0.0" y="0.0" width="1418" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1706" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvF-lb-Y94">
-                                <rect key="frame" x="701" y="433" width="58" height="16"/>
+                                <rect key="frame" x="845" y="255" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="项目列表" id="8iZ-Ar-xcI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -935,7 +986,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FPS-Fj-rMi">
-                                <rect key="frame" x="1410" y="141" width="30" height="32"/>
+                                <rect key="frame" x="1698" y="141" width="30" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2gy-bi-o3v"/>
                                     <constraint firstAttribute="height" constant="30" id="5K5-Tq-6hS"/>
@@ -989,7 +1040,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aB3-es-PVi">
-                                <rect key="frame" x="1349" y="149" width="58" height="16"/>
+                                <rect key="frame" x="1637" y="149" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="添加任务" id="NDx-Fo-mqI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1147,7 +1198,7 @@
                 </viewController>
                 <customObject id="fzf-vF-jck" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292" y="853.5"/>
+            <point key="canvasLocation" x="449" y="853"/>
         </scene>
         <!--蒲公英账号设置-->
         <scene sceneID="3Hl-dd-jXT">

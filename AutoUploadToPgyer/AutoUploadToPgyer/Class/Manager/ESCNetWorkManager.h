@@ -14,6 +14,7 @@
                              uKey:(NSString *)uKey
                           api_key:(NSString *)api_key
                          password:(NSString *)password
+           buildUpdateDescription:(NSString *)buildUpdateDescription
                          progress:(void (^)(NSProgress * progress))cuploadProgress
                           success:(void (^)(NSDictionary *result))success
                           failure:(void (^)(NSError *error))failure;
