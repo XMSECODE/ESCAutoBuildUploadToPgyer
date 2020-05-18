@@ -17,6 +17,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ESCNetWorkManager.h"
 #import "ESCAppTableViewAppBuildUpdateDescriptionCellView.h"
+#import "ESCGroupViewController.h"
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
@@ -80,6 +81,7 @@ typedef enum : NSUInteger {
     }
 }
 
+#pragma mark - NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return [ESCConfigManager sharedConfigManager].modelArray.count;
 }
@@ -221,6 +223,12 @@ typedef enum : NSUInteger {
 //        });
 //    }];
 }
+
+- (IBAction)didClickGroupSetButton:(id)sender {
+    ESCGroupViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCGroupViewController" bundle:nil] instantiateInitialController];
+    [self presentViewControllerAsSheet:viewController];
+}
+
 
 - (void)uploadData {
     for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {

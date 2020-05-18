@@ -17,6 +17,29 @@
 
 @implementation ESCConfigurationModel
 
+- (NSString *)appUdid {
+    if (_appUdid == nil || _appUdid.length == 0) {
+        _appUdid = [self longUuidString];
+    }
+    return _appUdid;
+}
+
+- (NSString *)longUuidString {
+    NSString *uuidString = [ESCConfigurationModel uuidString];
+    uuidString = [uuidString stringByAppendingString:[ESCConfigurationModel uuidString]];
+    uuidString = [uuidString stringByAppendingString:[ESCConfigurationModel uuidString]];
+    return uuidString;
+}
+
++ (NSString *)uuidString {
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    NSString *uuid = [NSString stringWithString:(__bridge NSString * _Nonnull)(uuid_string_ref)];
+    CFRelease(uuid_ref);
+    CFRelease(uuid_string_ref);
+    return [uuid lowercaseString];
+}
+
 - (void)setProjectPath:(NSString *)projectPath {
     _projectPath = projectPath;
     NSString *fileName = projectPath.lastPathComponent;

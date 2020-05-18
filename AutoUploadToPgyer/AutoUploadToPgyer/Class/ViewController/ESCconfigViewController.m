@@ -30,7 +30,11 @@
 
 @property (weak) IBOutlet NSTextField *provisioningProfileNameTextField;
 
+@property (weak) IBOutlet NSPopUpButton *groupPopUpButton;
+
 @property (assign) BOOL isCreatNew;
+
+@property(nonatomic,strong)NSArray* temGroupModelArray;
 
 @end
 
@@ -78,7 +82,28 @@
         self.provisioningProfileNameTextField.stringValue = configurationModel.provisioningProfileName;
     }
     
+    [self.groupPopUpButton removeAllItems];
+    
+    NSArray <ESCGroupModel *>*groupArray = [[[ESCConfigManager sharedConfigManager] groupModel] allGroupModelArray];
+    NSMutableArray *temArray = [NSMutableArray array];
+    [self.groupPopUpButton addItemWithTitle:@"无分组"];
+    for (int i = 0; i < groupArray.count; i++) {
+        ESCGroupModel *groupModel = [groupArray objectAtIndex:i];
+        [temArray addObject:groupModel];
+        [self.groupPopUpButton addItemWithTitle:groupModel.name];
+    }
+    self.temGroupModelArray = [temArray copy];
+    
+    //查找当前所在的分组
+    ESCGroupModel *groupModel = [[[ESCConfigManager sharedConfigManager] groupModel] getAppInGroupWithAPP:self.configurationModel];
+    if (groupModel == nil) {
+        [self.groupPopUpButton selectItemAtIndex:0];
+    }else {
+        [self.groupPopUpButton selectItemAtIndex:[groupArray indexOfObject:groupModel] + 1];
+    }
+
 }
+
 - (IBAction)didClickCancelButton:(id)sender {
     [self dismissController:nil];
 }
@@ -113,6 +138,24 @@
         [temArray addObject:configurationModel];
         [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
     }
+    
+    //保存分组
+    NSInteger index = self.groupPopUpButton.indexOfSelectedItem;
+    ESCGroupModel *groupModel;
+    if (index == 0) {
+        groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    }else {
+        groupModel = [self.temGroupModelArray objectAtIndex:index - 1];
+
+    }
+
+    NSMutableArray *temConfigurationModelArray = [groupModel.configurationModelArray mutableCopy];
+    if (temConfigurationModelArray == nil) {
+        temConfigurationModelArray = [NSMutableArray array];
+    }
+    [temConfigurationModelArray addObject:configurationModel];
+    groupModel.configurationModelArray = temConfigurationModelArray;
+    
     [[ESCConfigManager sharedConfigManager] saveUserData];
     
     if (self.configCompleteBlock) {

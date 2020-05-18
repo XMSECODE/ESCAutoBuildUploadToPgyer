@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESCGroupModel.h"
 
 @class ESCConfigurationModel;
 
 @interface ESCConfigManager : NSObject
+
+@property(nonatomic,strong)ESCGroupModel* groupModel;
 
 @property(nonatomic,strong)NSArray <ESCConfigurationModel *>* modelArray;
 
@@ -28,5 +31,7 @@
 + (instancetype)sharedConfigManager;
 
 - (void)saveUserData;
+
+- (int)getGroupLevelWithGroupModel:(ESCGroupModel *)groupModel;
 
 @end

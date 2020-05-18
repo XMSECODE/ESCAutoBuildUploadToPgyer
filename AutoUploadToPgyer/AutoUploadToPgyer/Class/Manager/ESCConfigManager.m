@@ -15,6 +15,7 @@ static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
 static NSString *ESCPgyerPassword_key = @"ESCPgyerPassword_key";
 static NSString *ESCCustemShellContent_key = @"ESCCustemShellContent_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
+static NSString *ESCUserGroupDataKey = @"ESCUserGroupDataKey";
 
 @interface ESCConfigManager ()
 
@@ -36,6 +37,15 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)readConfigData {
     NSArray *temArray = [[NSUserDefaults standardUserDefaults] objectForKey:ESCUserDataKey];
     self.modelArray = [ESCConfigurationModel mj_objectArrayWithKeyValuesArray:temArray];
+    
+    NSDictionary *groupModelDic = [[NSUserDefaults standardUserDefaults] objectForKey:ESCUserGroupDataKey];
+    self.groupModel = [ESCGroupModel mj_objectWithKeyValues:groupModelDic];
+    if (self.groupModel == nil) {
+        self.groupModel = [[ESCGroupModel alloc] init];
+        self.groupModel.name = @"level_0_group";
+        self.groupModel.configurationModelArray = self.modelArray;
+        [self saveUserData];
+    }
     
     self.api_k = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerapi_key];
     self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
@@ -69,11 +79,53 @@ static ESCConfigManager *staticESCConfigManager;
         [temArray addObject:dict];
     }
     [[NSUserDefaults standardUserDefaults] setObject:temArray forKey:ESCUserDataKey];
+    
+    NSDictionary *dict = [self groupModelToDictionary:self.groupModel];
+    if (dict != nil && dict.allKeys.count != 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:ESCUserGroupDataKey];
+    }else {
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:ESCUserGroupDataKey];
+    }
+}
+
+- (NSDictionary *)groupModelToDictionary:(ESCGroupModel *)model{
+    if (model == nil) {
+        return nil;
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (model.groupModelArray != nil) {
+        NSMutableArray *groupModelArray = [NSMutableArray array];
+        for (ESCGroupModel *groupModel in model.groupModelArray) {
+            NSDictionary *groupDict = [self groupModelToDictionary:groupModel];
+            [groupModelArray addObject:groupDict];
+        }
+        [dict setObject:groupModelArray forKey:@"groupModelArray"];
+    }
+    
+    if (model.configurationModelArray != nil) {
+        NSMutableArray *temArray = [NSMutableArray array];
+        for (ESCConfigurationModel *configurationModel in model.configurationModelArray) {
+            NSDictionary *dict = [[configurationModel mj_keyValues] copy];
+            [temArray addObject:dict];
+        }
+        [dict setObject:temArray forKey:@"configurationModelArray"];
+    }
+    if (model.name != nil) {
+        [dict setObject:model.name forKey:@"name"];   
+    }
+    [dict setObject:@(model.index) forKey:@"index"];
+    [dict setObject:@(model.isShow) forKey:@"isShow"];
+    return dict;
 }
 
 - (void)setModelArray:(NSArray<ESCConfigurationModel *> *)modelArray {
     _modelArray = modelArray;
-    [self saveUserData];
+//    [self saveUserData];
+}
+
+- (void)setGroupModel:(ESCGroupModel *)groupModel {
+    _groupModel = groupModel;
+//    [self saveUserData];
 }
 
 - (void)setUKey:(NSString *)uKey {
@@ -94,6 +146,10 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setCustom_shell_content:(NSString *)custom_shell_content {
     _custom_shell_content = custom_shell_content;
     [[NSUserDefaults standardUserDefaults] setObject:_custom_shell_content forKey:ESCCustemShellContent_key];
+}
+
+- (int)getGroupLevelWithGroupModel:(ESCGroupModel *)groupModel {
+    return [self.groupModel getLevelWithGroupMdel:groupModel];
 }
 
 @end

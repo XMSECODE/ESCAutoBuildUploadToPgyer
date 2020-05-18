@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView id="eKm-eI-MWu" customClass="ESCGroupTableGroupCellView">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="67"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Vo-dx-5Ns">
+                    <rect key="frame" x="47" y="26" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="mUo-1Q-XJa">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="IMi-b1-jmp">
+                    <rect key="frame" x="5" y="14" width="20" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Ma3-4H-hSh"/>
+                        <constraint firstAttribute="height" constant="40" id="XMM-Lx-DeX"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarGoDownTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Lh8-u7-njS">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ujg-9G-lsG">
+                    <rect key="frame" x="27" y="24" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="MGb-6F-0kW"/>
+                        <constraint firstAttribute="width" secondItem="Ujg-9G-lsG" secondAttribute="height" multiplier="1:1" id="dqQ-VH-O5j"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSFolder" id="27q-FW-hwj"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="3Vo-dx-5Ns" firstAttribute="centerY" secondItem="eKm-eI-MWu" secondAttribute="centerY" id="Azr-8r-gf6"/>
+                <constraint firstItem="Ujg-9G-lsG" firstAttribute="centerY" secondItem="eKm-eI-MWu" secondAttribute="centerY" id="CC4-pQ-ihq"/>
+                <constraint firstItem="Ujg-9G-lsG" firstAttribute="leading" secondItem="IMi-b1-jmp" secondAttribute="trailing" constant="2" id="Mos-mX-NnR"/>
+                <constraint firstItem="3Vo-dx-5Ns" firstAttribute="leading" secondItem="Ujg-9G-lsG" secondAttribute="trailing" constant="2" id="NbJ-Hx-JTA"/>
+                <constraint firstItem="IMi-b1-jmp" firstAttribute="centerY" secondItem="eKm-eI-MWu" secondAttribute="centerY" id="Yeu-Wc-yQ1"/>
+                <constraint firstItem="IMi-b1-jmp" firstAttribute="leading" secondItem="eKm-eI-MWu" secondAttribute="leading" constant="5" id="seO-Og-lgr"/>
+            </constraints>
+            <connections>
+                <outlet property="leftLayoutConstraint" destination="seO-Og-lgr" id="DhI-Vr-nsM"/>
+                <outlet property="nameTextField" destination="3Vo-dx-5Ns" id="sGR-IH-csB"/>
+                <outlet property="showButton" destination="IMi-b1-jmp" id="LmN-gl-5Hp"/>
+            </connections>
+            <point key="canvasLocation" x="149" y="8.5"/>
+        </tableCellView>
+    </objects>
+    <resources>
+        <image name="NSFolder" width="32" height="32"/>
+        <image name="NSTouchBarGoDownTemplate" width="16" height="30"/>
+    </resources>
+</document>

@@ -60,6 +60,9 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* bundleID;
 
+@property(nonatomic,copy)NSString* appUdid;
+
+
 @property(nonatomic,copy)NSString* provisioningProfileName;
 
 //更新描述

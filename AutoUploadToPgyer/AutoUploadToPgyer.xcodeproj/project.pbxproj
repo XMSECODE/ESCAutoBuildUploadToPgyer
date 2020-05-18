@@ -41,6 +41,12 @@
 		F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F012FA4B2284152D002CC739 /* ESCRightMouseDownMenuView.m */; };
 		F04820D8244D47A0002780D9 /* ESCCustemShellConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F04820D6244D47A0002780D9 /* ESCCustemShellConfigViewController.m */; };
 		F049FC151F6641DE00147EC9 /* ESCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F049FC141F6641DE00147EC9 /* ESCMainViewController.m */; };
+		F04A6C33244FD3C700CBB70D /* ESCGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F04A6C32244FD3C700CBB70D /* ESCGroupModel.m */; };
+		F04A6C36244FD87A00CBB70D /* ESCGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F04A6C35244FD87A00CBB70D /* ESCGroupViewController.m */; };
+		F04A6C38244FD89900CBB70D /* ESCGroupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04A6C37244FD89900CBB70D /* ESCGroupViewController.storyboard */; };
+		F04A6C3B244FD9BC00CBB70D /* ESCApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = F04A6C3A244FD9BC00CBB70D /* ESCApplication.m */; };
+		F0505208245271FD00164015 /* ESCGroupTableGroupCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */; };
+		F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
 		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
@@ -113,6 +119,16 @@
 		F04820D6244D47A0002780D9 /* ESCCustemShellConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCCustemShellConfigViewController.m; sourceTree = "<group>"; };
 		F04820D7244D47A0002780D9 /* ESCCustemShellConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCCustemShellConfigViewController.h; sourceTree = "<group>"; };
 		F049FC141F6641DE00147EC9 /* ESCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainViewController.m; sourceTree = "<group>"; };
+		F04A6C31244FD3C700CBB70D /* ESCGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCGroupModel.h; sourceTree = "<group>"; };
+		F04A6C32244FD3C700CBB70D /* ESCGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCGroupModel.m; sourceTree = "<group>"; };
+		F04A6C34244FD87A00CBB70D /* ESCGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCGroupViewController.h; sourceTree = "<group>"; };
+		F04A6C35244FD87A00CBB70D /* ESCGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCGroupViewController.m; sourceTree = "<group>"; };
+		F04A6C37244FD89900CBB70D /* ESCGroupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ESCGroupViewController.storyboard; sourceTree = "<group>"; };
+		F04A6C39244FD9BC00CBB70D /* ESCApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCApplication.h; sourceTree = "<group>"; };
+		F04A6C3A244FD9BC00CBB70D /* ESCApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCApplication.m; sourceTree = "<group>"; };
+		F0505206245271FD00164015 /* ESCGroupTableGroupCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCGroupTableGroupCellView.h; sourceTree = "<group>"; };
+		F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCGroupTableGroupCellView.m; sourceTree = "<group>"; };
+		F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ESCGroupTableGroupCellView.xib; sourceTree = "<group>"; };
 		F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainViewController.h; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
@@ -152,6 +168,8 @@
 			children = (
 				04199EF21F5AB21900CEFAB0 /* AppDelegate.h */,
 				04199EF31F5AB21900CEFAB0 /* AppDelegate.m */,
+				F04A6C39244FD9BC00CBB70D /* ESCApplication.h */,
+				F04A6C3A244FD9BC00CBB70D /* ESCApplication.m */,
 				04199F1E1F5AB43C00CEFAB0 /* Class */,
 				04199F1F1F5AB43C00CEFAB0 /* Other */,
 				04199F201F5AB43C00CEFAB0 /* Vender */,
@@ -279,6 +297,9 @@
 				047431921F5D8B3200445EB5 /* ESCconfigViewController.h */,
 				047431931F5D8B3200445EB5 /* ESCconfigViewController.m */,
 				047431A11F5D9ADC00445EB5 /* ESCconfigViewController.storyboard */,
+				F04A6C34244FD87A00CBB70D /* ESCGroupViewController.h */,
+				F04A6C35244FD87A00CBB70D /* ESCGroupViewController.m */,
+				F04A6C37244FD89900CBB70D /* ESCGroupViewController.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -286,6 +307,8 @@
 		047431951F5D976400445EB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F04A6C31244FD3C700CBB70D /* ESCGroupModel.h */,
+				F04A6C32244FD3C700CBB70D /* ESCGroupModel.m */,
 				047431961F5D978100445EB5 /* ESCConfigurationModel.h */,
 				047431971F5D978100445EB5 /* ESCConfigurationModel.m */,
 			);
@@ -301,6 +324,9 @@
 				F003AB10244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m */,
 				F012FA4A2284152D002CC739 /* ESCRightMouseDownMenuView.h */,
 				F012FA4B2284152D002CC739 /* ESCRightMouseDownMenuView.m */,
+				F0505206245271FD00164015 /* ESCGroupTableGroupCellView.h */,
+				F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */,
+				F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,8 +396,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F04A6C38244FD89900CBB70D /* ESCGroupViewController.storyboard in Resources */,
 				047431A01F5D9A9B00445EB5 /* Main.storyboard in Resources */,
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
+				F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */,
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
 				04199F551F5ABD8300CEFAB0 /* Info.plist in Resources */,
 			);
@@ -386,17 +414,21 @@
 			files = (
 				04199F341F5AB45600CEFAB0 /* AFURLSessionManager.m in Sources */,
 				0474319E1F5D988200445EB5 /* ESCConfigManager.m in Sources */,
+				F04A6C3B244FD9BC00CBB70D /* ESCApplication.m in Sources */,
 				F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */,
 				04199F5D1F5ABD8300CEFAB0 /* NSObject+MJKeyValue.m in Sources */,
 				F049FC151F6641DE00147EC9 /* ESCMainViewController.m in Sources */,
 				04199EF71F5AB21900CEFAB0 /* main.m in Sources */,
 				04199F561F5ABD8300CEFAB0 /* MJExtensionConst.m in Sources */,
 				04199F301F5AB45600CEFAB0 /* AFNetworkReachabilityManager.m in Sources */,
+				F0505208245271FD00164015 /* ESCGroupTableGroupCellView.m in Sources */,
+				F04A6C33244FD3C700CBB70D /* ESCGroupModel.m in Sources */,
 				04199F5E1F5ABD8300CEFAB0 /* NSObject+MJProperty.m in Sources */,
 				04199F5B1F5ABD8300CEFAB0 /* NSObject+MJClass.m in Sources */,
 				04199EF41F5AB21900CEFAB0 /* AppDelegate.m in Sources */,
 				04199F591F5ABD8300CEFAB0 /* MJPropertyKey.m in Sources */,
 				F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */,
+				F04A6C36244FD87A00CBB70D /* ESCGroupViewController.m in Sources */,
 				04199F571F5ABD8300CEFAB0 /* MJFoundation.m in Sources */,
 				04199F5A1F5ABD8300CEFAB0 /* MJPropertyType.m in Sources */,
 				047431941F5D8B3200445EB5 /* ESCconfigViewController.m in Sources */,
