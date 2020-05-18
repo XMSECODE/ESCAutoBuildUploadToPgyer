@@ -18,13 +18,17 @@
 #import "ESCNetWorkManager.h"
 #import "ESCAppTableViewAppBuildUpdateDescriptionCellView.h"
 #import "ESCGroupViewController.h"
+#import "ESCGroupTableGroupCellView.h"
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
 } ESCSortAlgorithmType;
 
 
-@interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate>
+@interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate
+,
+ESCGroupTableGroupCellViewDelegate
+>
 
 @property (weak) IBOutlet NSTableView *tableView;
 
@@ -56,6 +60,8 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,assign)ESCSortAlgorithmType sortType;
 
+@property(nonatomic,strong)NSArray* showModelArray;
+
 @end
 
 @implementation ESCMainViewController
@@ -68,6 +74,9 @@ typedef enum : NSUInteger {
     
     self.tableView.rowHeight = 70;
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCGroupTableGroupCellView" bundle:nil] forIdentifier:ESCGroupTableGroupCellViewId];
+
+    [self reloadData];
     
     [self uploadData];
     
@@ -81,24 +90,49 @@ typedef enum : NSUInteger {
     }
 }
 
+- (void)dismissViewController:(NSViewController *)viewController API_AVAILABLE(macos(10.10)) {
+    [super dismissViewController:viewController];
+    [self reloadData];
+    
+}
+
+- (void)reloadData {
+//#warning 2020.5.18
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    NSArray *showModelArray = [groupModel getAllGroupModelAndAppModelToShowArray];
+    self.showModelArray = showModelArray;
+    [self.tableView reloadData];
+}
+
 #pragma mark - NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return self.showModelArray.count;
     return [ESCConfigManager sharedConfigManager].modelArray.count;
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row NS_AVAILABLE_MAC(10_7) {
-    
-    if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
-        ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    id model = [self.showModelArray objectAtIndex:row];
+    if ([model isKindOfClass:[ESCGroupModel class]]) {
+        ESCGroupModel *groupModel = model;
+        ESCGroupTableGroupCellView *cell = [tableView makeViewWithIdentifier:ESCGroupTableGroupCellViewId owner:nil];
+        cell.groupModel = groupModel;
         cell.delegate = self;
-        cell.configurationModel = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
         return cell;
-    }else {
-        ESCAppTableViewAppBuildUpdateDescriptionCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-        cell.model = [[ESCConfigManager sharedConfigManager].modelArray objectAtIndex:row];
-        return cell;
+    }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+        ESCConfigurationModel *configurationModel = model;
+        if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
+            ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+            cell.delegate = self;
+            cell.configurationModel = configurationModel;
+            return cell;
+        }else {
+            ESCAppTableViewAppBuildUpdateDescriptionCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+            cell.model = configurationModel;
+            return cell;
+        }
     }
-    
+
+    return nil;
 }
 
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
@@ -406,6 +440,11 @@ typedef enum : NSUInteger {
             [self uploadIpaWithModel:model];
         });
     });
+}
+
+#pragma mark - ESCGroupTableGroupCellViewDelegate
+- (void)ESCGroupTableGroupCellViewDidClickShowButton:(ESCGroupTableGroupCellView *)cellView {
+    [self reloadData];
 }
 
 - (void)checkIsAllSelected {

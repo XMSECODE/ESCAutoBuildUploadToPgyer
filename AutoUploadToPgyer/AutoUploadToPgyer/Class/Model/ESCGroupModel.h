@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray <ESCGroupModel *>*)allGroupModelArray;
 
+/// 获取作为主页展示的model数组，按分组排序
+- (NSArray *)getAllGroupModelAndAppModelToShowArray;
+
 - (void)addGroupModel:(ESCGroupModel *)model;
 
 - (int)getLevelWithGroupMdel:(ESCGroupModel *)groupModel;

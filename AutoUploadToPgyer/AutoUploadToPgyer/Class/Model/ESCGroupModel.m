@@ -90,6 +90,28 @@
     }
 }
 
+/// 获取作为主页展示的model数组，按分组排序
+- (NSArray *)getAllGroupModelAndAppModelToShowArray {
+    NSMutableArray *resultArray = [NSMutableArray array];
+    [self getAllGroupModelAndAppModelToShowArrayWithArray:resultArray level:0];
+    return [resultArray copy];
+}
+
+- (void)getAllGroupModelAndAppModelToShowArrayWithArray:(NSMutableArray *)array level:(int)level {
+    if (self.groupModelArray && self.groupModelArray.count > 0 && ((self.isShow == NO && level ==0) || self.isShow == YES)) {
+        for (int i = 0; i < self.groupModelArray.count; i++) {
+            ESCGroupModel *groupModel = [self.groupModelArray objectAtIndex:i];
+            [array addObject:groupModel];
+            [groupModel getAllGroupModelAndAppModelToShowArrayWithArray:array level:level + 1];
+        }
+    }
+    if (self.isShow == YES || level == 0) {
+        if (self.configurationModelArray.count > 0) {
+            [array addObjectsFromArray:self.configurationModelArray];
+        }
+    }
+}
+
 - (void)addGroupModel:(ESCGroupModel *)model {
     NSMutableArray *temArray = [self.groupModelArray mutableCopy];
     if (temArray == nil) {
