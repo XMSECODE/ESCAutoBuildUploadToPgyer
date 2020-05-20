@@ -64,6 +64,18 @@
     }
 }
 
+- (NSString *)ipaPath {
+    NSString *path = [NSString stringWithFormat:@"%@/log/",_ipaPath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path] == NO) {
+        NSError *error;
+        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (result == NO) {
+            NSLog(@"创建文件夹失败==%@===%@",path,error);
+        }
+    }
+    return _ipaPath;
+}
+
 - (void)calculateNetWorkRate {
     if (self.networkRecordArray == nil) {
         self.networkRecordArray = [NSMutableArray array];
