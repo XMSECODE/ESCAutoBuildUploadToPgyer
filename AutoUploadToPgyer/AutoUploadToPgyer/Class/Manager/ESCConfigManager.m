@@ -19,6 +19,7 @@ static NSString *ESCUserGroupDataKey = @"ESCUserGroupDataKey";
 
 @interface ESCConfigManager ()
 
+@property(nonatomic,strong)NSArray <ESCConfigurationModel *>* modelArray;
 @end
 
 static ESCConfigManager *staticESCConfigManager;

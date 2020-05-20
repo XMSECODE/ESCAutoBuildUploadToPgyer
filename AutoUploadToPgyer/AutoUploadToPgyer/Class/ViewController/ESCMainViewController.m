@@ -19,6 +19,9 @@
 #import "ESCAppTableViewAppBuildUpdateDescriptionCellView.h"
 #import "ESCGroupViewController.h"
 #import "ESCGroupTableGroupCellView.h"
+#import "ESCSelectButtonTableCellView.h"
+#import "ESCDeleteTableCellView.h"
+
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
@@ -28,6 +31,10 @@ typedef enum : NSUInteger {
 @interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate
 ,
 ESCGroupTableGroupCellViewDelegate
+,
+ESCSelectButtonTableCellViewDelegate
+,
+ESCDeleteTableCellViewDelegate
 >
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -75,6 +82,10 @@ ESCGroupTableGroupCellViewDelegate
     self.tableView.rowHeight = 70;
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCGroupTableGroupCellView" bundle:nil] forIdentifier:ESCGroupTableGroupCellViewId];
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCSelectButtonTableCellView" bundle:nil]  forIdentifier:ESCSelectButtonTableCellViewId];
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCDeleteTableCellView" bundle:nil]  forIdentifier:ESCDeleteTableCellViewId];
+    
+    
 
     [self reloadData];
     
@@ -107,17 +118,36 @@ ESCGroupTableGroupCellViewDelegate
 #pragma mark - NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.showModelArray.count;
-    return [ESCConfigManager sharedConfigManager].modelArray.count;
+//    return [ESCConfigManager sharedConfigManager].modelArray.count;
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row NS_AVAILABLE_MAC(10_7) {
     id model = [self.showModelArray objectAtIndex:row];
     if ([model isKindOfClass:[ESCGroupModel class]]) {
         ESCGroupModel *groupModel = model;
-        ESCGroupTableGroupCellView *cell = [tableView makeViewWithIdentifier:ESCGroupTableGroupCellViewId owner:nil];
-        cell.groupModel = groupModel;
-        cell.delegate = self;
-        return cell;
+        if([tableColumn.identifier isEqualToString:@"buildCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeBuild];
+            return cell;
+        }else if([tableColumn.identifier isEqualToString:@"uploadCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeUpload];
+            return cell;
+        }else if([tableColumn.identifier isEqualToString:@"buildAndUploadCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeBuildAndUploa];
+            return cell;
+        }else if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
+            ESCGroupTableGroupCellView *cell = [tableView makeViewWithIdentifier:ESCGroupTableGroupCellViewId owner:nil];
+            cell.groupModel = groupModel;
+            cell.delegate = self;
+            return cell;
+        }
+//        if([tableColumn.identifier isEqualToString:@"deleteCell"]){
+//            ESCDeleteTableCellView *cell = [tableView makeViewWithIdentifier:ESCDeleteTableCellViewId owner:self];
+//            return cell;
+//        }
+        
     }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
         ESCConfigurationModel *configurationModel = model;
         if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
@@ -125,7 +155,27 @@ ESCGroupTableGroupCellViewDelegate
             cell.delegate = self;
             cell.configurationModel = configurationModel;
             return cell;
-        }else {
+        }else if([tableColumn.identifier isEqualToString:@"buildCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            cell.delegate = self;
+            [cell setModel:configurationModel type:ESCSelectButtonTableCellViewTypeBuild];
+            return cell;
+        }else if([tableColumn.identifier isEqualToString:@"uploadCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            cell.delegate = self;
+            [cell setModel:configurationModel type:ESCSelectButtonTableCellViewTypeUpload];
+            return cell;
+        }else if([tableColumn.identifier isEqualToString:@"buildAndUploadCell"]){
+            ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
+            cell.delegate = self;
+            [cell setModel:configurationModel type:ESCSelectButtonTableCellViewTypeBuildAndUploa];
+            return cell;
+        }else if([tableColumn.identifier isEqualToString:@"deleteCell"]){
+            ESCDeleteTableCellView *cell = [tableView makeViewWithIdentifier:ESCDeleteTableCellViewId owner:self];
+            cell.model = configurationModel;
+            cell.delegate = self;
+            return cell;
+        }else{
             ESCAppTableViewAppBuildUpdateDescriptionCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
             cell.model = configurationModel;
             return cell;
@@ -133,6 +183,16 @@ ESCGroupTableGroupCellViewDelegate
     }
 
     return nil;
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    id model = [self.showModelArray objectAtIndex:row];
+    if ([model isKindOfClass:[ESCGroupModel class]]) {
+        return 20;
+    }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+        return 70;
+    }
+    return 0;
 }
 
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
@@ -207,26 +267,33 @@ ESCGroupTableGroupCellViewDelegate
 }
 
 - (IBAction)didClickSelectAllBuildButton:(NSButton *)sender {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        model.isCreateIPA = sender.state;
-    }
+//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+//        model.isCreateIPA = sender.state;
+//    }
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    [groupModel setAllCreateIPAFile:sender.state];
     [self.tableView reloadData];
 }
 
 - (IBAction)didClickSelectAllUploadButton:(NSButton *)sender {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        model.isUploadIPA = sender.state;
-    }
+//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+//        model.isUploadIPA = sender.state;
+//    }
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    [groupModel setAllUploadIPAFile:sender.state];
     [self.tableView reloadData];
 }
 
 - (IBAction)didClickSelectAllBothButton:(NSButton *)sender {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        model.isUploadIPA = sender.state;
-        model.isCreateIPA = sender.state;
-    }
+//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+//        model.isUploadIPA = sender.state;
+//        model.isCreateIPA = sender.state;
+//    }
     self.selectAllUploadButton.state = sender.state;
     self.selectAllBuildButton.state = sender.state;
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    [groupModel setAllCreateIPAFile:sender.state];
+    [groupModel setAllUploadIPAFile:sender.state];
     [self.tableView reloadData];
 }
 
@@ -265,7 +332,10 @@ ESCGroupTableGroupCellViewDelegate
 
 
 - (void)uploadData {
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    NSArray *appModelArray = [groupModel getAllAPPModelInGroup];
+    
+    for (ESCConfigurationModel *model in appModelArray) {
         [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -281,9 +351,14 @@ ESCGroupTableGroupCellViewDelegate
     }
     self.isCompiling = YES;
     dispatch_async(self.build_queue, ^{
-        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-            if (model.isCreateIPA) {
-                [self buildTargetWithModel:model];
+        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+        NSArray *modelArray = [groupModel getAllGroupModelAndAppModelToArray];
+        for (id model in modelArray) {
+            if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+                ESCConfigurationModel *configurationModel = model;
+                if (configurationModel.isCreateIPA) {
+                    [self buildTargetWithModel:model];
+                }
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -317,14 +392,28 @@ ESCGroupTableGroupCellViewDelegate
         self.isUploading = YES;
         self.allUploadIPACount = 0;
         self.completeUploadIPACount = 0;
-        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-            if (model.isUploadIPA) {
-                self.allUploadIPACount++;
-                dispatch_async(self.upload_queue, ^{
-                    [self uploadIpaWithModel:model];
-                });
+        
+        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+        NSArray *modelArray = [groupModel getAllGroupModelAndAppModelToArray];
+        for (id model in modelArray) {
+            if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+                ESCConfigurationModel *configurationModel = model;
+                if (configurationModel.isUploadIPA) {
+                    self.allUploadIPACount++;
+                    dispatch_async(self.upload_queue, ^{
+                        [self uploadIpaWithModel:model];
+                    });
+                }
             }
         }
+//        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
+//            if (model.isUploadIPA) {
+//                self.allUploadIPACount++;
+//                dispatch_async(self.upload_queue, ^{
+//                    [self uploadIpaWithModel:model];
+//                });
+//            }
+//        }
     });
 }
 
@@ -402,24 +491,13 @@ ESCGroupTableGroupCellViewDelegate
     [self presentViewControllerAsSheet:viewController];
 }
 
-- (void)mainTableCellViewdidClickDeleteButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
-    [temArray removeObject:model];
-    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
-    [self.tableView reloadData];
-}
-
-- (void)mainTableCellViewdidClickSelectBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    [self checkIsAllSelected];
-}
-
-- (void)mainTableCellViewdidClickUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    [self checkIsAllSelected];
-}
-
-- (void)mainTableCellViewdidClickBothButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    [self checkIsAllSelected];
-}
+//- (void)mainTableCellViewdidClickDeleteButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+//#warning 删除功能
+////    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+////    [temArray removeObject:model];
+////    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+//    [self.tableView reloadData];
+//}
 
 - (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     dispatch_async(self.upload_queue, ^{
@@ -447,16 +525,62 @@ ESCGroupTableGroupCellViewDelegate
     [self reloadData];
 }
 
+#pragma mark - ESCSelectButtonTableCellViewDelegate
+- (void)ESCSelectButtonTableCellViewDidClickSelectedButton:(ESCSelectButtonTableCellView *)view {
+    [self reloadData];
+    [self checkIsAllSelected];
+}
+
+#pragma mark - ESCDeleteTableCellViewDelegate
+- (void)ESCDeleteTableCellViewDidClickDeleteButton:(ESCDeleteTableCellView *)view {
+#warning 删除
+    ESCConfigurationModel *model = view.model;
+//    ESCGroupModel *groupModel = [[[ESCConfigManager sharedConfigManager] groupModel] getAppInGroupWithAPP:model];
+    NSArray *temArray = [[[ESCConfigManager sharedConfigManager] groupModel] getAllGroupModelAndAppModelToArray];
+    for (id temModel in temArray) {
+        if ([temModel isKindOfClass:[ESCGroupModel class]]) {
+            ESCGroupModel *groupModel = temModel;
+            for (ESCConfigurationModel *model2 in groupModel.configurationModelArray) {
+                if ([model2 isEqual:model]) {
+                    NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+                    [temArray removeObject:model];
+                    groupModel.configurationModelArray = [temArray copy];
+                    [[ESCConfigManager sharedConfigManager] saveUserData];
+                    [self reloadData];
+                    return;
+                }
+            }
+        }
+    }
+    
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    for (ESCConfigurationModel *configurationModel in groupModel.configurationModelArray) {
+        if ([configurationModel isEqual:model]) {
+            NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+            [temArray removeObject:model];
+            groupModel.configurationModelArray = [temArray copy];
+            [[ESCConfigManager sharedConfigManager] saveUserData];
+            [self reloadData];
+            return;
+        }
+    }
+    
+    
+}
+
 - (void)checkIsAllSelected {
     BOOL buildIsAllSelected = YES;
     BOOL uploadIsAllSelected = YES;
-    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-        if (model.isUploadIPA == NO) {
-            uploadIsAllSelected = NO;
-        }
-        if (model.isCreateIPA == NO) {
-            buildIsAllSelected = NO;
-        }
+    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    if (groupModel.isAllCreateIPAFile == YES && groupModel.isAllUploadIPAFile == YES) {
+        
+    }else if(groupModel.isAllUploadIPAFile == YES){
+        buildIsAllSelected = NO;
+    }else if (groupModel.isAllCreateIPAFile == YES) {
+        uploadIsAllSelected = NO;
+    }else {
+        buildIsAllSelected = NO;
+        uploadIsAllSelected = NO;
     }
     self.selectAllBuildButton.state = buildIsAllSelected;
     self.selectAllUploadButton.state = uploadIsAllSelected;

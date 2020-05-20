@@ -36,11 +36,25 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取作为主页展示的model数组，按分组排序
 - (NSArray *)getAllGroupModelAndAppModelToShowArray;
 
+- (NSArray *)getAllGroupModelAndAppModelToArray;
+
+- (NSArray <ESCConfigurationModel *>*)getAllAPPModelInGroup;
+
 - (void)addGroupModel:(ESCGroupModel *)model;
 
 - (int)getLevelWithGroupMdel:(ESCGroupModel *)groupModel;
 
 - (ESCGroupModel *)getAppInGroupWithAPP:(ESCConfigurationModel *)configurationModel;
+
+- (ESCGroupModel *)getGroupInWhatGroupWithGroup:(ESCGroupModel *)groupModel;
+
+- (BOOL)isAllCreateIPAFile;
+
+- (BOOL)isAllUploadIPAFile;
+
+- (void)setAllCreateIPAFile:(BOOL)isCreateIPAFile;
+
+- (void)setAllUploadIPAFile:(BOOL)isUploadIPAFile;
 
 @end
 

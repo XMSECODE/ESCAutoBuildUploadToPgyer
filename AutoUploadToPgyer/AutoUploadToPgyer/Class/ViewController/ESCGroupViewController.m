@@ -55,6 +55,14 @@
 }
 
 - (IBAction)didClicDeleteGroupButton:(NSButton *)sender {
+    //删除分组
+    ESCGroupModel *topGroupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+    ESCGroupModel *targetGroupModel = [topGroupModel getGroupInWhatGroupWithGroup:self.currentGroupModel];
+    NSMutableArray *temArray = [targetGroupModel.groupModelArray mutableCopy];
+    [temArray removeObject:self.currentGroupModel];
+    targetGroupModel.groupModelArray = [temArray copy];
+    [[ESCConfigManager sharedConfigManager] saveUserData];
+    [self reloadData];
 }
 
 - (IBAction)didClicRenameButton:(NSButton *)sender {

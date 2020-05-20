@@ -47,6 +47,10 @@
 		F04A6C3B244FD9BC00CBB70D /* ESCApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = F04A6C3A244FD9BC00CBB70D /* ESCApplication.m */; };
 		F0505208245271FD00164015 /* ESCGroupTableGroupCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */; };
 		F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */; };
+		F051C5C1247260A100782358 /* ESCSelectButtonTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F051C5C0247260A100782358 /* ESCSelectButtonTableCellView.m */; };
+		F051C5C3247260B600782358 /* ESCSelectButtonTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F051C5C2247260B600782358 /* ESCSelectButtonTableCellView.xib */; };
+		F051C5C62472639700782358 /* ESCDeleteTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F051C5C52472639700782358 /* ESCDeleteTableCellView.m */; };
+		F051C5C8247263A500782358 /* ESCDeleteTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F051C5C7247263A500782358 /* ESCDeleteTableCellView.xib */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
 		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
@@ -129,6 +133,12 @@
 		F0505206245271FD00164015 /* ESCGroupTableGroupCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCGroupTableGroupCellView.h; sourceTree = "<group>"; };
 		F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCGroupTableGroupCellView.m; sourceTree = "<group>"; };
 		F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ESCGroupTableGroupCellView.xib; sourceTree = "<group>"; };
+		F051C5BF247260A100782358 /* ESCSelectButtonTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCSelectButtonTableCellView.h; sourceTree = "<group>"; };
+		F051C5C0247260A100782358 /* ESCSelectButtonTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCSelectButtonTableCellView.m; sourceTree = "<group>"; };
+		F051C5C2247260B600782358 /* ESCSelectButtonTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ESCSelectButtonTableCellView.xib; sourceTree = "<group>"; };
+		F051C5C42472639700782358 /* ESCDeleteTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCDeleteTableCellView.h; sourceTree = "<group>"; };
+		F051C5C52472639700782358 /* ESCDeleteTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCDeleteTableCellView.m; sourceTree = "<group>"; };
+		F051C5C7247263A500782358 /* ESCDeleteTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ESCDeleteTableCellView.xib; sourceTree = "<group>"; };
 		F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainViewController.h; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
@@ -327,6 +337,12 @@
 				F0505206245271FD00164015 /* ESCGroupTableGroupCellView.h */,
 				F0505207245271FD00164015 /* ESCGroupTableGroupCellView.m */,
 				F05052092452728600164015 /* ESCGroupTableGroupCellView.xib */,
+				F051C5BF247260A100782358 /* ESCSelectButtonTableCellView.h */,
+				F051C5C0247260A100782358 /* ESCSelectButtonTableCellView.m */,
+				F051C5C2247260B600782358 /* ESCSelectButtonTableCellView.xib */,
+				F051C5C42472639700782358 /* ESCDeleteTableCellView.h */,
+				F051C5C52472639700782358 /* ESCDeleteTableCellView.m */,
+				F051C5C7247263A500782358 /* ESCDeleteTableCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,8 +416,10 @@
 				047431A01F5D9A9B00445EB5 /* Main.storyboard in Resources */,
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
 				F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */,
+				F051C5C8247263A500782358 /* ESCDeleteTableCellView.xib in Resources */,
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
 				04199F551F5ABD8300CEFAB0 /* Info.plist in Resources */,
+				F051C5C3247260B600782358 /* ESCSelectButtonTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +450,7 @@
 				04199F571F5ABD8300CEFAB0 /* MJFoundation.m in Sources */,
 				04199F5A1F5ABD8300CEFAB0 /* MJPropertyType.m in Sources */,
 				047431941F5D8B3200445EB5 /* ESCconfigViewController.m in Sources */,
+				F051C5C1247260A100782358 /* ESCSelectButtonTableCellView.m in Sources */,
 				04199F311F5AB45600CEFAB0 /* AFSecurityPolicy.m in Sources */,
 				04199F581F5ABD8300CEFAB0 /* MJProperty.m in Sources */,
 				04199F321F5AB45600CEFAB0 /* AFURLRequestSerialization.m in Sources */,
@@ -443,6 +462,7 @@
 				F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */,
 				04199F5C1F5ABD8300CEFAB0 /* NSObject+MJCoding.m in Sources */,
 				04199F5F1F5ABD8300CEFAB0 /* NSString+MJExtension.m in Sources */,
+				F051C5C62472639700782358 /* ESCDeleteTableCellView.m in Sources */,
 				04199F651F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m in Sources */,
 				04199F3A1F5AB52300CEFAB0 /* ESCFileManager.m in Sources */,
 				04199F331F5AB45600CEFAB0 /* AFURLResponseSerialization.m in Sources */,

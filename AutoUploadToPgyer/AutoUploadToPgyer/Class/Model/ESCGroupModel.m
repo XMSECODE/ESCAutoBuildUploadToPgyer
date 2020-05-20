@@ -85,7 +85,7 @@
     if (self.groupModelArray != nil) {
         for (ESCGroupModel *groupModel in self.groupModelArray) {
             [array addObject:groupModel];
-            [groupModel getAllShowGroupModelArrayWithLevel:level + 1 resultArray:array];
+            [groupModel getAllGroupModelArrayWithLevel:level + 1 resultArray:array];
         }
     }
 }
@@ -139,6 +139,20 @@
     return nil;
 }
 
+- (ESCGroupModel *)getGroupInWhatGroupWithGroup:(ESCGroupModel *)groupModel {
+    NSArray *modelArray = [self allGroupModelArray];
+    for (ESCGroupModel *model in modelArray) {
+        if (model.groupModelArray != nil) {
+            for (ESCGroupModel *groupModel1 in model.groupModelArray) {
+                if ([groupModel isEqual:groupModel1]) {
+                    return model;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
 - (int)chekGroupModelLevel:(ESCGroupModel *)groupModel currentLevel:(int)currentLevel {
     if (self.groupModelArray != nil) {
         for (ESCGroupModel *model in self.groupModelArray) {
@@ -155,6 +169,92 @@
         }
     }
     return -1;
+}
+
+- (BOOL)isAllCreateIPAFile {
+    NSArray *modelArray = [self getAllGroupModelAndAppModelToArray];
+    for (id model in modelArray) {
+        if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+            ESCConfigurationModel *configurationModel = model;
+            if (configurationModel.isCreateIPA == NO) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
+- (BOOL)isAllUploadIPAFile {
+    NSArray *modelArray = [self getAllGroupModelAndAppModelToArray];
+    for (id model in modelArray) {
+        if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+            ESCConfigurationModel *configurationModel = model;
+            if (configurationModel.isUploadIPA == NO) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
+- (void)setAllCreateIPAFile:(BOOL)isCreateIPAFile {
+    NSArray *modelArray = [self getAllGroupModelAndAppModelToArray];
+    for (id model in modelArray) {
+        if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+            ESCConfigurationModel *configurationModel = model;
+            configurationModel.isCreateIPA = isCreateIPAFile;
+        }
+    }
+}
+
+- (void)setAllUploadIPAFile:(BOOL)isUploadIPAFile {
+    NSArray *modelArray = [self getAllGroupModelAndAppModelToArray];
+    for (id model in modelArray) {
+        if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+            ESCConfigurationModel *configurationModel = model;
+            configurationModel.isUploadIPA = isUploadIPAFile;
+        }
+    }
+}
+
+
+- (NSArray *)getAllGroupModelAndAppModelToArray {
+    NSMutableArray *resultArray = [NSMutableArray array];
+    [self getAllGroupModelAndAppModelToArrayWithArray:resultArray level:0];
+    return [resultArray copy];
+}
+
+- (void)getAllGroupModelAndAppModelToArrayWithArray:(NSMutableArray *)array level:(int)level {
+    if (self.groupModelArray && self.groupModelArray.count > 0) {
+        for (int i = 0; i < self.groupModelArray.count; i++) {
+            ESCGroupModel *groupModel = [self.groupModelArray objectAtIndex:i];
+            [array addObject:groupModel];
+            [groupModel getAllGroupModelAndAppModelToArrayWithArray:array level:level + 1];
+        }
+    }
+    
+    if (self.configurationModelArray.count > 0) {
+        [array addObjectsFromArray:self.configurationModelArray];
+    }
+}
+
+- (NSArray <ESCConfigurationModel *>*)getAllAPPModelInGroup {
+    NSMutableArray *temArray = [NSMutableArray array];
+    [self getAllAPPModelInGroupWithArray:temArray];
+    return [temArray copy];
+}
+
+- (void)getAllAPPModelInGroupWithArray:(NSMutableArray *)array {
+    if (self.groupModelArray && self.groupModelArray.count > 0) {
+        for (int i = 0; i < self.groupModelArray.count; i++) {
+            ESCGroupModel *groupModel = [self.groupModelArray objectAtIndex:i];
+            [groupModel getAllAPPModelInGroupWithArray:array];
+        }
+    }
+    
+    if (self.configurationModelArray.count > 0) {
+        [array addObjectsFromArray:self.configurationModelArray];
+    }
 }
 
 @end

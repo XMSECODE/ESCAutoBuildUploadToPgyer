@@ -15,7 +15,7 @@
 
 @property(nonatomic,strong)ESCGroupModel* groupModel;
 
-@property(nonatomic,strong)NSArray <ESCConfigurationModel *>* modelArray;
+
 
 @property (nonatomic, copy) NSString *api_k;
 

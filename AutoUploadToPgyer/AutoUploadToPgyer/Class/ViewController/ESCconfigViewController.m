@@ -133,10 +133,42 @@
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
     
-    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+//    if (self.isCreatNew) {
+//        NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
+//        [temArray addObject:configurationModel];
+//        [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+//    }
+    
     if (self.isCreatNew) {
-        [temArray addObject:configurationModel];
-        [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
+        
+    }else {
+        
+        
+        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+        for (ESCConfigurationModel *configurationModelt in groupModel.configurationModelArray) {
+            if ([configurationModelt isEqual:configurationModel]) {
+                NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+                [temArray removeObject:configurationModel];
+                groupModel.configurationModelArray = [temArray copy];
+                [[ESCConfigManager sharedConfigManager] saveUserData];
+            }
+        }
+        
+        NSArray *temArray = [[[ESCConfigManager sharedConfigManager] groupModel] getAllGroupModelAndAppModelToArray];
+           for (id temModel in temArray) {
+               if ([temModel isKindOfClass:[ESCGroupModel class]]) {
+                   ESCGroupModel *groupModel = temModel;
+                   for (ESCConfigurationModel *model2 in groupModel.configurationModelArray) {
+                       if ([model2 isEqual:configurationModel]) {
+                           NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+                           [temArray removeObject:configurationModel];
+                           groupModel.configurationModelArray = [temArray copy];
+                           [[ESCConfigManager sharedConfigManager] saveUserData];
+                       }
+                   }
+               }
+           }
+        
     }
     
     //保存分组
@@ -146,7 +178,6 @@
         groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
     }else {
         groupModel = [self.temGroupModelArray objectAtIndex:index - 1];
-
     }
 
     NSMutableArray *temConfigurationModelArray = [groupModel.configurationModelArray mutableCopy];
