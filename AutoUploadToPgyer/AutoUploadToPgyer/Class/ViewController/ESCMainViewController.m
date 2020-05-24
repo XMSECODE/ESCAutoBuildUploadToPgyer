@@ -128,14 +128,17 @@ ESCDeleteTableCellViewDelegate
         if([tableColumn.identifier isEqualToString:@"buildCell"]){
             ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
             [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeBuild];
+            cell.delegate = self;
             return cell;
         }else if([tableColumn.identifier isEqualToString:@"uploadCell"]){
             ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
             [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeUpload];
+            cell.delegate = self;
             return cell;
         }else if([tableColumn.identifier isEqualToString:@"buildAndUploadCell"]){
             ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
             [cell setModel:groupModel type:ESCSelectButtonTableCellViewTypeBuildAndUploa];
+            cell.delegate = self;
             return cell;
         }else if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
             ESCGroupTableGroupCellView *cell = [tableView makeViewWithIdentifier:ESCGroupTableGroupCellViewId owner:nil];
@@ -314,15 +317,12 @@ ESCDeleteTableCellViewDelegate
 - (IBAction)didClickRunCustemShellButton:(id)sender {
     //执行自定义脚本
     [self addLog:@"开始执行自定义脚本"];
-    system([ESCConfigManager sharedConfigManager].custom_shell_content.UTF8String);
-    [self addLog:@"自定义脚本执行完毕"];
-
-//    NSURL *url = [NSURL fileURLWithPath:@"/Users/xiang/Desktop/tem.sh"];
-//     NSTask *task = [NSTask launchedTaskWithExecutableURL:url arguments:@[] error:nil terminationHandler:^(NSTask * _Nonnull task) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self addLog:@"自定义脚本执行完毕"];
-//        });
-//    }];
+    dispatch_async(self.build_queue, ^{
+        system([ESCConfigManager sharedConfigManager].custom_shell_content.UTF8String);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self addLog:@"自定义脚本执行完毕"];
+        });
+    });
 }
 
 - (IBAction)didClickGroupSetButton:(id)sender {
