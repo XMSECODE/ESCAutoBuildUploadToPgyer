@@ -14,6 +14,6 @@
 
 @property(nonatomic,strong)ESCConfigurationModel* configurationModel;
 
-@property(nonatomic,copy)void(^configCompleteBlock)();
+@property(nonatomic,copy)void(^configCompleteBlock)(void);
 
 @end

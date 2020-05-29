@@ -389,7 +389,7 @@ ESCOneButtonTableCellViewDelegate
     });
 }
 
-- (void)createIPAFileComplete:(void(^)())complete {
+- (void)createIPAFileComplete:(void(^)(void))complete {
     if (self.isCompiling == YES) {
         NSString *str = @"正在打包";
         [self addLog:str];
