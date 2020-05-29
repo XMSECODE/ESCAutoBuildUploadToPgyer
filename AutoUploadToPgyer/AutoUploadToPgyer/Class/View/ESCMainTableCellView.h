@@ -14,8 +14,6 @@ static NSString *ESCMainTableCellViewID = @"ESCMainTableCellViewID";
 
 @protocol ESCMainTableCellViewDelegate <NSObject>
 
-- (void)mainTableCellViewdidClickConfigButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
-
 - (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
 
 - (void)mainTableCellViewdidClickRightMenuBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;

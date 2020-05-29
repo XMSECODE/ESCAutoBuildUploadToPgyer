@@ -20,7 +20,7 @@
 #import "ESCGroupViewController.h"
 #import "ESCGroupTableGroupCellView.h"
 #import "ESCSelectButtonTableCellView.h"
-#import "ESCDeleteTableCellView.h"
+#import "ESCOneButtonTableCellView.h"
 #import "ESCNotificationManager.h"
 
 
@@ -35,7 +35,7 @@ ESCGroupTableGroupCellViewDelegate
 ,
 ESCSelectButtonTableCellViewDelegate
 ,
-ESCDeleteTableCellViewDelegate
+ESCOneButtonTableCellViewDelegate
 >
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -86,7 +86,7 @@ ESCDeleteTableCellViewDelegate
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCGroupTableGroupCellView" bundle:nil] forIdentifier:ESCGroupTableGroupCellViewId];
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCSelectButtonTableCellView" bundle:nil]  forIdentifier:ESCSelectButtonTableCellViewId];
-    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCDeleteTableCellView" bundle:nil]  forIdentifier:ESCDeleteTableCellViewId];
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCOneButtonTableCellView" bundle:nil]  forIdentifier:ESCOneButtonTableCellViewId];
     
     
     [self reloadData];
@@ -185,6 +185,8 @@ ESCDeleteTableCellViewDelegate
             cell.groupModel = groupModel;
             cell.delegate = self;
             return cell;
+        }else if ([tableColumn.identifier isEqualToString:@"ESDConfigCell"]) {
+            
         }
         
     }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
@@ -210,8 +212,15 @@ ESCDeleteTableCellViewDelegate
             [cell setModel:configurationModel type:ESCSelectButtonTableCellViewTypeBuildAndUploa];
             return cell;
         }else if([tableColumn.identifier isEqualToString:@"deleteCell"]){
-            ESCDeleteTableCellView *cell = [tableView makeViewWithIdentifier:ESCDeleteTableCellViewId owner:self];
+            ESCOneButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCOneButtonTableCellViewId owner:self];
             cell.model = configurationModel;
+            cell.type = ESCOneButtonTableCellViewDeleteType;
+            cell.delegate = self;
+            return cell;
+        }else if ([tableColumn.identifier isEqualToString:@"ESDConfigCell"]) {
+            ESCOneButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCOneButtonTableCellViewId owner:self];
+            cell.model = configurationModel;
+            cell.type = ESCOneButtonTableCellViewConfigType;
             cell.delegate = self;
             return cell;
         }else{
@@ -519,12 +528,6 @@ ESCDeleteTableCellViewDelegate
 }
 
 #pragma mark - ESCMainTableCellViewDelegate
-- (void)mainTableCellViewdidClickConfigButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
-    viewController.configurationModel = model;
-    [self presentViewControllerAsSheet:viewController];
-}
-
 - (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     dispatch_async(self.upload_queue, ^{
         [self uploadIpaWithModel:model];
@@ -557,39 +560,44 @@ ESCDeleteTableCellViewDelegate
     [self checkIsAllSelected];
 }
 
-#pragma mark - ESCDeleteTableCellViewDelegate
-- (void)ESCDeleteTableCellViewDidClickDeleteButton:(ESCDeleteTableCellView *)view {
-    ESCConfigurationModel *model = view.model;
-    NSArray *temArray = [[[ESCConfigManager sharedConfigManager] groupModel] getAllGroupModelAndAppModelToArray];
-    for (id temModel in temArray) {
-        if ([temModel isKindOfClass:[ESCGroupModel class]]) {
-            ESCGroupModel *groupModel = temModel;
-            for (ESCConfigurationModel *model2 in groupModel.configurationModelArray) {
-                if ([model2 isEqual:model]) {
-                    NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
-                    [temArray removeObject:model];
-                    groupModel.configurationModelArray = [temArray copy];
-                    [[ESCConfigManager sharedConfigManager] saveUserData];
-                    [self reloadData];
-                    return;
+#pragma mark - ESCOneButtonTableCellViewDelegate
+- (void)ESCDeleteTableCellViewDidClickButton:(ESCOneButtonTableCellView *)view {
+    if (view.type == ESCOneButtonTableCellViewDeleteType) {
+        ESCConfigurationModel *model = view.model;
+        NSArray *temArray = [[[ESCConfigManager sharedConfigManager] groupModel] getAllGroupModelAndAppModelToArray];
+        for (id temModel in temArray) {
+            if ([temModel isKindOfClass:[ESCGroupModel class]]) {
+                ESCGroupModel *groupModel = temModel;
+                for (ESCConfigurationModel *model2 in groupModel.configurationModelArray) {
+                    if ([model2 isEqual:model]) {
+                        NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+                        [temArray removeObject:model];
+                        groupModel.configurationModelArray = [temArray copy];
+                        [[ESCConfigManager sharedConfigManager] saveUserData];
+                        [self reloadData];
+                        return;
+                    }
                 }
             }
         }
-    }
-    
-    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
-    for (ESCConfigurationModel *configurationModel in groupModel.configurationModelArray) {
-        if ([configurationModel isEqual:model]) {
-            NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
-            [temArray removeObject:model];
-            groupModel.configurationModelArray = [temArray copy];
-            [[ESCConfigManager sharedConfigManager] saveUserData];
-            [self reloadData];
-            return;
+        
+        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+        for (ESCConfigurationModel *configurationModel in groupModel.configurationModelArray) {
+            if ([configurationModel isEqual:model]) {
+                NSMutableArray *temArray = [groupModel.configurationModelArray mutableCopy];
+                [temArray removeObject:model];
+                groupModel.configurationModelArray = [temArray copy];
+                [[ESCConfigManager sharedConfigManager] saveUserData];
+                [self reloadData];
+                return;
+            }
         }
+    }else if(view.type == ESCOneButtonTableCellViewConfigType){
+        ESCConfigurationModel *model = view.model;
+        ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
+        viewController.configurationModel = model;
+        [self presentViewControllerAsSheet:viewController];
     }
-    
-    
 }
 
 - (void)checkIsAllSelected {
@@ -623,4 +631,5 @@ ESCDeleteTableCellViewDelegate
     }
     return _dateFormatter;
 }
+
 @end
