@@ -62,7 +62,8 @@ static ESCNetWorkManager *staticNetWorkManager;
              @"buildPassword":password,
              @"buildUpdateDescription":buildUpdateDescription
     };
-    [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    
+    [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
         NSError *error;
         BOOL result = [formData appendPartWithFileURL:url name:@"file" fileName:[filePath lastPathComponent] mimeType:@"ipa" error:&error];
