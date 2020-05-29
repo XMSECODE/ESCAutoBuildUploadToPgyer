@@ -89,14 +89,19 @@ ESCDeleteTableCellViewDelegate
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"ESCDeleteTableCellView" bundle:nil]  forIdentifier:ESCDeleteTableCellViewId];
     
     
-
     [self reloadData];
     
     [self uploadData];
     
     [self checkIsAllSelected];
     
-     int selectSortType = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SortType"] intValue];
+    [self setupUI];
+    
+}
+
+- (void)setupUI {
+    
+    int selectSortType = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SortType"] intValue];
     if (selectSortType == 1) {
         self.sortType = ESCSortAlgorithmTypeLRU;
         self.LRUButton.state = 1;
@@ -108,6 +113,33 @@ ESCDeleteTableCellViewDelegate
         self.notificationButton.state = 1;
     }
     
+    
+    CGFloat width = 0;
+    CGFloat height = 0;
+    NSString *widthString = [[NSUserDefaults standardUserDefaults] objectForKey:@"ESCViewFrameWidth_key"];
+    if (widthString) {
+        width = [widthString floatValue];
+    }else {
+        width = self.view.frame.size.width;
+    }
+    NSString *heightString = [[NSUserDefaults standardUserDefaults] objectForKey:@"ESCViewFrameHeight_key"];
+    if (heightString) {
+        height = [heightString floatValue];
+    }else {
+        height = self.view.frame.size.height;
+    }
+    self.view.frame = CGRectMake(0, 0, width, height);
+}
+
+- (void)viewWillDisappear {
+    [super viewWillDisappear];
+
+    [[ESCConfigManager sharedConfigManager] saveUserData];
+    
+    CGRect frame = self.view.frame;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%lf",frame.size.width] forKey:@"ESCViewFrameWidth_key"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%lf",frame.size.height] forKey:@"ESCViewFrameHeight_key"];
+
 }
 
 - (void)dismissViewController:(NSViewController *)viewController API_AVAILABLE(macos(10.10)) {
