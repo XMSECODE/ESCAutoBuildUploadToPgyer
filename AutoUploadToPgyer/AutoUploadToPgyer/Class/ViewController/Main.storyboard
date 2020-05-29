@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -682,18 +682,18 @@
         <scene sceneID="Pwn-j2-ILr">
             <objects>
                 <viewController title="项目" storyboardIdentifier="ESCMainViewController" id="4X5-1k-l7B" customClass="ESCMainViewController" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="zej-sw-RWW">
-                        <rect key="frame" x="0.0" y="0.0" width="1977" height="331"/>
+                    <view key="view" id="zej-sw-RWW">
+                        <rect key="frame" x="0.0" y="0.0" width="1964" height="285"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVP-ah-Rd4">
-                                <rect key="frame" x="20" y="192" width="1924" height="70"/>
+                                <rect key="frame" x="20" y="192" width="1924" height="47"/>
                                 <clipView key="contentView" id="GL1-RQ-xb7">
-                                    <rect key="frame" x="1" y="0.0" width="1922" height="69"/>
+                                    <rect key="frame" x="1" y="0.0" width="1922" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="ESCMainTableCellViewID" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DUQ-UZ-IGm" viewBased="YES" id="Dqm-vh-eSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1039,7 +1039,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvF-lb-Y94">
-                                <rect key="frame" x="953" y="272" width="58" height="16"/>
+                                <rect key="frame" x="953" y="249" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="项目列表" id="8iZ-Ar-xcI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1239,6 +1239,16 @@
                                     <action selector="didClickGroupSetButton:" target="4X5-1k-l7B" id="q4G-ex-eEE"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Jxm-N0-wLx">
+                                <rect key="frame" x="825" y="166" width="76" height="18"/>
+                                <buttonCell key="cell" type="check" title="本地通知" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ShB-4A-qPr">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickNotificationButton:" target="4X5-1k-l7B" id="gtW-fF-8Qk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
@@ -1264,11 +1274,13 @@
                             <constraint firstItem="32B-x4-JaF" firstAttribute="centerY" secondItem="PRj-JA-r4t" secondAttribute="centerY" id="V97-mC-K5u"/>
                             <constraint firstItem="Izq-5x-Q7l" firstAttribute="centerY" secondItem="bBG-VY-ars" secondAttribute="centerY" id="Xa2-pW-zSC"/>
                             <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="36" id="Xj1-P8-XYf"/>
+                            <constraint firstItem="uTH-Xz-3x4" firstAttribute="bottom" secondItem="Jxm-N0-wLx" secondAttribute="bottom" id="Ywk-lW-UZQ"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="top" secondItem="cvF-lb-Y94" secondAttribute="bottom" constant="10" id="Z1A-js-g2L"/>
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="centerX" secondItem="zej-sw-RWW" secondAttribute="centerX" id="Zbu-kz-VVd"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="centerY" secondItem="HXr-43-2jn" secondAttribute="centerY" id="Zcw-2c-hu1"/>
                             <constraint firstItem="aug-Bm-yLp" firstAttribute="trailing" secondItem="vPA-P8-lTq" secondAttribute="trailing" id="Zun-kU-FkF"/>
                             <constraint firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" constant="20" id="aFV-9i-Z4L"/>
+                            <constraint firstItem="uTH-Xz-3x4" firstAttribute="leading" secondItem="Jxm-N0-wLx" secondAttribute="trailing" constant="20" id="fmV-Xq-Eyr"/>
                             <constraint firstItem="vPA-P8-lTq" firstAttribute="leading" secondItem="OIR-BR-TrH" secondAttribute="trailing" constant="50" id="gaW-Lo-Aqa"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="10" id="iqt-Go-CBS"/>
                             <constraint firstAttribute="bottom" secondItem="32B-x4-JaF" secondAttribute="bottom" constant="20" id="k5e-ak-llu"/>
@@ -1286,6 +1298,7 @@
                     <connections>
                         <outlet property="LRUButton" destination="uTH-Xz-3x4" id="Wi4-YM-516"/>
                         <outlet property="logTextView" destination="2qC-le-lGW" id="wm8-4v-6Jk"/>
+                        <outlet property="notificationButton" destination="Jxm-N0-wLx" id="nYU-b5-yca"/>
                         <outlet property="selectAllBothButton" destination="Izq-5x-Q7l" id="3nR-AO-gNa"/>
                         <outlet property="selectAllBuildButton" destination="HXr-43-2jn" id="QfW-Jt-qpI"/>
                         <outlet property="selectAllUploadButton" destination="bBG-VY-ars" id="Quy-cf-RlV"/>

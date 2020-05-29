@@ -51,6 +51,7 @@
 		F051C5C3247260B600782358 /* ESCSelectButtonTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F051C5C2247260B600782358 /* ESCSelectButtonTableCellView.xib */; };
 		F051C5C62472639700782358 /* ESCDeleteTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F051C5C52472639700782358 /* ESCDeleteTableCellView.m */; };
 		F051C5C8247263A500782358 /* ESCDeleteTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F051C5C7247263A500782358 /* ESCDeleteTableCellView.xib */; };
+		F05879BA2480B9E300BC6588 /* ESCNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F05879B92480B9E300BC6588 /* ESCNotificationManager.m */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
 		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
@@ -139,6 +140,8 @@
 		F051C5C42472639700782358 /* ESCDeleteTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCDeleteTableCellView.h; sourceTree = "<group>"; };
 		F051C5C52472639700782358 /* ESCDeleteTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCDeleteTableCellView.m; sourceTree = "<group>"; };
 		F051C5C7247263A500782358 /* ESCDeleteTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ESCDeleteTableCellView.xib; sourceTree = "<group>"; };
+		F05879B82480B9E300BC6588 /* ESCNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCNotificationManager.h; sourceTree = "<group>"; };
+		F05879B92480B9E300BC6588 /* ESCNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCNotificationManager.m; sourceTree = "<group>"; };
 		F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainViewController.h; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				0474319D1F5D988200445EB5 /* ESCConfigManager.m */,
 				047431A31F5D9C4100445EB5 /* ESCBuildShellFileManager.h */,
 				047431A41F5D9C4100445EB5 /* ESCBuildShellFileManager.m */,
+				F05879B82480B9E300BC6588 /* ESCNotificationManager.h */,
+				F05879B92480B9E300BC6588 /* ESCNotificationManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				04199F311F5AB45600CEFAB0 /* AFSecurityPolicy.m in Sources */,
 				04199F581F5ABD8300CEFAB0 /* MJProperty.m in Sources */,
 				04199F321F5AB45600CEFAB0 /* AFURLRequestSerialization.m in Sources */,
+				F05879BA2480B9E300BC6588 /* ESCNotificationManager.m in Sources */,
 				0474319B1F5D987200445EB5 /* ESCNetWorkManager.m in Sources */,
 				F003AB11244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m in Sources */,
 				047431981F5D978100445EB5 /* ESCConfigurationModel.m in Sources */,

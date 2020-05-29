@@ -21,6 +21,7 @@
 #import "ESCGroupTableGroupCellView.h"
 #import "ESCSelectButtonTableCellView.h"
 #import "ESCDeleteTableCellView.h"
+#import "ESCNotificationManager.h"
 
 
 typedef enum : NSUInteger {
@@ -63,6 +64,8 @@ ESCDeleteTableCellViewDelegate
 
 @property (weak) IBOutlet NSButton *LRUButton;
 
+@property (weak) IBOutlet NSButton *notificationButton;
+
 @property(nonatomic,assign)BOOL isStartSort;
 
 @property(nonatomic,assign)ESCSortAlgorithmType sortType;
@@ -99,6 +102,12 @@ ESCDeleteTableCellViewDelegate
         self.LRUButton.state = 1;
         self.isStartSort = YES;
     }
+    
+    BOOL notificationSwitchIsOpen = [ESCNotificationManager sharedManager].notificationSwitchIsOpen;
+    if (notificationSwitchIsOpen == YES) {
+        self.notificationButton.state = 1;
+    }
+    
 }
 
 - (void)dismissViewController:(NSViewController *)viewController API_AVAILABLE(macos(10.10)) {
@@ -314,6 +323,14 @@ ESCDeleteTableCellViewDelegate
     }
 }
 
+- (IBAction)didClickNotificationButton:(id)sender {
+    if (self.notificationButton.state == YES) {
+        [ESCNotificationManager sharedManager].notificationSwitchIsOpen = YES;
+    }else {
+        [ESCNotificationManager sharedManager].notificationSwitchIsOpen = NO;
+    }
+}
+
 - (IBAction)didClickRunCustemShellButton:(id)sender {
     //执行自定义脚本
     [self addLog:@"开始执行自定义脚本"];
@@ -378,6 +395,7 @@ ESCDeleteTableCellViewDelegate
     NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
     system(filePath.UTF8String);
     logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
+    [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
     [self addLog:logStr];
     [self uploadData];
 }
@@ -453,6 +471,7 @@ ESCDeleteTableCellViewDelegate
         }
         model.uploadState = @"上传成功";
         NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
+        [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
         [weakSelf addLog:logStr];
         NSString *resultString = [result mj_JSONString];
         [weakSelf writeLog:resultString withPath:model.historyLogPath];
@@ -464,6 +483,7 @@ ESCDeleteTableCellViewDelegate
         }
         model.uploadState = @"上传失败";
         NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+        [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
         [weakSelf addLog:logStr];
         [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
     }];
@@ -473,6 +493,8 @@ ESCDeleteTableCellViewDelegate
     NSString *logString = [[self.dateFormatter stringFromDate:[NSDate date]] stringByAppendingString:[NSString stringWithFormat:@":\n%@",string]];
     [[ESCFileManager sharedFileManager] wirteLogToFileWith:logString withName:[self.dateFormatter stringFromDate:[NSDate date]] withPath:path];
 }
+
+
 
 - (void)addLog:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
