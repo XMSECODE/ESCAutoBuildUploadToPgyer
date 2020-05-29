@@ -127,7 +127,6 @@ ESCDeleteTableCellViewDelegate
 #pragma mark - NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.showModelArray.count;
-//    return [ESCConfigManager sharedConfigManager].modelArray.count;
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row NS_AVAILABLE_MAC(10_7) {
@@ -155,10 +154,6 @@ ESCDeleteTableCellViewDelegate
             cell.delegate = self;
             return cell;
         }
-//        if([tableColumn.identifier isEqualToString:@"deleteCell"]){
-//            ESCDeleteTableCellView *cell = [tableView makeViewWithIdentifier:ESCDeleteTableCellViewId owner:self];
-//            return cell;
-//        }
         
     }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
         ESCConfigurationModel *configurationModel = model;
@@ -279,33 +274,26 @@ ESCDeleteTableCellViewDelegate
 }
 
 - (IBAction)didClickSelectAllBuildButton:(NSButton *)sender {
-//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-//        model.isCreateIPA = sender.state;
-//    }
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
     [groupModel setAllCreateIPAFile:sender.state];
+    [self checkIsAllSelected];
     [self.tableView reloadData];
 }
 
 - (IBAction)didClickSelectAllUploadButton:(NSButton *)sender {
-//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-//        model.isUploadIPA = sender.state;
-//    }
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
     [groupModel setAllUploadIPAFile:sender.state];
+    [self checkIsAllSelected];
     [self.tableView reloadData];
 }
 
 - (IBAction)didClickSelectAllBothButton:(NSButton *)sender {
-//    for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-//        model.isUploadIPA = sender.state;
-//        model.isCreateIPA = sender.state;
-//    }
     self.selectAllUploadButton.state = sender.state;
     self.selectAllBuildButton.state = sender.state;
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
     [groupModel setAllCreateIPAFile:sender.state];
     [groupModel setAllUploadIPAFile:sender.state];
+    [self checkIsAllSelected];
     [self.tableView reloadData];
 }
 
@@ -424,14 +412,6 @@ ESCDeleteTableCellViewDelegate
                 }
             }
         }
-//        for (ESCConfigurationModel *model in [ESCConfigManager sharedConfigManager].modelArray) {
-//            if (model.isUploadIPA) {
-//                self.allUploadIPACount++;
-//                dispatch_async(self.upload_queue, ^{
-//                    [self uploadIpaWithModel:model];
-//                });
-//            }
-//        }
     });
 }
 
@@ -513,14 +493,6 @@ ESCDeleteTableCellViewDelegate
     [self presentViewControllerAsSheet:viewController];
 }
 
-//- (void)mainTableCellViewdidClickDeleteButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-//#warning 删除功能
-////    NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
-////    [temArray removeObject:model];
-////    [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
-//    [self.tableView reloadData];
-//}
-
 - (void)mainTableCellViewdidClickRightMenuUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     dispatch_async(self.upload_queue, ^{
         [self uploadIpaWithModel:model];
@@ -555,9 +527,7 @@ ESCDeleteTableCellViewDelegate
 
 #pragma mark - ESCDeleteTableCellViewDelegate
 - (void)ESCDeleteTableCellViewDidClickDeleteButton:(ESCDeleteTableCellView *)view {
-#warning 删除
     ESCConfigurationModel *model = view.model;
-//    ESCGroupModel *groupModel = [[[ESCConfigManager sharedConfigManager] groupModel] getAppInGroupWithAPP:model];
     NSArray *temArray = [[[ESCConfigManager sharedConfigManager] groupModel] getAllGroupModelAndAppModelToArray];
     for (id temModel in temArray) {
         if ([temModel isKindOfClass:[ESCGroupModel class]]) {
@@ -591,6 +561,7 @@ ESCDeleteTableCellViewDelegate
 }
 
 - (void)checkIsAllSelected {
+    [[ESCConfigManager sharedConfigManager] saveUserData];
     BOOL buildIsAllSelected = YES;
     BOOL uploadIsAllSelected = YES;
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
