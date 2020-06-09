@@ -1,68 +1,68 @@
 {
   "images" : [
     {
-      "size" : "16x16",
+      "filename" : "iTunesArtwork@2xMacMicro_16pt.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacMicro_16pt.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "16x16"
     },
     {
-      "size" : "16x16",
+      "filename" : "iTunesArtwork@2xMacMicro_16pt@2x.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacMicro_16pt@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "16x16"
     },
     {
-      "size" : "32x32",
+      "filename" : "iTunesArtwork@2xMacSmall_32pt.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacSmall_32pt.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "32x32"
     },
     {
-      "size" : "32x32",
+      "filename" : "iTunesArtwork@2xMacSmall_32pt@2x.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacSmall_32pt@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "32x32"
     },
     {
-      "size" : "128x128",
+      "filename" : "iTunesArtwork@2xMacMedium_128pt.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacMedium_128pt.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "128x128"
     },
     {
-      "size" : "128x128",
+      "filename" : "iTunesArtwork@2xMacMedium_128pt@2x.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacMedium_128pt@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "128x128"
     },
     {
-      "size" : "256x256",
+      "filename" : "iTunesArtwork@2xMacLarge_256pt.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacLarge_256pt.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "256x256"
     },
     {
-      "size" : "256x256",
+      "filename" : "iTunesArtwork@2xMacLarge_256pt@2x.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacLarge_256pt@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "256x256"
     },
     {
-      "size" : "512x512",
+      "filename" : "iTunesArtwork@2xMacHuge_512pt.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacHuge_512pt.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "512x512"
     },
     {
-      "size" : "512x512",
+      "filename" : "iTunesArtwork@2xMacHuge_512pt@2x.png",
       "idiom" : "mac",
-      "filename" : "IMG_4025MacHuge_512pt@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "512x512"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
