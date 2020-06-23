@@ -290,30 +290,52 @@ ESCOneButtonTableCellViewDelegate
     [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
         //是否点击open 按钮
         if (result == NSModalResponseOK) {
-            NSString *pathString = [openPanel.URLs.firstObject path];
-            NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
-            NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-            NSString *password = [ESCConfigManager sharedConfigManager].password;
-            
-            NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
-            [weakSelf addLog:logStr];
-            
-            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
-                                                    uKey:ukey
-                                                 api_key:api_k
-                                                password:password
-                                  buildUpdateDescription:@""
-                                                progress:^(NSProgress *progress) {
-                double currentProgress = progress.fractionCompleted * 100;
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+            if ([ESCConfigManager sharedConfigManager].uploadType == 0) {
+                NSString *pathString = [openPanel.URLs.firstObject path];
+                NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+                NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+                NSString *password = [ESCConfigManager sharedConfigManager].password;
+                
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
                 [weakSelf addLog:logStr];
-            } success:^(NSDictionary *result) {
-                NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
-                [weakSelf addLog:logStr];
-            } failure:^(NSError *error) {
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
-                [weakSelf addLog:logStr];
-            }];
+                
+                [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
+                                                        uKey:ukey
+                                                     api_key:api_k
+                                                    password:password
+                                      buildUpdateDescription:@""
+                                                    progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                    [weakSelf addLog:logStr];
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
+                    [weakSelf addLog:logStr];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    [weakSelf addLog:logStr];
+                }];
+            }else if ([ESCConfigManager sharedConfigManager].uploadType == 1) {
+                __weak __typeof(self)weakSelf = self;
+               NSString *pathString = [openPanel.URLs.firstObject path];
+
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
+                [self addLog:logStr];
+                
+                NSString *api_token = [ESCConfigManager sharedConfigManager].firim_api_token;
+                [ESCNetWorkManager uploadToFirimWithFilePath:pathString api_token:api_token buildUpdateDescription:@"" progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                    [weakSelf addLog:logStr];
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
+                    [weakSelf addLog:logStr];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    [weakSelf addLog:logStr];
+                }];
+            }
+           
         }
     }];
 }
