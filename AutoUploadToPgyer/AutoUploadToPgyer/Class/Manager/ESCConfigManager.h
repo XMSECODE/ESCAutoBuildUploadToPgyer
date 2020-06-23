@@ -21,10 +21,14 @@
 
 @property (nonatomic, copy) NSString *uKey;
 
+@property(nonatomic,copy)NSString* firim_api_token;
+
+//0:蒲公英 1:fir.im
+@property(nonatomic,assign)int uploadType;
+
 @property(nonatomic,copy)NSString* password;
 
 @property(nonatomic,copy)NSString* custom_shell_content;
-
 
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model;
 

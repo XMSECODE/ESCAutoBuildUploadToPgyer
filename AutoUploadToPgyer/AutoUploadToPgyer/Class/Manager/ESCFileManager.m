@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "ESCConfigurationModel.h"
 #import "NSDate+ESCDateString.h"
+#import "ESCFileCopyTool.h"
 
 @interface ESCFileManager ()
 
@@ -37,6 +38,37 @@ static ESCFileManager *staticESCFileManager;
     NSArray *ipaArray = [self getAllIPAinDirectoryPath:path];
     NSString *filePath = [self getLatestIPAFilePath:ipaArray];
     return filePath;
+}
+
+- (NSDictionary *)getAppInfoWithIPAFilePath:(NSString *)ipaFilePath {
+    //copy一份
+    NSString *copyIpaFilePath = [ipaFilePath stringByAppendingFormat:@".zip"];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:ipaFilePath toPath:copyIpaFilePath error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+        return nil;
+    }
+    NSString *unzippath = [copyIpaFilePath stringByDeletingLastPathComponent];
+    //解压
+    NSString *com = [@"unzip -o " stringByAppendingFormat:@"%@", copyIpaFilePath];
+    com = [com stringByAppendingFormat:@" -d %@/",unzippath];
+    const char *comC = [com cStringUsingEncoding:NSUTF8StringEncoding];
+    system(comC);
+    
+    //查找plist
+    unzippath = [unzippath stringByAppendingString:@"/Payload"];
+    NSString *dirPath = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:unzippath error:nil].lastObject;
+    
+    NSString *plistPath = [unzippath stringByAppendingFormat:@"/%@/Info.plist",dirPath];
+    NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    //移除文件
+    if ([[NSFileManager defaultManager] fileExistsAtPath:copyIpaFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:copyIpaFilePath error:&error];
+    }
+    [ESCFileCopyTool removeDirFileWithDirPath:unzippath];
+    
+    return info;
 }
 
 - (void)getLatestIPAFileInfoWithConfigurationModel:(ESCConfigurationModel *)model {

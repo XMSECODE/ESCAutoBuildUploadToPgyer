@@ -19,4 +19,11 @@
                           success:(void (^)(NSDictionary *result))success
                           failure:(void (^)(NSError *error))failure;
 
++ (void)uploadToFirimWithFilePath:(NSString *)filePath
+                        api_token:(NSString *)api_token
+           buildUpdateDescription:(NSString *)buildUpdateDescription
+                         progress:(void (^)(NSProgress * progress))cuploadProgress
+                          success:(void (^)(NSDictionary *result))success
+                          failure:(void (^)(NSError *error))failure;
+
 @end

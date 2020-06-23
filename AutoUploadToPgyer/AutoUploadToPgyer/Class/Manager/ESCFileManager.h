@@ -24,6 +24,8 @@
  */
 - (void)getLatestIPAFileInfoWithConfigurationModel:(ESCConfigurationModel *)model;
 
+- (NSDictionary *)getAppInfoWithIPAFilePath:(NSString *)ipaFilePath;
+
 /**
  写入日志
  */

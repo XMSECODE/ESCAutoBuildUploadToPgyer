@@ -13,6 +13,8 @@
 static NSString *ESCPgyerUKey = @"ESCPgyerUKey";
 static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
 static NSString *ESCPgyerPassword_key = @"ESCPgyerPassword_key";
+static NSString *ESCFirim_api_token_key = @"ESCFirim_api_token_key";
+static NSString *ESC_upload_type_key = @"ESC_upload_type_key";
 static NSString *ESCCustemShellContent_key = @"ESCCustemShellContent_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
 static NSString *ESCUserGroupDataKey = @"ESCUserGroupDataKey";
@@ -51,7 +53,9 @@ static ESCConfigManager *staticESCConfigManager;
     self.api_k = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerapi_key];
     self.uKey = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerUKey];
     self.password = [[NSUserDefaults standardUserDefaults] objectForKey:ESCPgyerPassword_key];
+    self.firim_api_token = [[NSUserDefaults standardUserDefaults] objectForKey:ESCFirim_api_token_key];
     self.custom_shell_content = [[NSUserDefaults standardUserDefaults] objectForKey:ESCCustemShellContent_key];
+    self.uploadType = [[[NSUserDefaults standardUserDefaults] objectForKey:ESC_upload_type_key] intValue];
 
 }
 
@@ -137,6 +141,16 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setApi_k:(NSString *)api_k {
     _api_k = [api_k copy];
     [[NSUserDefaults standardUserDefaults] setObject:_api_k forKey:ESCPgyerapi_key];
+}
+
+- (void)setFirim_api_token:(NSString *)firim_api_token {
+    _firim_api_token = [firim_api_token copy];
+    [[NSUserDefaults standardUserDefaults] setObject:_firim_api_token forKey:ESCFirim_api_token_key];
+}
+
+- (void)setUploadType:(int)uploadType {
+    _uploadType = uploadType;
+    [[NSUserDefaults standardUserDefaults] setObject:@(_uploadType) forKey:ESC_upload_type_key];
 }
 
 - (void)setPassword:(NSString *)password {

@@ -53,6 +53,9 @@
 		F0587A6F2481042C00BC6588 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0587A642481042C00BC6588 /* Info.plist */; };
 		F0587A702481042C00BC6588 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = F0587A652481042C00BC6588 /* MJFoundation.m */; };
 		F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */; };
+		F07CF28024A1F527009D224F /* ESCFirimConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07CF27F24A1F527009D224F /* ESCFirimConfigViewController.m */; };
+		F07CF28224A1F53A009D224F /* ESCFirimConfigViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F07CF28124A1F53A009D224F /* ESCFirimConfigViewController.storyboard */; };
+		F07CF28524A202A2009D224F /* ESCFileCopyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F07CF28324A202A2009D224F /* ESCFileCopyTool.m */; };
 		F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +149,11 @@
 		F07C80011F5EB33900AEAF30 /* ESCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainViewController.h; sourceTree = "<group>"; };
 		F07C80061F5EB5F800AEAF30 /* ESCMainTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCMainTableCellView.h; sourceTree = "<group>"; };
 		F07C80071F5EB5F800AEAF30 /* ESCMainTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCMainTableCellView.m; sourceTree = "<group>"; };
+		F07CF27E24A1F527009D224F /* ESCFirimConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCFirimConfigViewController.h; sourceTree = "<group>"; };
+		F07CF27F24A1F527009D224F /* ESCFirimConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCFirimConfigViewController.m; sourceTree = "<group>"; };
+		F07CF28124A1F53A009D224F /* ESCFirimConfigViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ESCFirimConfigViewController.storyboard; sourceTree = "<group>"; };
+		F07CF28324A202A2009D224F /* ESCFileCopyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCFileCopyTool.m; sourceTree = "<group>"; };
+		F07CF28424A202A2009D224F /* ESCFileCopyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCFileCopyTool.h; sourceTree = "<group>"; };
 		F084B4111F5FC70600D71BCC /* ESCPgyerConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCPgyerConfigViewController.h; sourceTree = "<group>"; };
 		F084B4121F5FC70600D71BCC /* ESCPgyerConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCPgyerConfigViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +224,8 @@
 		04199F1F1F5AB43C00CEFAB0 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				F07CF28424A202A2009D224F /* ESCFileCopyTool.h */,
+				F07CF28324A202A2009D224F /* ESCFileCopyTool.m */,
 				04199F361F5AB4CA00CEFAB0 /* ESCHeader.h */,
 				04199F631F5ADB2B00CEFAB0 /* NSDate+ESCDateString.h */,
 				04199F641F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m */,
@@ -267,6 +277,9 @@
 				F04A6C34244FD87A00CBB70D /* ESCGroupViewController.h */,
 				F04A6C35244FD87A00CBB70D /* ESCGroupViewController.m */,
 				F04A6C37244FD89900CBB70D /* ESCGroupViewController.storyboard */,
+				F07CF27E24A1F527009D224F /* ESCFirimConfigViewController.h */,
+				F07CF27F24A1F527009D224F /* ESCFirimConfigViewController.m */,
+				F07CF28124A1F53A009D224F /* ESCFirimConfigViewController.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -424,6 +437,7 @@
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
 				F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */,
 				F051C5C8247263A500782358 /* ESCOneButtonTableCellView.xib in Resources */,
+				F07CF28224A1F53A009D224F /* ESCFirimConfigViewController.storyboard in Resources */,
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
 				F051C5C3247260B600782358 /* ESCSelectButtonTableCellView.xib in Resources */,
 			);
@@ -436,12 +450,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F07CF28024A1F527009D224F /* ESCFirimConfigViewController.m in Sources */,
 				0474319E1F5D988200445EB5 /* ESCConfigManager.m in Sources */,
 				F04A6C3B244FD9BC00CBB70D /* ESCApplication.m in Sources */,
 				F0587A6B2481042C00BC6588 /* NSObject+MJProperty.m in Sources */,
 				F0587A6A2481042C00BC6588 /* MJExtensionConst.m in Sources */,
 				F07C80081F5EB5F800AEAF30 /* ESCMainTableCellView.m in Sources */,
 				F0587A682481042C00BC6588 /* MJProperty.m in Sources */,
+				F07CF28524A202A2009D224F /* ESCFileCopyTool.m in Sources */,
 				F0587A6D2481042C00BC6588 /* NSString+MJExtension.m in Sources */,
 				F049FC151F6641DE00147EC9 /* ESCMainViewController.m in Sources */,
 				04199EF71F5AB21900CEFAB0 /* main.m in Sources */,
