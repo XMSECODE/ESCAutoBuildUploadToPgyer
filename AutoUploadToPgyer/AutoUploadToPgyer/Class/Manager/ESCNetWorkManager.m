@@ -51,17 +51,23 @@ static ESCNetWorkManager *staticNetWorkManager;
                           success:(void (^)(NSDictionary *result))success
                           failure:(void (^)(NSError *error))failure{
     NSDictionary *pare = nil;
-    if (password == nil || password.length <= 0) {
-        password = @"123";
-    }
     if (buildUpdateDescription == nil) {
         buildUpdateDescription = @"";
     }
-    pare = @{@"_api_key":api_key,
-             @"buildInstallType":@"2",
-             @"buildPassword":password,
-             @"buildUpdateDescription":buildUpdateDescription
-    };
+    if (password == nil || password.length <= 0) {
+        pare = @{@"_api_key":api_key,
+                 @"buildInstallType":@"1",
+                 @"buildUpdateDescription":buildUpdateDescription
+        };
+    }else {
+        pare = @{@"_api_key":api_key,
+                 @"buildInstallType":@"2",
+                 @"buildPassword":password,
+                 @"buildUpdateDescription":buildUpdateDescription
+        };
+    }
+    
+    
     
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
