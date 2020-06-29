@@ -22,7 +22,7 @@
 #import "ESCSelectButtonTableCellView.h"
 #import "ESCOneButtonTableCellView.h"
 #import "ESCNotificationManager.h"
-
+#import "ESCFirimConfigViewController.h"
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
@@ -72,6 +72,8 @@ ESCOneButtonTableCellViewDelegate
 
 @property(nonatomic,strong)NSArray* showModelArray;
 
+@property (weak, nonatomic) IBOutlet NSPopUpButton *uploadTypeButton;
+
 @end
 
 @implementation ESCMainViewController
@@ -113,6 +115,8 @@ ESCOneButtonTableCellViewDelegate
         self.notificationButton.state = 1;
     }
     
+    int index = [ESCConfigManager sharedConfigManager].uploadType;
+    [self.uploadTypeButton selectItemAtIndex:index];
     
     CGFloat width = 0;
     CGFloat height = 0;
@@ -286,30 +290,52 @@ ESCOneButtonTableCellViewDelegate
     [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
         //是否点击open 按钮
         if (result == NSModalResponseOK) {
-            NSString *pathString = [openPanel.URLs.firstObject path];
-            NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
-            NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-            NSString *password = [ESCConfigManager sharedConfigManager].password;
-            
-            NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
-            [weakSelf addLog:logStr];
-            
-            [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
-                                                    uKey:ukey
-                                                 api_key:api_k
-                                                password:password
-                                  buildUpdateDescription:@""
-                                                progress:^(NSProgress *progress) {
-                double currentProgress = progress.fractionCompleted * 100;
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+            if ([ESCConfigManager sharedConfigManager].uploadType == 0) {
+                NSString *pathString = [openPanel.URLs.firstObject path];
+                NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+                NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+                NSString *password = [ESCConfigManager sharedConfigManager].password;
+                
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
                 [weakSelf addLog:logStr];
-            } success:^(NSDictionary *result) {
-                NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
-                [weakSelf addLog:logStr];
-            } failure:^(NSError *error) {
-                NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
-                [weakSelf addLog:logStr];
-            }];
+                
+                [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
+                                                        uKey:ukey
+                                                     api_key:api_k
+                                                    password:password
+                                      buildUpdateDescription:@""
+                                                    progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                    [weakSelf addLog:logStr];
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
+                    [weakSelf addLog:logStr];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    [weakSelf addLog:logStr];
+                }];
+            }else if ([ESCConfigManager sharedConfigManager].uploadType == 1) {
+                __weak __typeof(self)weakSelf = self;
+               NSString *pathString = [openPanel.URLs.firstObject path];
+
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",pathString];
+                [self addLog:logStr];
+                
+                NSString *api_token = [ESCConfigManager sharedConfigManager].firim_api_token;
+                [ESCNetWorkManager uploadToFirimWithFilePath:pathString api_token:api_token buildUpdateDescription:@"" progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                    [weakSelf addLog:logStr];
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
+                    [weakSelf addLog:logStr];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    [weakSelf addLog:logStr];
+                }];
+            }
+           
         }
     }];
 }
@@ -376,6 +402,16 @@ ESCOneButtonTableCellViewDelegate
     [self presentViewControllerAsSheet:viewController];
 }
 
+- (IBAction)didClickFirimConfigButton:(id)sender {
+    ESCFirimConfigViewController *firimConfigViewController = [[NSStoryboard storyboardWithName:@"ESCFirimConfigViewController" bundle:nil] instantiateInitialController];
+    [self presentViewControllerAsSheet:firimConfigViewController];
+}
+
+- (IBAction)didClickUploadTypeButton:(id)sender {
+    int index = (int)self.uploadTypeButton.indexOfSelectedItem;
+//    NSLog(@"%d",index);
+    [ESCConfigManager sharedConfigManager].uploadType = index;
+}
 
 - (void)uploadData {
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
@@ -457,6 +493,69 @@ ESCOneButtonTableCellViewDelegate
 }
 
 - (void)uploadIpaWithModel:(ESCConfigurationModel *)model {
+    if ([ESCConfigManager sharedConfigManager].uploadType == 0) {
+        [self uploadToPgyerWithModel:model];
+    }else if ([ESCConfigManager sharedConfigManager].uploadType == 1) {
+        [self uploadIpaToFirimWithModel:model];
+    }
+}
+
+- (void)uploadToPgyerWithModel:(ESCConfigurationModel *)model {
+    __weak __typeof(self)weakSelf = self;
+       [model resetNetworkRate];
+       if(self.isStartSort == YES) {
+           [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
+       }
+       NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
+       [self addLog:logStr];
+       
+       NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
+       NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+       NSString *password = [ESCConfigManager sharedConfigManager].password;
+       NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
+       [ESCNetWorkManager uploadToPgyerWithFilePath:filePath
+                                               uKey:ukey
+                                            api_key:api_k
+                                           password:password
+                             buildUpdateDescription:model.buildUpdateDescription
+                                           progress:^(NSProgress *progress) {
+           double currentProgress = progress.fractionCompleted;
+           int total = (int)progress.totalUnitCount;
+           int complete = (int)progress.completedUnitCount;
+           model.totalSize = total;
+           model.sendSize = complete;
+           model.uploadProgress = currentProgress;
+           [model calculateNetWorkRate];
+           [weakSelf.tableView reloadData];
+       } success:^(NSDictionary *result){
+           weakSelf.completeUploadIPACount++;
+           if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
+               weakSelf.isUploading = NO;
+           }
+           if (model.save_buildUpdateDescription == NO) {
+               model.buildUpdateDescription = @"";
+           }
+           model.uploadState = @"上传成功";
+           NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
+           [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+           [weakSelf addLog:logStr];
+           NSString *resultString = [result mj_JSONString];
+           [weakSelf writeLog:resultString withPath:model.historyLogPath];
+           [weakSelf.tableView reloadData];
+       } failure:^(NSError *error) {
+           weakSelf.completeUploadIPACount++;
+           if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
+               weakSelf.isUploading = NO;
+           }
+           model.uploadState = @"上传失败";
+           NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+           [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+           [weakSelf addLog:logStr];
+           [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
+       }];
+}
+
+- (void)uploadIpaToFirimWithModel:(ESCConfigurationModel *)model {
     __weak __typeof(self)weakSelf = self;
     [model resetNetworkRate];
     if(self.isStartSort == YES) {
@@ -465,15 +564,9 @@ ESCOneButtonTableCellViewDelegate
     NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
     [self addLog:logStr];
     
-    NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
-    NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
-    NSString *password = [ESCConfigManager sharedConfigManager].password;
-    [ESCNetWorkManager uploadToPgyerWithFilePath:[[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model]
-                                            uKey:ukey
-                                         api_key:api_k
-                                        password:password
-                          buildUpdateDescription:model.buildUpdateDescription
-                                        progress:^(NSProgress *progress) {
+    NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
+    NSString *api_token = [ESCConfigManager sharedConfigManager].firim_api_token;
+    [ESCNetWorkManager uploadToFirimWithFilePath:filePath api_token:api_token buildUpdateDescription:model.buildUpdateDescription progress:^(NSProgress *progress) {
         double currentProgress = progress.fractionCompleted;
         int total = (int)progress.totalUnitCount;
         int complete = (int)progress.completedUnitCount;
@@ -482,7 +575,7 @@ ESCOneButtonTableCellViewDelegate
         model.uploadProgress = currentProgress;
         [model calculateNetWorkRate];
         [weakSelf.tableView reloadData];
-    } success:^(NSDictionary *result){
+    } success:^(NSDictionary *result) {
         weakSelf.completeUploadIPACount++;
         if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
             weakSelf.isUploading = NO;

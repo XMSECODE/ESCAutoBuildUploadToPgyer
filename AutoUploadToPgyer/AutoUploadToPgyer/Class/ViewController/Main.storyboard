@@ -683,17 +683,17 @@
             <objects>
                 <viewController title="项目" storyboardIdentifier="ESCMainViewController" id="4X5-1k-l7B" customClass="ESCMainViewController" sceneMemberID="viewController">
                     <view key="view" id="zej-sw-RWW">
-                        <rect key="frame" x="0.0" y="0.0" width="1964" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1964" height="255"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVP-ah-Rd4">
-                                <rect key="frame" x="20" y="192" width="1924" height="239"/>
+                                <rect key="frame" x="20" y="183" width="1924" height="26"/>
                                 <clipView key="contentView" id="GL1-RQ-xb7">
-                                    <rect key="frame" x="1" y="0.0" width="1922" height="238"/>
+                                    <rect key="frame" x="1" y="0.0" width="1922" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="ESCMainTableCellViewID" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DUQ-UZ-IGm" viewBased="YES" id="Dqm-vh-eSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="215"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="19"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1046,7 +1046,7 @@
                                     <rect key="frame" x="1" y="13" width="1922" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MAw-TC-8IM">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="MAw-TC-8IM">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1056,7 +1056,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvF-lb-Y94">
-                                <rect key="frame" x="953" y="441" width="58" height="16"/>
+                                <rect key="frame" x="953" y="219" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="项目列表" id="8iZ-Ar-xcI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1064,7 +1064,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FPS-Fj-rMi">
-                                <rect key="frame" x="1914" y="141" width="30" height="32"/>
+                                <rect key="frame" x="1914" y="132" width="30" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2gy-bi-o3v"/>
                                     <constraint firstAttribute="height" constant="30" id="5K5-Tq-6hS"/>
@@ -1078,7 +1078,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-oS-ct8">
-                                <rect key="frame" x="14" y="94" width="128" height="32"/>
+                                <rect key="frame" x="14" y="75" width="128" height="32"/>
                                 <buttonCell key="cell" type="push" title="扫描ipa文件夹" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a6u-Uz-qmY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1088,7 +1088,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="itu-Te-zXD">
-                                <rect key="frame" x="170" y="94" width="94" height="32"/>
+                                <rect key="frame" x="170" y="75" width="94" height="32"/>
                                 <buttonCell key="cell" type="push" title="编译项目" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lGp-wl-z3V">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1098,7 +1098,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x7Y-vc-MIP">
-                                <rect key="frame" x="292" y="94" width="87" height="32"/>
+                                <rect key="frame" x="292" y="75" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="上传ipa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="50g-iV-Zrx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1108,7 +1108,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OIR-BR-TrH">
-                                <rect key="frame" x="407" y="94" width="107" height="32"/>
+                                <rect key="frame" x="407" y="75" width="107" height="32"/>
                                 <buttonCell key="cell" type="push" title="打包及上传" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="omo-dY-dFT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1118,7 +1118,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aB3-es-PVi">
-                                <rect key="frame" x="1853" y="149" width="58" height="16"/>
+                                <rect key="frame" x="1853" y="140" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="添加任务" id="NDx-Fo-mqI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1156,7 +1156,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YN9-vO-E5o">
-                                <rect key="frame" x="14" y="33" width="129" height="32"/>
+                                <rect key="frame" x="14" y="34" width="129" height="32"/>
                                 <buttonCell key="cell" type="push" title="设置蒲公英key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sYc-W0-cpO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1166,7 +1166,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-tT-v2d">
-                                <rect key="frame" x="133" y="33" width="168" height="32"/>
+                                <rect key="frame" x="133" y="34" width="168" height="32"/>
                                 <buttonCell key="cell" type="push" title="手动选择ipa文件上传" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vdf-Nd-6t2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1176,7 +1176,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HXr-43-2jn">
-                                <rect key="frame" x="1035" y="166" width="95" height="18"/>
+                                <rect key="frame" x="1035" y="157" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选编译ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pvY-qX-D0j">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1186,7 +1186,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bBG-VY-ars">
-                                <rect key="frame" x="1126" y="166" width="95" height="18"/>
+                                <rect key="frame" x="1126" y="157" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选上传ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Q0m-a8-RAL">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1206,7 +1206,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="uTH-Xz-3x4">
-                                <rect key="frame" x="917" y="166" width="102" height="18"/>
+                                <rect key="frame" x="917" y="157" width="102" height="18"/>
                                 <buttonCell key="cell" type="check" title="LRU算法排序" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Aew-lH-mDm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1216,7 +1216,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Izq-5x-Q7l">
-                                <rect key="frame" x="1222" y="166" width="79" height="18"/>
+                                <rect key="frame" x="1222" y="157" width="79" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选Both" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CCK-dY-IZo">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1257,7 +1257,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Jxm-N0-wLx">
-                                <rect key="frame" x="825" y="166" width="76" height="18"/>
+                                <rect key="frame" x="825" y="157" width="76" height="18"/>
                                 <buttonCell key="cell" type="check" title="本地通知" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ShB-4A-qPr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1266,14 +1266,41 @@
                                     <action selector="didClickNotificationButton:" target="4X5-1k-l7B" id="gtW-fF-8Qk"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vtd-Cb-VOj">
+                                <rect key="frame" x="14" y="3" width="125" height="32"/>
+                                <buttonCell key="cell" type="push" title="fir.im参数设置" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FbP-fk-0UN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickFirimConfigButton:" target="4X5-1k-l7B" id="n7J-JN-kfG"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qo0-tV-S0p">
+                                <rect key="frame" x="732" y="153" width="78" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="蒲公英" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iqd-i0-CDJ" id="GNb-6R-Dqq">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="Zrh-rk-zkp">
+                                        <items>
+                                            <menuItem title="蒲公英" id="iqd-i0-CDJ"/>
+                                            <menuItem title="fir.im" state="on" id="ypj-Kh-HPr"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="didClickUploadTypeButton:" target="4X5-1k-l7B" id="cKA-BA-CD5"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
                             <constraint firstAttribute="trailing" secondItem="32B-x4-JaF" secondAttribute="trailing" constant="20" id="1Gn-gQ-VeC"/>
-                            <constraint firstItem="YN9-vO-E5o" firstAttribute="top" secondItem="9HV-oS-ct8" secondAttribute="bottom" constant="40" id="258-Lb-DI4"/>
+                            <constraint firstAttribute="bottom" secondItem="Vtd-Cb-VOj" secondAttribute="bottom" constant="10" id="1L8-uH-loB"/>
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" id="2Fi-9h-yTP"/>
-                            <constraint firstItem="9HV-oS-ct8" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="70" id="60H-Wh-hHs"/>
-                            <constraint firstAttribute="bottom" secondItem="YN9-vO-E5o" secondAttribute="bottom" constant="40" id="6kL-fq-gIA"/>
+                            <constraint firstItem="Jxm-N0-wLx" firstAttribute="leading" secondItem="qo0-tV-S0p" secondAttribute="trailing" constant="20" id="5YD-m8-eAy"/>
+                            <constraint firstItem="9HV-oS-ct8" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="80" id="60H-Wh-hHs"/>
+                            <constraint firstItem="YN9-vO-E5o" firstAttribute="top" secondItem="9HV-oS-ct8" secondAttribute="bottom" constant="20" id="7Tr-0a-We7"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="leading" secondItem="zej-sw-RWW" secondAttribute="leading" constant="20" id="8l0-mb-jQN"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="trailing" constant="40" id="AxR-4Q-uQf"/>
                             <constraint firstItem="Z1u-tT-v2d" firstAttribute="centerY" secondItem="YN9-vO-E5o" secondAttribute="centerY" id="CWu-Zj-qps"/>
@@ -1296,16 +1323,19 @@
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="centerX" secondItem="zej-sw-RWW" secondAttribute="centerX" id="Zbu-kz-VVd"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="centerY" secondItem="HXr-43-2jn" secondAttribute="centerY" id="Zcw-2c-hu1"/>
                             <constraint firstItem="aug-Bm-yLp" firstAttribute="trailing" secondItem="vPA-P8-lTq" secondAttribute="trailing" id="Zun-kU-FkF"/>
+                            <constraint firstItem="Vtd-Cb-VOj" firstAttribute="top" secondItem="YN9-vO-E5o" secondAttribute="bottom" constant="10" id="ZyP-St-WsY"/>
                             <constraint firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" constant="20" id="aFV-9i-Z4L"/>
                             <constraint firstItem="uTH-Xz-3x4" firstAttribute="leading" secondItem="Jxm-N0-wLx" secondAttribute="trailing" constant="20" id="fmV-Xq-Eyr"/>
                             <constraint firstItem="vPA-P8-lTq" firstAttribute="leading" secondItem="OIR-BR-TrH" secondAttribute="trailing" constant="50" id="gaW-Lo-Aqa"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="10" id="iqt-Go-CBS"/>
+                            <constraint firstItem="Vtd-Cb-VOj" firstAttribute="leading" secondItem="YN9-vO-E5o" secondAttribute="leading" id="jpc-d2-PzD"/>
                             <constraint firstAttribute="bottom" secondItem="32B-x4-JaF" secondAttribute="bottom" constant="20" id="k5e-ak-llu"/>
                             <constraint firstItem="Z1u-tT-v2d" firstAttribute="centerX" secondItem="itu-Te-zXD" secondAttribute="centerX" id="kjP-VR-3bg"/>
                             <constraint firstItem="32B-x4-JaF" firstAttribute="trailing" secondItem="mgU-q6-KV8" secondAttribute="trailing" id="lgI-Up-DBu"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" id="mNz-LW-Ovh"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="q1J-Ro-hoC"/>
                             <constraint firstAttribute="bottom" secondItem="aug-Bm-yLp" secondAttribute="bottom" constant="8" id="rhq-ih-NEp"/>
+                            <constraint firstItem="Jxm-N0-wLx" firstAttribute="centerY" secondItem="qo0-tV-S0p" secondAttribute="centerY" id="sUo-pM-9CX"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="centerY" secondItem="uTH-Xz-3x4" secondAttribute="centerY" id="tWw-wD-EiB"/>
                             <constraint firstItem="Izq-5x-Q7l" firstAttribute="leading" secondItem="bBG-VY-ars" secondAttribute="trailing" constant="5" id="wx5-sw-3SO"/>
                             <constraint firstItem="32B-x4-JaF" firstAttribute="top" secondItem="mgU-q6-KV8" secondAttribute="bottom" constant="10" id="yCR-yq-v9f"/>
@@ -1320,11 +1350,12 @@
                         <outlet property="selectAllBuildButton" destination="HXr-43-2jn" id="QfW-Jt-qpI"/>
                         <outlet property="selectAllUploadButton" destination="bBG-VY-ars" id="Quy-cf-RlV"/>
                         <outlet property="tableView" destination="Dqm-vh-eSj" id="oZf-ga-WFk"/>
+                        <outlet property="uploadTypeButton" destination="qo0-tV-S0p" id="zCq-M3-LRK"/>
                     </connections>
                 </viewController>
                 <customObject id="fzf-vF-jck" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.5" y="723.5"/>
+            <point key="canvasLocation" x="448" y="723"/>
         </scene>
         <!--Custem Shell Config View Controller-->
         <scene sceneID="GKF-PA-7iR">

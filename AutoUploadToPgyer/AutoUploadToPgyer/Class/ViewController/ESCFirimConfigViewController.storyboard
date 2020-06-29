@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="eVn-Ql-WGa">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--firim设置-->
+        <scene sceneID="xkh-iq-WaB">
+            <objects>
+                <viewController title="firim设置" id="eVn-Ql-WGa" customClass="ESCFirimConfigViewController" sceneMemberID="viewController">
+                    <view key="view" id="j4f-UZ-9wB">
+                        <rect key="frame" x="0.0" y="0.0" width="478" height="200"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-CU-bhp">
+                                <rect key="frame" x="28" y="154" width="64" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Jfz-Af-XAl"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Zux-qE-P7q"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="api_token" id="BBH-vz-3Fx">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="586-ES-kE8">
+                                <rect key="frame" x="120" y="152" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="PPV-Xh-s33"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sJC-gk-Aar">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5wv-dD-FJi">
+                                <rect key="frame" x="133" y="13" width="212" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="LtR-OX-3KI"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vaf-Ch-Zyu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickMakeConfigButton:" target="eVn-Ql-WGa" id="v4s-hL-9xC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5wv-dD-FJi" secondAttribute="bottom" constant="20" id="6vt-n7-DmF"/>
+                            <constraint firstItem="586-ES-kE8" firstAttribute="centerY" secondItem="zXm-CU-bhp" secondAttribute="centerY" id="DYb-E0-QbT"/>
+                            <constraint firstItem="5wv-dD-FJi" firstAttribute="centerX" secondItem="j4f-UZ-9wB" secondAttribute="centerX" id="MBy-1a-DKo"/>
+                            <constraint firstItem="586-ES-kE8" firstAttribute="leading" secondItem="zXm-CU-bhp" secondAttribute="trailing" constant="30" id="YQJ-NB-MmX"/>
+                            <constraint firstItem="zXm-CU-bhp" firstAttribute="leading" secondItem="j4f-UZ-9wB" secondAttribute="leading" constant="30" id="bi5-Km-9Tf"/>
+                            <constraint firstItem="zXm-CU-bhp" firstAttribute="top" secondItem="j4f-UZ-9wB" secondAttribute="top" constant="30" id="wbR-AI-may"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="api_tokenTextField" destination="586-ES-kE8" id="UTM-Hf-mma"/>
+                    </connections>
+                </viewController>
+                <customObject id="B66-O7-AQZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-383" y="1392"/>
+        </scene>
+    </scenes>
+</document>
