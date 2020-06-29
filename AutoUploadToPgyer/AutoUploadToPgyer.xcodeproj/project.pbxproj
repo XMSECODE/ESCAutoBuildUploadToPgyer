@@ -60,7 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04199EEF1F5AB21900CEFAB0 /* AutoUploadToPgyer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoUploadToPgyer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04199EEF1F5AB21900CEFAB0 /* iOSAutoBuildAndUpload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAutoBuildAndUpload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04199EF21F5AB21900CEFAB0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04199EF31F5AB21900CEFAB0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04199EF61F5AB21900CEFAB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		04199EF01F5AB21900CEFAB0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04199EEF1F5AB21900CEFAB0 /* AutoUploadToPgyer.app */,
+				04199EEF1F5AB21900CEFAB0 /* iOSAutoBuildAndUpload.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -370,9 +370,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04199EEE1F5AB21900CEFAB0 /* AutoUploadToPgyer */ = {
+		04199EEE1F5AB21900CEFAB0 /* iOSAutoBuildAndUpload */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04199F031F5AB21900CEFAB0 /* Build configuration list for PBXNativeTarget "AutoUploadToPgyer" */;
+			buildConfigurationList = 04199F031F5AB21900CEFAB0 /* Build configuration list for PBXNativeTarget "iOSAutoBuildAndUpload" */;
 			buildPhases = (
 				04199EEB1F5AB21900CEFAB0 /* Sources */,
 				04199EEC1F5AB21900CEFAB0 /* Frameworks */,
@@ -382,9 +382,9 @@
 			);
 			dependencies = (
 			);
-			name = AutoUploadToPgyer;
+			name = iOSAutoBuildAndUpload;
 			productName = AutoUploadToPgyer;
-			productReference = 04199EEF1F5AB21900CEFAB0 /* AutoUploadToPgyer.app */;
+			productReference = 04199EEF1F5AB21900CEFAB0 /* iOSAutoBuildAndUpload.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -421,7 +421,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04199EEE1F5AB21900CEFAB0 /* AutoUploadToPgyer */,
+				04199EEE1F5AB21900CEFAB0 /* iOSAutoBuildAndUpload */,
 			);
 		};
 /* End PBXProject section */
@@ -614,7 +614,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AutoUploadToPgyer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.XMSECODE.AutoUploadToPgyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -630,7 +630,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AutoUploadToPgyer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.XMSECODE.AutoUploadToPgyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -648,7 +648,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04199F031F5AB21900CEFAB0 /* Build configuration list for PBXNativeTarget "AutoUploadToPgyer" */ = {
+		04199F031F5AB21900CEFAB0 /* Build configuration list for PBXNativeTarget "iOSAutoBuildAndUpload" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04199F041F5AB21900CEFAB0 /* Debug */,
