@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^ScanFileCallBackBlock)(NSString *filePath);
+typedef void(^ScanFileCallBackBlock)(NSString * _Nonnull filePath);
 
 
 NS_ASSUME_NONNULL_BEGIN
