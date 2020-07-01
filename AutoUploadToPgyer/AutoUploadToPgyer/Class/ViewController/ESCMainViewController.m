@@ -586,8 +586,8 @@ ESCOneButtonTableCellViewDelegate
         model.uploadState = @"上传成功";
         NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
         [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
-        [weakSelf addLog:logStr];
         NSString *resultString = [result mj_JSONString];
+        [weakSelf addLog:[NSString stringWithFormat:@"%@:\n%@",logStr,resultString]];
         [weakSelf writeLog:resultString withPath:model.historyLogPath];
         [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
