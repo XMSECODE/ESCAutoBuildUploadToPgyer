@@ -43,6 +43,9 @@ static ESCFileManager *staticESCFileManager;
 - (NSDictionary *)getAppInfoWithIPAFilePath:(NSString *)ipaFilePath {
     //copy一份
     NSString *copyIpaFilePath = [ipaFilePath stringByAppendingFormat:@".zip"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:copyIpaFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:copyIpaFilePath error:nil];
+    }
     NSError *error = nil;
     [[NSFileManager defaultManager] copyItemAtPath:ipaFilePath toPath:copyIpaFilePath error:&error];
     if (error) {
