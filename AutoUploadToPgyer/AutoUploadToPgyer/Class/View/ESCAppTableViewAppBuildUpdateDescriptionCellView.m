@@ -8,7 +8,7 @@
 
 #import "ESCAppTableViewAppBuildUpdateDescriptionCellView.h"
 
-@interface ESCAppTableViewAppBuildUpdateDescriptionCellView ()
+@interface ESCAppTableViewAppBuildUpdateDescriptionCellView () <NSTextViewDelegate>
 
 @property (weak) IBOutlet NSTextView *contentTextView;
 
@@ -18,12 +18,18 @@
 
 @implementation ESCAppTableViewAppBuildUpdateDescriptionCellView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.contentTextView.delegate = self;
+}
+
 - (void)setModel:(ESCConfigurationModel *)model {
     _model = model;
     if (model.buildUpdateDescription != nil) {
         self.contentTextView.string = model.buildUpdateDescription;
     }
     self.save_button.state = model.save_buildUpdateDescription;
+    
 }
 
 
@@ -35,6 +41,12 @@
     }
 }
 - (IBAction)contentDidChanged:(id)sender {
+    self.model.buildUpdateDescription = self.contentTextView.string;
+}
+
+#pragma mark - NSTextViewDelegate
+- (void)textViewDidChangeSelection:(NSNotification *)notification {
+//    NSLog(@"%@",notification);
     self.model.buildUpdateDescription = self.contentTextView.string;
 }
 
