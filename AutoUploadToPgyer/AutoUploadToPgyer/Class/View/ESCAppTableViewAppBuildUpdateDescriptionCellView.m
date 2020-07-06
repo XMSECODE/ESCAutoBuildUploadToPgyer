@@ -10,7 +10,7 @@
 
 @interface ESCAppTableViewAppBuildUpdateDescriptionCellView ()
 
-@property (weak) IBOutlet NSTextField *contentTextField;
+@property (weak) IBOutlet NSTextView *contentTextView;
 
 @property (weak) IBOutlet NSButton *save_button;
 
@@ -21,7 +21,7 @@
 - (void)setModel:(ESCConfigurationModel *)model {
     _model = model;
     if (model.buildUpdateDescription != nil) {
-        self.contentTextField.stringValue = model.buildUpdateDescription;
+        self.contentTextView.string = model.buildUpdateDescription;
     }
     self.save_button.state = model.save_buildUpdateDescription;
 }
@@ -35,7 +35,7 @@
     }
 }
 - (IBAction)contentDidChanged:(id)sender {
-    self.model.buildUpdateDescription = self.contentTextField.stringValue;
+    self.model.buildUpdateDescription = self.contentTextView.string;
 }
 
 @end
