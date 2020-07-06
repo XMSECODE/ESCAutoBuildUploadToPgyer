@@ -570,6 +570,15 @@ ESCOneButtonTableCellViewDelegate
     [self addLog:logStr];
     
     NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
+    if (filePath == nil) {
+        self.completeUploadIPACount++;
+        NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败，ipa文件不存在",model.appName];
+        [self addLog:logStr];
+        if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {
+            weakSelf.isUploading = NO;
+        }
+        return;
+    }
     NSString *api_token = [ESCConfigManager sharedConfigManager].firim_api_token;
     [ESCNetWorkManager uploadToFirimWithFilePath:filePath api_token:api_token buildUpdateDescription:model.buildUpdateDescription progress:^(NSProgress *progress) {
         double currentProgress = progress.fractionCompleted;
