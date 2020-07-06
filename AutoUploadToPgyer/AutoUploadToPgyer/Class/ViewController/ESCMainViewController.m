@@ -413,6 +413,11 @@ ESCOneButtonTableCellViewDelegate
     [ESCConfigManager sharedConfigManager].uploadType = index;
 }
 
+- (IBAction)didClickRemoveBuildHistoryFile:(id)sender {
+    [[ESCConfigManager sharedConfigManager] removeAllBuildHistoryFile];
+    [self uploadData];
+}
+
 - (void)uploadData {
     ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
     NSArray *appModelArray = [groupModel getAllAPPModelInGroup];

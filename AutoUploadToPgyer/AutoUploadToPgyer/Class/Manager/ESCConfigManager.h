@@ -38,4 +38,6 @@
 
 - (int)getGroupLevelWithGroupModel:(ESCGroupModel *)groupModel;
 
+- (void)removeAllBuildHistoryFile;
+
 @end

@@ -9,6 +9,7 @@
 #import "ESCConfigManager.h"
 #import "MJExtension.h"
 #import "ESCConfigurationModel.h"
+#import "ESCFileCopyTool.h"
 
 static NSString *ESCPgyerUKey = @"ESCPgyerUKey";
 static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
@@ -121,6 +122,23 @@ static ESCConfigManager *staticESCConfigManager;
     [dict setObject:@(model.index) forKey:@"index"];
     [dict setObject:@(model.isShow) forKey:@"isShow"];
     return dict;
+}
+
+- (void)removeAllBuildHistoryFile {
+    NSArray *appModelArray = [self.groupModel getAllAPPModelInGroup];
+    for (ESCConfigurationModel *model in appModelArray) {
+        [self removeBuildHistoryFileWithWithConfigurationModel:model];
+    }
+}
+
+- (void)removeBuildHistoryFileWithWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
+    NSString *ipaPath = [configurationModel ipaPath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:ipaPath]) {
+        //遍历删除
+        [ESCFileCopyTool removeDirFileWithDirPath:ipaPath];
+    }else {
+        NSLog(@"文件夹不存在");
+    }
 }
 
 - (void)setModelArray:(NSArray<ESCConfigurationModel *> *)modelArray {
