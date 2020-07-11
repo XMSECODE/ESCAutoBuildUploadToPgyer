@@ -62,6 +62,8 @@ ESCOneButtonTableCellViewDelegate
 
 @property(nonatomic,strong)dispatch_queue_t upload_queue;
 
+@property(nonatomic,strong)dispatch_queue_t other_queue;
+
 @property (weak) IBOutlet NSButton *LRUButton;
 
 @property (weak) IBOutlet NSButton *notificationButton;
@@ -83,6 +85,7 @@ ESCOneButtonTableCellViewDelegate
     
     self.build_queue = dispatch_queue_create("build queue", NULL);
     self.upload_queue = dispatch_queue_create("upload queue", NULL);
+    self.other_queue = dispatch_queue_create("other queue", NULL);
     
     self.tableView.rowHeight = 70;
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
@@ -419,14 +422,17 @@ ESCOneButtonTableCellViewDelegate
 }
 
 - (void)uploadData {
-    ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
-    NSArray *appModelArray = [groupModel getAllAPPModelInGroup];
-    
-    for (ESCConfigurationModel *model in appModelArray) {
-        [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
+    dispatch_async(self.other_queue, ^{
+        //修改为子线程
+        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+        NSArray *appModelArray = [groupModel getAllAPPModelInGroup];
+        
+        for (ESCConfigurationModel *model in appModelArray) {
+            [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     });
 }
 
