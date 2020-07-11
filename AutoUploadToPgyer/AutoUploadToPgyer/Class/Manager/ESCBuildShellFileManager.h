@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESCBuildModel.h"
 
 @class ESCConfigurationModel;
 
 @interface ESCBuildShellFileManager : NSObject
 
-+ (NSString *)writeShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel;
++ (ESCBuildModel *)writeShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel;
 
 @end

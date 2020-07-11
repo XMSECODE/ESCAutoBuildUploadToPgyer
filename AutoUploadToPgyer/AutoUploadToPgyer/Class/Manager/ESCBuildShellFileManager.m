@@ -11,11 +11,11 @@
 
 @implementation ESCBuildShellFileManager
 
-+ (NSString *)writeShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
++ (ESCBuildModel *)writeShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     return [self writeProjectShellFileWithConfigurationModel:configurationModel];
 }
 
-+ (NSString *)writeProjectShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
++ (ESCBuildModel *)writeProjectShellFileWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     
     NSString *projectPath = configurationModel.projectPath;
     
@@ -56,7 +56,11 @@
     if (error) {
         return nil;
     }else {
-        return temShellPath;
+        ESCBuildModel *model = [[ESCBuildModel alloc] init];
+        model.shellFilePath = temShellPath;
+        model.archiveFilePath = archiveFilePath;
+        model.ipaDirPath = ipaFilePath;
+        return model;
     }
 }
 

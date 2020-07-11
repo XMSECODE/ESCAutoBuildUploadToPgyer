@@ -19,6 +19,9 @@
  */
 - (NSString *)getLatestIPAFilePathFromWithConfigurationModel:(ESCConfigurationModel *)model;
 
+/// 文件夹中是否包含ipa文件
+- (BOOL)isContainIPAFileWithDirPath:(NSString *)dirPath;
+
 /**
  获取第一个文件夹里最新ipa文件属性
  */

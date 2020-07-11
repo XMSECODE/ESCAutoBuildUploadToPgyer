@@ -468,12 +468,30 @@ ESCOneButtonTableCellViewDelegate
     }
     NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
     [self addLog:logStr];
-    NSString *filePath = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-    system(filePath.UTF8String);
-    logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
-    [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
-    [self addLog:logStr];
-    [self uploadData];
+    ESCBuildModel *buildModel = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
+    system(buildModel.shellFilePath.UTF8String);
+    //检测是否生成ipa文件
+    BOOL ipaIsBuild = [[ESCFileManager sharedFileManager] isContainIPAFileWithDirPath:buildModel.ipaDirPath];
+    if (ipaIsBuild == NO) {
+        //导出ipa文件失败
+        BOOL archiveResult = [[NSFileManager defaultManager] fileExistsAtPath:buildModel.archiveFilePath];
+        if (archiveResult == YES) {
+            //打包成功
+            logStr = [NSString stringWithFormat:@"%@项目编译成功，导出ipa文件时发生错误",model.appName];
+            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+            [self addLog:logStr];
+        }else {
+            //打包失败
+            logStr = [NSString stringWithFormat:@"%@项目编译发生错误",model.appName];
+            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+            [self addLog:logStr];
+        }
+    }else {
+        logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
+        [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+        [self addLog:logStr];
+        [self uploadData];
+    }
 }
 
 - (void)uploadToPgyer {

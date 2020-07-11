@@ -40,6 +40,15 @@ static ESCFileManager *staticESCFileManager;
     return filePath;
 }
 
+- (BOOL)isContainIPAFileWithDirPath:(NSString *)dirPath {
+    NSArray *ipaArray = [self getAllIPAinDirectoryPath:dirPath];
+    if (ipaArray.count > 0) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 - (NSDictionary *)getAppInfoWithIPAFilePath:(NSString *)ipaFilePath {
     //copy一份
     NSString *copyIpaFilePath = [ipaFilePath stringByAppendingFormat:@".zip"];
