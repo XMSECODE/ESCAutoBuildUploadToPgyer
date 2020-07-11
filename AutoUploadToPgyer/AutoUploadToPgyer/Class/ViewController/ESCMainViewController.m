@@ -64,8 +64,6 @@ ESCOneButtonTableCellViewDelegate
 
 @property(nonatomic,strong)dispatch_queue_t other_queue;
 
-@property (weak) IBOutlet NSButton *LRUButton;
-
 @property (weak) IBOutlet NSButton *notificationButton;
 
 @property(nonatomic,assign)BOOL isStartSort;
@@ -109,7 +107,6 @@ ESCOneButtonTableCellViewDelegate
     int selectSortType = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SortType"] intValue];
     if (selectSortType == 1) {
         self.sortType = ESCSortAlgorithmTypeLRU;
-        self.LRUButton.state = 1;
         self.isStartSort = YES;
     }
     
@@ -369,16 +366,6 @@ ESCOneButtonTableCellViewDelegate
 
 - (IBAction)didClickClearLogButton:(NSButton *)sender {
     self.logTextView.string = @"";
-}
-
-- (IBAction)didClickLRUButton:(id)sender {
-    self.isStartSort = self.LRUButton.state;
-    if (self.LRUButton.state == YES) {
-        self.sortType = ESCSortAlgorithmTypeLRU;
-        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"SortType"];
-    }else {
-        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"SortType"];
-    }
 }
 
 - (IBAction)didClickNotificationButton:(id)sender {
