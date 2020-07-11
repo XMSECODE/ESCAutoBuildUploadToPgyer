@@ -312,7 +312,8 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:logStr];
                 } success:^(NSDictionary *result) {
                     NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
-                    [weakSelf addLog:logStr];
+                    NSString *resultString = [result mj_JSONString];
+                    [weakSelf addLog:[logStr stringByAppendingString:resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
                     [weakSelf addLog:logStr];
@@ -331,7 +332,8 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:logStr];
                 } success:^(NSDictionary *result) {
                     NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
-                    [weakSelf addLog:logStr];
+                    NSString *resultString = [result mj_JSONString];
+                    [weakSelf addLog:[NSString stringWithFormat:@"%@:\n%@",logStr,resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
                     [weakSelf addLog:logStr];
@@ -560,8 +562,8 @@ ESCOneButtonTableCellViewDelegate
            model.uploadState = @"上传成功";
            NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
-           [weakSelf addLog:logStr];
            NSString *resultString = [result mj_JSONString];
+           [weakSelf addLog:[logStr stringByAppendingString:resultString]];
            [weakSelf writeLog:resultString withPath:model.historyLogPath];
            [weakSelf.tableView reloadData];
        } failure:^(NSError *error) {
