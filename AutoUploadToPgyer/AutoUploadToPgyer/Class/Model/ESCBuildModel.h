@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    ESCBuildResultSuccess,  //编译成功
+    ESCBuildResultBuildFailure, //编译失败
+    ESCBuildResultExportIpafailure, //导出ipa文件失败
+} ESCBuildResult;
+
 @interface ESCBuildModel : NSObject
 
 @property(nonatomic,copy)NSString* shellFilePath;
@@ -17,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString* archiveFilePath;
 
 @property(nonatomic,copy)NSString* ipaDirPath;
+
+@property(nonatomic,assign)ESCBuildResult buildResult;
 
 @end
 

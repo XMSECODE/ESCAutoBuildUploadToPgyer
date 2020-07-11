@@ -249,8 +249,10 @@ ESCOneButtonTableCellViewDelegate
 
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
     __weak typeof(self)weakSelf = self;
-    [self createIPAFileComplete:^{
-        [weakSelf uploadToPgyer];
+    [self createIPAFileComplete:^(ESCConfigurationModel *model, ESCBuildModel *buildModel) {
+        if (buildModel.buildResult == ESCBuildResultSuccess) {
+            [weakSelf uploadIpaWithModel:model];
+        }
     }];
 }
 
@@ -264,7 +266,7 @@ ESCOneButtonTableCellViewDelegate
 }
 
 - (IBAction)didClickCreateIPAButton:(id)sender {
-    [self createIPAFileComplete:^{
+    [self createIPAFileComplete:^(ESCConfigurationModel *model, ESCBuildModel *buildModel) {
         
     }];
 }
@@ -423,7 +425,7 @@ ESCOneButtonTableCellViewDelegate
     });
 }
 
-- (void)createIPAFileComplete:(void(^)(void))complete {
+- (void)createIPAFileComplete:(void(^)(ESCConfigurationModel *model,ESCBuildModel *buildModel))complete {
     if (self.isCompiling == YES) {
         NSString *str = @"正在打包";
         [self addLog:str];
@@ -437,19 +439,19 @@ ESCOneButtonTableCellViewDelegate
             if ([model isKindOfClass:[ESCConfigurationModel class]]) {
                 ESCConfigurationModel *configurationModel = model;
                 if (configurationModel.isCreateIPA) {
-                    [self buildTargetWithModel:model];
+                    ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+                    complete(model,buildModel);
                 }
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             self.isCompiling = NO;
         });
-        complete();
     });
     
 }
 
-- (void)buildTargetWithModel:(ESCConfigurationModel *)model {
+- (ESCBuildModel *)buildTargetWithModel:(ESCConfigurationModel *)model {
     if(self.isStartSort == YES) {
         [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
     }
@@ -463,22 +465,26 @@ ESCOneButtonTableCellViewDelegate
         //导出ipa文件失败
         BOOL archiveResult = [[NSFileManager defaultManager] fileExistsAtPath:buildModel.archiveFilePath];
         if (archiveResult == YES) {
+            buildModel.buildResult = ESCBuildResultExportIpafailure;
             //打包成功
             logStr = [NSString stringWithFormat:@"%@项目编译成功，导出ipa文件时发生错误",model.appName];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
             [self addLog:logStr];
         }else {
             //打包失败
+            buildModel.buildResult = ESCBuildResultBuildFailure;
             logStr = [NSString stringWithFormat:@"%@项目编译发生错误",model.appName];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
             [self addLog:logStr];
         }
     }else {
+        buildModel.buildResult = ESCBuildResultSuccess;
         logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
         [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
         [self addLog:logStr];
         [self uploadData];
     }
+    return buildModel;
 }
 
 - (void)uploadToPgyer {
@@ -660,10 +666,12 @@ ESCOneButtonTableCellViewDelegate
 
 - (void)mainTableCellViewdidClickRightMenuBuildAndUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
     dispatch_async(self.build_queue, ^{
-        [self buildTargetWithModel:model];
-        dispatch_async(self.upload_queue, ^{
-            [self uploadIpaWithModel:model];
-        });
+        ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+        if (buildModel.buildResult == ESCBuildResultSuccess) {
+            dispatch_async(self.upload_queue, ^{
+                [self uploadIpaWithModel:model];
+            });
+        }
     });
 }
 
