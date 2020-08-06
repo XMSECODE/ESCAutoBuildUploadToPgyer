@@ -82,6 +82,20 @@
     }
     
     double currentTime = CFAbsoluteTimeGetCurrent();
+    
+    double offtime1 = 0;
+    
+    {
+        NSDictionary *firstDict = self.networkRecordArray.firstObject;
+        double startTime = [[firstDict objectForKey:@"time"] doubleValue];
+        
+        NSDictionary *lastDict = self.networkRecordArray.lastObject;
+        double endTime = [[lastDict objectForKey:@"time"] doubleValue];
+        
+        offtime1 = endTime - startTime;
+    }
+    
+    
     if (self.networkRecordArray.count < 1 ) {
         //填充数据
         NSDictionary *dict = @{@"time":@(currentTime),
@@ -89,13 +103,14 @@
                                };
         [self.networkRecordArray addObject:dict];
         return;
-    }else if(self.networkRecordArray.count <= 5){
+    }else if(self.networkRecordArray.count <= 2000 && offtime1 < 3){
         //填充数据，求平均值
         //填充数据
         NSDictionary *dict = @{@"time":@(currentTime),
                                @"sendSize":@(self.sendSize)
                                };
         [self.networkRecordArray addObject:dict];
+
     }else {
         //填充数据，移除最前面的数据
         NSDictionary *dict = @{@"time":@(currentTime),
@@ -120,6 +135,9 @@
     int endSize = [[lastDict objectForKey:@"sendSize"] intValue];
     
     double offTime = endTime - startTime;
+    if (offTime < 1) {
+        return;
+    }
     double offSize = endSize - startSize;
     
     double netRate = offSize * 1.0 / offTime;
