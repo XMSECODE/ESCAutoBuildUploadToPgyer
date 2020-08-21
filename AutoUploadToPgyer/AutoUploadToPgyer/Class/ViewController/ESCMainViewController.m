@@ -250,7 +250,7 @@ ESCOneButtonTableCellViewDelegate
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
     __weak typeof(self)weakSelf = self;
     [self createIPAFileComplete:^(ESCConfigurationModel *model, ESCBuildModel *buildModel) {
-        if (buildModel.buildResult == ESCBuildResultSuccess) {
+        if (buildModel.buildResult == ESCBuildResultSuccess && model.isUploadIPA == YES) {
             [weakSelf uploadIpaWithModel:model];
         }
     }];
