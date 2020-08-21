@@ -150,6 +150,11 @@
             }
         }
     }
+    for (ESCGroupModel *model in self.groupModelArray) {
+        if ([groupModel isEqual:model]) {
+            return self;
+        }
+    }
     return nil;
 }
 
