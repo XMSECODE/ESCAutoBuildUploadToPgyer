@@ -106,4 +106,11 @@
     }
 }
 
+- (void)updateUploadProgressWithModel:(ESCConfigurationModel *)model {
+    _configurationModel = model;
+    self.uploadProgressTextField.stringValue = [NSString stringWithFormat:@"%.2lf%@",model.uploadProgress * 100,@"%"];
+
+    self.timeTextField.stringValue = [self checkString:model.needRemainTimeString];
+}
+
 @end

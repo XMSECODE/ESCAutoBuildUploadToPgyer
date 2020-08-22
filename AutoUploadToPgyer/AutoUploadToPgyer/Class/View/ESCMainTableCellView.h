@@ -28,4 +28,6 @@ static NSString *ESCMainTableCellViewID = @"ESCMainTableCellViewID";
 
 @property(nonatomic,strong)ESCConfigurationModel* configurationModel;
 
+- (void)updateUploadProgressWithModel:(ESCConfigurationModel *)model;
+
 @end

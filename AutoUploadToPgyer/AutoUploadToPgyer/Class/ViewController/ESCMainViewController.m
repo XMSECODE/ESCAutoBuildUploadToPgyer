@@ -199,6 +199,7 @@ ESCOneButtonTableCellViewDelegate
             ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
             cell.delegate = self;
             cell.configurationModel = configurationModel;
+            cell.configurationModel.cellView = cell;
             return cell;
         }else if([tableColumn.identifier isEqualToString:@"buildCell"]){
             ESCSelectButtonTableCellView *cell = [tableView makeViewWithIdentifier:ESCSelectButtonTableCellViewId owner:self];
@@ -550,7 +551,16 @@ ESCOneButtonTableCellViewDelegate
            model.sendSize = complete;
            model.uploadProgress = currentProgress;
            [model calculateNetWorkRate];
-           [weakSelf.tableView reloadData];
+           if (model.cellView) {
+               ESCMainTableCellView *cellView = (ESCMainTableCellView *)model.cellView;
+               if ([cellView isKindOfClass:[ESCMainTableCellView class]]) {
+                   [cellView updateUploadProgressWithModel:model];
+               }else {
+                   [weakSelf.tableView reloadData];
+               }
+           }else {
+               [weakSelf.tableView reloadData];
+           }
        } success:^(NSDictionary *result){
            weakSelf.completeUploadIPACount++;
            if (weakSelf.completeUploadIPACount == weakSelf.allUploadIPACount) {

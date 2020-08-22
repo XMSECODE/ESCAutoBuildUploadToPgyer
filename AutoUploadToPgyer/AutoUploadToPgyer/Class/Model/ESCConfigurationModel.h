@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 typedef NS_ENUM(NSUInteger, ESCXCodeProjectType) {
     ESCXCodeProjectTypeProj,
@@ -62,6 +63,7 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 @property(nonatomic,copy)NSString* appUdid;
 
+@property(nonatomic,weak)NSTableCellView* cellView;
 
 @property(nonatomic,copy)NSString* provisioningProfileName;
 
