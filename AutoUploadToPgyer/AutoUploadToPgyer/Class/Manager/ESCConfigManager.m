@@ -81,6 +81,7 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)saveUserData {
     NSMutableArray *temArray = [NSMutableArray array];
     for (ESCConfigurationModel *model in self.modelArray) {
+        model.cellView = nil;
         NSDictionary *dict = [[model mj_keyValues] copy];
         [temArray addObject:dict];
     }
@@ -111,6 +112,7 @@ static ESCConfigManager *staticESCConfigManager;
     if (model.configurationModelArray != nil) {
         NSMutableArray *temArray = [NSMutableArray array];
         for (ESCConfigurationModel *configurationModel in model.configurationModelArray) {
+            configurationModel.cellView = nil;
             NSDictionary *dict = [[configurationModel mj_keyValues] copy];
             [temArray addObject:dict];
         }
