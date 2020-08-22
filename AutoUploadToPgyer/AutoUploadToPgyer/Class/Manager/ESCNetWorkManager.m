@@ -10,7 +10,7 @@
 #import "AFHTTPSessionManager.h"
 #import "MJExtension.h"
 #import "ESCFileManager.h"
-                                       
+
 NSString *ESCPgyerUploadIPAURLPath = @"https://www.pgyer.com/apiv2/app/upload";
 
 NSString *ESCFireGetCertURLPath = @"http://api.bq04.com/apps";
@@ -70,7 +70,11 @@ static ESCNetWorkManager *staticNetWorkManager;
         };
     }
     
-    
+    if (filePath == nil || [[NSFileManager defaultManager] fileExistsAtPath:filePath] == NO) {
+        NSError *error = [NSError errorWithDomain:@"error" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"ipa文件不存在"}];
+        failure(error);
+        return;
+    }
     
     [[ESCNetWorkManager sharedNetWorkManager].httpSessionManager POST:ESCPgyerUploadIPAURLPath parameters:pare headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSURL *url=[NSURL fileURLWithPath:filePath];
@@ -124,11 +128,16 @@ static ESCNetWorkManager *staticNetWorkManager;
     NSString *appname = [dict objectForKey:@"CFBundleName"];
     NSString *version = [dict objectForKey:@"CFBundleShortVersionString"];
     NSString *build = [dict objectForKey:@"CFBundleVersion"];
-        
+    
+    if (filePath == nil || [[NSFileManager defaultManager] fileExistsAtPath:filePath] == NO) {
+        NSError *error = [NSError errorWithDomain:@"error" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"ipa文件不存在"}];
+        failure(error);
+        return;
+    }
     
     //获取上传凭证
     [self getFirimCertWithType:@"ios" bundle_id:bundle_id api_token:api_token success:^(NSDictionary *result) {
-//        NSLog(@"result == %@",result);
+        //        NSLog(@"result == %@",result);
         //上传ipa
         NSDictionary *cert = [result objectForKey:@"cert"];
         NSDictionary *binary = [cert objectForKey:@"binary"];
@@ -154,17 +163,17 @@ static ESCNetWorkManager *staticNetWorkManager;
                 });
             }
         } progress:^(NSProgress * _Nonnull uploadProgress) {
-//            NSLog(@"%@",uploadProgress);
+            //            NSLog(@"%@",uploadProgress);
             dispatch_async(dispatch_get_main_queue(), ^{
                 cuploadProgress(uploadProgress);
             });
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            NSLog(@"%@",responseObject);
+            //            NSLog(@"%@",responseObject);
             /*
-              {
-                 "download_url" = "https://proqn-app-.jappstore.com/763c6c311df7f2b8375584294c9ef91c2c08a992?attname=NewBaoJun.ipa&e=1592910870&token=LOvmia8oXF4xnLh0IdH05XMYpH6ENHNpARlmPc-T:iT3otsKCp6Yq6kA3HFiu-LJB_Yo=";
-                 "is_completed" = 1;
-                 "release_id" = 5ef1d60623389f2a502c3ea5;
+             {
+             "download_url" = "https://proqn-app-.jappstore.com/763c6c311df7f2b8375584294c9ef91c2c08a992?attname=NewBaoJun.ipa&e=1592910870&token=LOvmia8oXF4xnLh0IdH05XMYpH6ENHNpARlmPc-T:iT3otsKCp6Yq6kA3HFiu-LJB_Yo=";
+             "is_completed" = 1;
+             "release_id" = 5ef1d60623389f2a502c3ea5;
              }
              */
             dispatch_async(dispatch_get_main_queue(), ^{
