@@ -312,7 +312,7 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:logStr];
                 } success:^(NSDictionary *result) {
                     NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
-                    NSString *resultString = [result mj_JSONString];
+                    NSString *resultString = [self parePgyerResult:result];
                     [weakSelf addLog:[logStr stringByAppendingString:resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
@@ -562,7 +562,7 @@ ESCOneButtonTableCellViewDelegate
            model.uploadState = @"上传成功";
            NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
-           NSString *resultString = [result mj_JSONString];
+           NSString *resultString = [self parePgyerResult:result];
            [weakSelf addLog:[logStr stringByAppendingString:resultString]];
            [weakSelf writeLog:resultString withPath:model.historyLogPath];
            [weakSelf.tableView reloadData];
@@ -641,7 +641,20 @@ ESCOneButtonTableCellViewDelegate
     [[ESCFileManager sharedFileManager] wirteLogToFileWith:logString withName:[self.dateFormatter stringFromDate:[NSDate date]] withPath:path];
 }
 
-
+- (NSString *)parePgyerResult:(NSDictionary *)result {
+    NSString *resultString = @"";
+    if ([result isKindOfClass:[NSDictionary class]] == YES) {
+        NSDictionary *dataDict = [result objectForKey:@"data"];
+        int buildBuildVersion = [[dataDict objectForKey:@"buildBuildVersion"] intValue];
+        NSString *buildShortcutUrl = [dataDict objectForKey:@"buildShortcutUrl"];
+        NSString *buildVersion = [dataDict objectForKey:@"buildVersion"];
+        NSString *buildKey = [dataDict objectForKey:@"buildKey"];
+        resultString = [NSString stringWithFormat:@"\n下载地址1:\nhttps://www.pgyer.com/%@\n下载地址2：\nhttps://www.pgyer.com/%@\nbuildVersion:%@\nbuildBuildVersion:%d",buildKey,buildShortcutUrl,buildVersion,buildBuildVersion];
+    }else {
+        resultString = [result mj_JSONString];
+    }
+    return resultString;
+}
 
 - (void)addLog:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
