@@ -198,6 +198,7 @@ ESCOneButtonTableCellViewDelegate
         if ([tableColumn.identifier isEqualToString:@"ESCAppBasisInfo"]) {
             ESCMainTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
             cell.delegate = self;
+            cell.configurationModel.cellView = nil;
             cell.configurationModel = configurationModel;
             cell.configurationModel.cellView = cell;
             return cell;
@@ -248,6 +249,7 @@ ESCOneButtonTableCellViewDelegate
     return 0;
 }
 
+#pragma mark - Action
 - (IBAction)didClickCreateIPAAndUploadPgyerButton:(id)sender {
     __weak typeof(self)weakSelf = self;
     [self createIPAFileComplete:^(ESCConfigurationModel *model, ESCBuildModel *buildModel) {
