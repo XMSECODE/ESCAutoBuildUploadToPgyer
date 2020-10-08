@@ -463,7 +463,22 @@ ESCOneButtonTableCellViewDelegate
     NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
     [self addLog:logStr];
     ESCBuildModel *buildModel = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
-    system(buildModel.shellFilePath.UTF8String);
+    
+    NSTask *certTask = [[NSTask alloc] init];
+//    NSString *md5path = [[NSBundle mainBundle] pathForResource:@"sh" ofType:@""];
+    [certTask setLaunchPath:@"/bin/sh"];
+    [certTask setArguments:@[buildModel.shellFilePath]];
+    
+    NSPipe *pipe = [NSPipe pipe];
+    [certTask setStandardOutput:pipe];
+    [certTask setStandardError:pipe];
+    NSFileHandle *handle = [pipe fileHandleForReading];
+    NSError *error = nil;
+    [certTask launchAndReturnError:&error];
+//    system(buildModel.shellFilePath.UTF8String);
+    NSData *data;
+    data = [handle readDataToEndOfFile];
+    
     //检测是否生成ipa文件
     BOOL ipaIsBuild = [[ESCFileManager sharedFileManager] isContainIPAFileWithDirPath:buildModel.ipaDirPath];
     if (ipaIsBuild == NO) {
@@ -474,9 +489,13 @@ ESCOneButtonTableCellViewDelegate
             //打包成功
             logStr = [NSString stringWithFormat:@"%@项目编译成功，导出ipa文件时发生错误",model.appName];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+            NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [self writeLog:dataString withPath:model.historyLogPath];
             [self addLog:logStr];
         }else {
             //打包失败
+            NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [self writeLog:dataString withPath:model.historyLogPath];
             buildModel.buildResult = ESCBuildResultBuildFailure;
             logStr = [NSString stringWithFormat:@"%@项目编译发生错误",model.appName];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
