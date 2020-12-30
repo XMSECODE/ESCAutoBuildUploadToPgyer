@@ -60,6 +60,8 @@ ESCOneButtonTableCellViewDelegate
 
 @property(nonatomic,strong)dispatch_queue_t build_queue;
 
+@property(nonatomic,strong)dispatch_queue_t parallel_build_queue;
+
 @property(nonatomic,strong)dispatch_queue_t upload_queue;
 
 @property(nonatomic,strong)dispatch_queue_t other_queue;
@@ -74,6 +76,8 @@ ESCOneButtonTableCellViewDelegate
 
 @property (weak, nonatomic) IBOutlet NSPopUpButton *uploadTypeButton;
 
+@property (weak, nonatomic) IBOutlet NSPopUpButton *buildTypeButton;
+
 @end
 
 @implementation ESCMainViewController
@@ -84,6 +88,7 @@ ESCOneButtonTableCellViewDelegate
     self.build_queue = dispatch_queue_create("build queue", NULL);
     self.upload_queue = dispatch_queue_create("upload queue", NULL);
     self.other_queue = dispatch_queue_create("other queue", NULL);
+    self.parallel_build_queue = dispatch_queue_create("parallel_build_queue", DISPATCH_QUEUE_CONCURRENT);
     
     self.tableView.rowHeight = 70;
     self.tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
@@ -117,6 +122,7 @@ ESCOneButtonTableCellViewDelegate
     
     int index = [ESCConfigManager sharedConfigManager].uploadType;
     [self.uploadTypeButton selectItemAtIndex:index];
+    [self.buildTypeButton selectItemAtIndex:[ESCConfigManager sharedConfigManager].buildType];
     
     CGFloat width = 0;
     CGFloat height = 0;
@@ -406,8 +412,12 @@ ESCOneButtonTableCellViewDelegate
 
 - (IBAction)didClickUploadTypeButton:(id)sender {
     int index = (int)self.uploadTypeButton.indexOfSelectedItem;
-//    NSLog(@"%d",index);
     [ESCConfigManager sharedConfigManager].uploadType = index;
+}
+
+- (IBAction)didClickBuildTypeButton:(id)sender {
+    int index = (int)self.buildTypeButton.indexOfSelectedItem;
+    [ESCConfigManager sharedConfigManager].buildType = index;
 }
 
 - (IBAction)didClickRemoveBuildHistoryFile:(id)sender {
@@ -431,28 +441,60 @@ ESCOneButtonTableCellViewDelegate
 }
 
 - (void)createIPAFileComplete:(void(^)(ESCConfigurationModel *model,ESCBuildModel *buildModel))complete {
-    if (self.isCompiling == YES) {
-        NSString *str = @"正在打包";
-        [self addLog:str];
-        return;
-    }
-    self.isCompiling = YES;
-    dispatch_async(self.build_queue, ^{
-        ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
-        NSArray *modelArray = [groupModel getAllGroupModelAndAppModelToArray];
-        for (id model in modelArray) {
-            if ([model isKindOfClass:[ESCConfigurationModel class]]) {
-                ESCConfigurationModel *configurationModel = model;
-                if (configurationModel.isCreateIPA) {
-                    ESCBuildModel *buildModel = [self buildTargetWithModel:model];
-                    complete(model,buildModel);
+    
+    if ([ESCConfigManager sharedConfigManager].buildType == 0) {
+        if (self.isCompiling == YES) {
+            NSString *str = @"正在打包";
+            [self addLog:str];
+            return;
+        }
+        self.isCompiling = YES;
+        dispatch_async(self.build_queue, ^{
+            ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+            NSArray *modelArray = [groupModel getAllGroupModelAndAppModelToArray];
+            for (id model in modelArray) {
+                if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+                    ESCConfigurationModel *configurationModel = model;
+                    if (configurationModel.isCreateIPA) {
+                        ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+                        complete(model,buildModel);
+                    }
                 }
             }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.isCompiling = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.isCompiling = NO;
+            });
         });
-    });
+    }else {
+        if (self.isCompiling == YES) {
+            NSString *str = @"正在打包";
+            [self addLog:str];
+            return;
+        }
+        self.isCompiling = YES;
+        dispatch_async(self.build_queue, ^{
+            ESCGroupModel *groupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+            NSArray *modelArray = [groupModel getAllGroupModelAndAppModelToArray];
+            for (id model in modelArray) {
+                if ([model isKindOfClass:[ESCConfigurationModel class]]) {
+                    ESCConfigurationModel *configurationModel = model;
+                    if (configurationModel.isCreateIPA) {
+                        //异步并发编译
+                        dispatch_async(self.parallel_build_queue, ^{
+                            ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+                            dispatch_async(self.build_queue, ^{
+                                complete(model,buildModel);
+                            });
+                        });
+                        
+                    }
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.isCompiling = NO;
+            });
+        });
+    }
     
 }
 
@@ -705,20 +747,37 @@ ESCOneButtonTableCellViewDelegate
 }
 
 - (void)mainTableCellViewdidClickRightMenuBuildButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    dispatch_async(self.build_queue, ^{    
-        [self buildTargetWithModel:model];
-    });
+    if ([ESCConfigManager sharedConfigManager].buildType == 0) {
+        dispatch_async(self.build_queue, ^{
+            [self buildTargetWithModel:model];
+        });
+    }else {
+        dispatch_async(self.parallel_build_queue, ^{
+            [self buildTargetWithModel:model];
+        });
+    }
 }
 
 - (void)mainTableCellViewdidClickRightMenuBuildAndUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
-    dispatch_async(self.build_queue, ^{
-        ESCBuildModel *buildModel = [self buildTargetWithModel:model];
-        if (buildModel.buildResult == ESCBuildResultSuccess) {
-            dispatch_async(self.upload_queue, ^{
-                [self uploadIpaWithModel:model];
-            });
-        }
-    });
+    if ([ESCConfigManager sharedConfigManager].buildType == 0) {
+        dispatch_async(self.build_queue, ^{
+            ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+            if (buildModel.buildResult == ESCBuildResultSuccess) {
+                dispatch_async(self.upload_queue, ^{
+                    [self uploadIpaWithModel:model];
+                });
+            }
+        });
+    }else {
+        dispatch_async(self.parallel_build_queue, ^{
+            ESCBuildModel *buildModel = [self buildTargetWithModel:model];
+            if (buildModel.buildResult == ESCBuildResultSuccess) {
+                dispatch_async(self.upload_queue, ^{
+                    [self uploadIpaWithModel:model];
+                });
+            }
+        });
+    }
 }
 
 #pragma mark - ESCGroupTableGroupCellViewDelegate

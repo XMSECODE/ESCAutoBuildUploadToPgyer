@@ -16,6 +16,7 @@ static NSString *ESCPgyerapi_key = @"ESCPgyerapi_key";
 static NSString *ESCPgyerPassword_key = @"ESCPgyerPassword_key";
 static NSString *ESCFirim_api_token_key = @"ESCFirim_api_token_key";
 static NSString *ESC_upload_type_key = @"ESC_upload_type_key";
+static NSString *ESC_build_type_key = @"ESC_build_type_key";
 static NSString *ESCCustemShellContent_key = @"ESCCustemShellContent_key";
 static NSString *ESCUserDataKey = @"ESCUserDataKey";
 static NSString *ESCUserGroupDataKey = @"ESCUserGroupDataKey";
@@ -57,6 +58,7 @@ static ESCConfigManager *staticESCConfigManager;
     self.firim_api_token = [[NSUserDefaults standardUserDefaults] objectForKey:ESCFirim_api_token_key];
     self.custom_shell_content = [[NSUserDefaults standardUserDefaults] objectForKey:ESCCustemShellContent_key];
     self.uploadType = [[[NSUserDefaults standardUserDefaults] objectForKey:ESC_upload_type_key] intValue];
+    self.buildType = [[[NSUserDefaults standardUserDefaults] objectForKey:ESC_build_type_key] intValue];
 
 }
 
@@ -171,6 +173,11 @@ static ESCConfigManager *staticESCConfigManager;
 - (void)setUploadType:(int)uploadType {
     _uploadType = uploadType;
     [[NSUserDefaults standardUserDefaults] setObject:@(_uploadType) forKey:ESC_upload_type_key];
+}
+
+- (void)setBuildType:(int)buildType {
+    _buildType = buildType;
+    [[NSUserDefaults standardUserDefaults] setObject:@(_buildType) forKey:ESC_build_type_key];
 }
 
 - (void)setPassword:(NSString *)password {

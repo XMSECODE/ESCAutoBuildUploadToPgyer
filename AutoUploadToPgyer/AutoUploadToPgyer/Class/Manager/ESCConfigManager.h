@@ -25,6 +25,8 @@
 
 //0:蒲公英 1:fir.im
 @property(nonatomic,assign)int uploadType;
+//0:串行编译，1并行编译
+@property(nonatomic,assign)int buildType;
 
 @property(nonatomic,copy)NSString* password;
 
