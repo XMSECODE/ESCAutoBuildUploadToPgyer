@@ -317,8 +317,11 @@ ESCOneButtonTableCellViewDelegate
                                       buildUpdateDescription:@""
                                                     progress:^(NSProgress *progress) {
                     double currentProgress = progress.fractionCompleted * 100;
-                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
-                    [weakSelf addLog:logStr];
+                    int value = currentProgress * 100;
+                    if(value % 100 == 0) {
+                        NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                        [weakSelf addLog:logStr];
+                    }
                 } success:^(NSDictionary *result) {
                     NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",pathString];
                     NSString *resultString = [self parePgyerResult:result];
