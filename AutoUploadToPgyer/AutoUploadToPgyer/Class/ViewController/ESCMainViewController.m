@@ -399,6 +399,7 @@ ESCOneButtonTableCellViewDelegate
         system([ESCConfigManager sharedConfigManager].custom_shell_content.UTF8String);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self addLog:@"自定义脚本执行完毕"];
+            [self addLog:[ESCConfigManager sharedConfigManager].custom_shell_content];
         });
     });
 }
