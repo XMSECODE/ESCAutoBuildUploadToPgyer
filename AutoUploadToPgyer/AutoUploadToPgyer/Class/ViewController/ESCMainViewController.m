@@ -508,6 +508,7 @@ ESCOneButtonTableCellViewDelegate
     }
     NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
     [self addLog:logStr];
+    double startTime = CFAbsoluteTimeGetCurrent();
     ESCBuildModel *buildModel = [ESCBuildShellFileManager writeShellFileWithConfigurationModel:model];
     
     NSTask *certTask = [[NSTask alloc] init];
@@ -525,6 +526,9 @@ ESCOneButtonTableCellViewDelegate
     NSData *data;
     data = [handle readDataToEndOfFile];
     
+    double endTime = CFAbsoluteTimeGetCurrent();
+    int time = endTime - startTime;
+    
     //检测是否生成ipa文件
     BOOL ipaIsBuild = [[ESCFileManager sharedFileManager] isContainIPAFileWithDirPath:buildModel.ipaDirPath];
     if (ipaIsBuild == NO) {
@@ -533,7 +537,7 @@ ESCOneButtonTableCellViewDelegate
         if (archiveResult == YES) {
             buildModel.buildResult = ESCBuildResultExportIpafailure;
             //打包成功
-            logStr = [NSString stringWithFormat:@"%@项目编译成功，导出ipa文件时发生错误",model.appName];
+            logStr = [NSString stringWithFormat:@"%@项目编译成功，导出ipa文件时发生错误，耗时%d秒",model.appName,time];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
             NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             [self writeLog:dataString withPath:model.historyLogPath];
@@ -543,13 +547,13 @@ ESCOneButtonTableCellViewDelegate
             NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             [self writeLog:dataString withPath:model.historyLogPath];
             buildModel.buildResult = ESCBuildResultBuildFailure;
-            logStr = [NSString stringWithFormat:@"%@项目编译发生错误",model.appName];
+            logStr = [NSString stringWithFormat:@"%@项目编译发生错误,耗时%d秒",model.appName,time];
             [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
             [self addLog:logStr];
         }
     }else {
         buildModel.buildResult = ESCBuildResultSuccess;
-        logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包",model.appName];
+        logStr = [NSString stringWithFormat:@"完成%@项目编译生成ipa包,耗时%d秒",model.appName,time];
         [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
         [self addLog:logStr];
         [self uploadData];
