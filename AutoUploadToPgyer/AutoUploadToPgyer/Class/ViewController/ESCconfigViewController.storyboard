@@ -88,7 +88,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zg-ev-zv1">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Zg-ev-zv1">
                                 <rect key="frame" x="506" y="13" width="67" height="32"/>
                                 <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="250-gf-iZa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -130,7 +130,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-qV-NP4">
                                 <rect key="frame" x="661" y="13" width="94" height="32"/>
                                 <buttonCell key="cell" type="push" title="配置完成" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4lr-BS-Yzk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -226,6 +226,7 @@
                             <constraint firstItem="scy-kr-cRf" firstAttribute="leading" secondItem="sdF-1w-XkN" secondAttribute="trailing" constant="20" id="gp6-RO-Pb0"/>
                             <constraint firstItem="sdF-1w-XkN" firstAttribute="leading" secondItem="g35-gl-wLE" secondAttribute="leading" constant="20" id="jVH-2F-GbI"/>
                             <constraint firstItem="ogb-rr-Nsu" firstAttribute="leading" secondItem="ko9-7p-9pV" secondAttribute="trailing" constant="10" id="l7d-VC-rMT"/>
+                            <constraint firstAttribute="bottom" secondItem="rGq-qV-NP4" secondAttribute="bottom" constant="20" id="lje-NF-bLC"/>
                             <constraint firstItem="scy-kr-cRf" firstAttribute="top" secondItem="sdF-1w-XkN" secondAttribute="top" id="pVH-0G-CWJ"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="centerY" secondItem="Wi5-rP-QD7" secondAttribute="centerY" id="qae-wo-1TJ"/>
                             <constraint firstItem="fpk-D3-dSO" firstAttribute="leading" secondItem="Wi5-rP-QD7" secondAttribute="trailing" constant="20" id="r4E-7f-dOf"/>
