@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "ESCBundleIdModel.h"
 
 typedef NS_ENUM(NSUInteger, ESCXCodeProjectType) {
     ESCXCodeProjectTypeProj,
@@ -62,6 +63,8 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 @property(nonatomic,copy)NSString* bundleID;
 
 @property(nonatomic,copy)NSString* appUdid;
+
+@property (nonatomic, strong)NSArray <ESCBundleIdModel *>*bundleIdModelArray;
 
 @property(nonatomic,weak)NSTableCellView* cellView;
 

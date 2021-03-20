@@ -13,6 +13,8 @@
 		04199F3A1F5AB52300CEFAB0 /* ESCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04199F391F5AB52300CEFAB0 /* ESCFileManager.m */; };
 		04199F651F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 04199F641F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m */; };
 		04199F681F5ADB9800CEFAB0 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 04199F671F5ADB9800CEFAB0 /* NSDate+Utilities.m */; };
+		042F4F362605FFEA00B94B34 /* ESCBundleIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042F4F352605FFEA00B94B34 /* ESCBundleIdModel.m */; };
+		042F4F3A2606329500B94B34 /* ESCTextCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042F4F392606329500B94B34 /* ESCTextCellView.m */; };
 		047431941F5D8B3200445EB5 /* ESCconfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431931F5D8B3200445EB5 /* ESCconfigViewController.m */; };
 		047431981F5D978100445EB5 /* ESCConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431971F5D978100445EB5 /* ESCConfigurationModel.m */; };
 		0474319B1F5D987200445EB5 /* ESCNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474319A1F5D987200445EB5 /* ESCNetWorkManager.m */; };
@@ -21,6 +23,8 @@
 		047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047431A11F5D9ADC00445EB5 /* ESCconfigViewController.storyboard */; };
 		047431A51F5D9C4100445EB5 /* ESCBuildShellFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047431A41F5D9C4100445EB5 /* ESCBuildShellFileManager.m */; };
 		04ACE9E124B9BB7E000B1B90 /* ESCBuildModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACE9E024B9BB7E000B1B90 /* ESCBuildModel.m */; };
+		04F5AF4C260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */; };
+		04F5AF50260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */; };
 		F003AB11244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F003AB10244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m */; };
 		F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F012FA4B2284152D002CC739 /* ESCRightMouseDownMenuView.m */; };
 		F04820D8244D47A0002780D9 /* ESCCustemShellConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F04820D6244D47A0002780D9 /* ESCCustemShellConfigViewController.m */; };
@@ -74,6 +78,10 @@
 		04199F641F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ESCDateString.m"; sourceTree = "<group>"; };
 		04199F661F5ADB9800CEFAB0 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		04199F671F5ADB9800CEFAB0 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		042F4F342605FFEA00B94B34 /* ESCBundleIdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCBundleIdModel.h; sourceTree = "<group>"; };
+		042F4F352605FFEA00B94B34 /* ESCBundleIdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCBundleIdModel.m; sourceTree = "<group>"; };
+		042F4F382606329500B94B34 /* ESCTextCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCTextCellView.h; sourceTree = "<group>"; };
+		042F4F392606329500B94B34 /* ESCTextCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCTextCellView.m; sourceTree = "<group>"; };
 		047431921F5D8B3200445EB5 /* ESCconfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCconfigViewController.h; sourceTree = "<group>"; };
 		047431931F5D8B3200445EB5 /* ESCconfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCconfigViewController.m; sourceTree = "<group>"; };
 		047431961F5D978100445EB5 /* ESCConfigurationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCConfigurationModel.h; sourceTree = "<group>"; };
@@ -88,6 +96,9 @@
 		047431A41F5D9C4100445EB5 /* ESCBuildShellFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCBuildShellFileManager.m; sourceTree = "<group>"; };
 		04ACE9DF24B9BB7E000B1B90 /* ESCBuildModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCBuildModel.h; sourceTree = "<group>"; };
 		04ACE9E024B9BB7E000B1B90 /* ESCBuildModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCBuildModel.m; sourceTree = "<group>"; };
+		04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ESCAppBundleIdAndProfileConfigViewController.storyboard; sourceTree = "<group>"; };
+		04F5AF4E260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCAppBundleIdAndProfileConfigViewController.h; sourceTree = "<group>"; };
+		04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCAppBundleIdAndProfileConfigViewController.m; sourceTree = "<group>"; };
 		F003AB0F244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCAppTableViewAppBuildUpdateDescriptionCellView.h; sourceTree = "<group>"; };
 		F003AB10244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCAppTableViewAppBuildUpdateDescriptionCellView.m; sourceTree = "<group>"; };
 		F012FA4A2284152D002CC739 /* ESCRightMouseDownMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCRightMouseDownMenuView.h; sourceTree = "<group>"; };
@@ -277,6 +288,9 @@
 				047431921F5D8B3200445EB5 /* ESCconfigViewController.h */,
 				047431931F5D8B3200445EB5 /* ESCconfigViewController.m */,
 				047431A11F5D9ADC00445EB5 /* ESCconfigViewController.storyboard */,
+				04F5AF4E260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.h */,
+				04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */,
+				04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */,
 				F04A6C34244FD87A00CBB70D /* ESCGroupViewController.h */,
 				F04A6C35244FD87A00CBB70D /* ESCGroupViewController.m */,
 				F04A6C37244FD89900CBB70D /* ESCGroupViewController.storyboard */,
@@ -294,6 +308,8 @@
 				F04A6C32244FD3C700CBB70D /* ESCGroupModel.m */,
 				047431961F5D978100445EB5 /* ESCConfigurationModel.h */,
 				047431971F5D978100445EB5 /* ESCConfigurationModel.m */,
+				042F4F342605FFEA00B94B34 /* ESCBundleIdModel.h */,
+				042F4F352605FFEA00B94B34 /* ESCBundleIdModel.m */,
 				04ACE9DF24B9BB7E000B1B90 /* ESCBuildModel.h */,
 				04ACE9E024B9BB7E000B1B90 /* ESCBuildModel.m */,
 			);
@@ -318,6 +334,8 @@
 				F051C5C42472639700782358 /* ESCOneButtonTableCellView.h */,
 				F051C5C52472639700782358 /* ESCOneButtonTableCellView.m */,
 				F051C5C7247263A500782358 /* ESCOneButtonTableCellView.xib */,
+				042F4F382606329500B94B34 /* ESCTextCellView.h */,
+				042F4F392606329500B94B34 /* ESCTextCellView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -438,6 +456,7 @@
 			files = (
 				F0587A6F2481042C00BC6588 /* Info.plist in Resources */,
 				F04A6C38244FD89900CBB70D /* ESCGroupViewController.storyboard in Resources */,
+				04F5AF4C260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard in Resources */,
 				047431A01F5D9A9B00445EB5 /* Main.storyboard in Resources */,
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
 				F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */,
@@ -465,6 +484,7 @@
 				F0587A682481042C00BC6588 /* MJProperty.m in Sources */,
 				F07CF28524A202A2009D224F /* ESCFileCopyTool.m in Sources */,
 				F0587A6D2481042C00BC6588 /* NSString+MJExtension.m in Sources */,
+				04F5AF50260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m in Sources */,
 				F049FC151F6641DE00147EC9 /* ESCMainViewController.m in Sources */,
 				04199EF71F5AB21900CEFAB0 /* main.m in Sources */,
 				F0505208245271FD00164015 /* ESCGroupTableGroupCellView.m in Sources */,
@@ -476,6 +496,7 @@
 				F0587A4A2481037100BC6588 /* AFHTTPSessionManager.m in Sources */,
 				F0587A672481042C00BC6588 /* NSObject+MJKeyValue.m in Sources */,
 				F0587A492481037100BC6588 /* AFURLResponseSerialization.m in Sources */,
+				042F4F3A2606329500B94B34 /* ESCTextCellView.m in Sources */,
 				F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */,
 				F04A6C36244FD87A00CBB70D /* ESCGroupViewController.m in Sources */,
 				047431941F5D8B3200445EB5 /* ESCconfigViewController.m in Sources */,
@@ -494,6 +515,7 @@
 				F0587A702481042C00BC6588 /* MJFoundation.m in Sources */,
 				F084B4131F5FC70600D71BCC /* ESCPgyerConfigViewController.m in Sources */,
 				F051C5C62472639700782358 /* ESCOneButtonTableCellView.m in Sources */,
+				042F4F362605FFEA00B94B34 /* ESCBundleIdModel.m in Sources */,
 				04199F651F5ADB2B00CEFAB0 /* NSDate+ESCDateString.m in Sources */,
 				04199F3A1F5AB52300CEFAB0 /* ESCFileManager.m in Sources */,
 				047431A51F5D9C4100445EB5 /* ESCBuildShellFileManager.m in Sources */,

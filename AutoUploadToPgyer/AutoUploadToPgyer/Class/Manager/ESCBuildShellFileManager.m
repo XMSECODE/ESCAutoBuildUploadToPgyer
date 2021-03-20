@@ -72,12 +72,19 @@
     if (configurationModel.signingCertificate != nil && configurationModel.signingCertificate.length > 0) {
         [dict setObject:@"signingCertificate" forKey:configurationModel.signingCertificate];
     }
+    NSMutableDictionary *provisionDic = [NSMutableDictionary dictionary];
     if (configurationModel.bundleID != nil && configurationModel.bundleID.length > 0 &&
         configurationModel.provisioningProfileName != nil && configurationModel.provisioningProfileName.length > 0) {
-        NSDictionary *provisionDic = @{configurationModel.bundleID:configurationModel.provisioningProfileName};
-        [dict setObject:provisionDic forKey:@"provisioningProfiles"];
+//        NSDictionary *provisionDic = @{configurationModel.bundleID:configurationModel.provisioningProfileName};
+        [provisionDic setValue:configurationModel.provisioningProfileName forKey:configurationModel.bundleID];
+        
     }
-    
+    if (configurationModel.bundleIdModelArray) {
+        for (ESCBundleIdModel *model in configurationModel.bundleIdModelArray) {
+            [provisionDic setValue:model.profileName forKey:model.bundleId];
+        }
+    }
+    [dict setObject:provisionDic forKey:@"provisioningProfiles"];
     NSString *temPlistPath = [NSString stringWithFormat:@"%@/buildinfo.plist",configurationModel.ipaPath];
     [dict writeToFile:temPlistPath atomically:YES];
     return temPlistPath;

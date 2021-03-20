@@ -8,8 +8,9 @@
 
 #import "ESCConfigurationModel.h"
 #import "ESCConfigManager.h"
+#import "MJExtension.h"
 
-@interface ESCConfigurationModel ()
+@interface ESCConfigurationModel ()<MJKeyValue>
 
 @property (nonatomic, readwrite,copy) NSString *historyLogPath;
 
@@ -24,6 +25,11 @@
     }
     return _appUdid;
 }
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"bundleIdModelArray":@"ESCBundleIdModel"};
+}
+
 
 - (NSString *)longUuidString {
     NSString *uuidString = [ESCConfigurationModel uuidString];

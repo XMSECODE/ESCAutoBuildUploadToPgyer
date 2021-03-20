@@ -9,6 +9,7 @@
 #import "ESCconfigViewController.h"
 #import "ESCConfigurationModel.h"
 #import "ESCConfigManager.h"
+#import "ESCAppBundleIdAndProfileConfigViewController.h"
 
 @interface ESCconfigViewController ()
 
@@ -102,6 +103,12 @@
         [self.groupPopUpButton selectItemAtIndex:[groupArray indexOfObject:groupModel] + 1];
     }
 
+}
+
+- (IBAction)didClickSetAppIdButton:(id)sender {
+    ESCAppBundleIdAndProfileConfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCAppBundleIdAndProfileConfigViewController" bundle:nil] instantiateInitialController];
+    viewController.configurationModel = self.configurationModel;
+    [self presentViewControllerAsSheet:viewController];
 }
 
 - (IBAction)didClickCancelButton:(id)sender {
