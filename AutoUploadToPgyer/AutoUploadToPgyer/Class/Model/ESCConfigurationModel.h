@@ -20,6 +20,12 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
     ESCXcodeBuildConfigurationRelease,
 };
 
+typedef NS_ENUM(NSUInteger, ESCXcodeMethod) {
+    ESCXcodeMethod_adhoc,
+    ESCXcodeMethod_appstore,
+    ESCXcodeMethod_development
+};
+
 @interface ESCConfigurationModel : NSObject
 
 @property(nonatomic,copy)NSString* projectPath;
@@ -89,6 +95,8 @@ typedef NS_ENUM(NSUInteger, ESCXcodeBuildConfiguration) {
 
 //剩余时间
 @property(nonatomic,copy)NSString *needRemainTimeString;
+
+@property(nonatomic,assign)ESCXcodeMethod method;
 
 - (void)calculateNetWorkRate;
 

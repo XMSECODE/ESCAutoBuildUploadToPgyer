@@ -33,6 +33,8 @@
 
 @property (weak) IBOutlet NSPopUpButton *groupPopUpButton;
 
+@property (weak) IBOutlet NSPopUpButton *methodPopUpButton;
+
 @property (assign) BOOL isCreatNew;
 
 @property(nonatomic,strong)NSArray* temGroupModelArray;
@@ -102,6 +104,11 @@
     }else {
         [self.groupPopUpButton selectItemAtIndex:[groupArray indexOfObject:groupModel] + 1];
     }
+    
+    [self.methodPopUpButton removeAllItems];
+    [self.methodPopUpButton addItemsWithTitles:@[@"ad hoc",@"app store",@"development"]];
+
+    [self.methodPopUpButton selectItemAtIndex:self.configurationModel.method];
 
 }
 
@@ -129,6 +136,8 @@
     configurationModel.bundleID = self.bundleIdTextField.stringValue;
     
     configurationModel.provisioningProfileName = self.provisioningProfileNameTextField.stringValue;
+    
+    configurationModel.method = self.methodPopUpButton.indexOfSelectedItem;
     
     if (self.xcodeprojButton.state) {
         configurationModel.projectType = ESCXCodeProjectTypeProj;

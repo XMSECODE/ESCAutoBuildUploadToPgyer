@@ -69,6 +69,16 @@
     NSMutableDictionary *dict = [@{@"method":@"ad-hoc",
                                   @"compileBitcode":@(NO)
     } mutableCopy];
+    
+    if (configurationModel.method == ESCXcodeMethod_adhoc) {
+        [dict setObject:@"ad-hoc" forKey:@"method"];
+    }else if (configurationModel.method == ESCXcodeMethod_appstore) {
+        [dict setObject:@"app-store" forKey:@"method"];
+    }else {
+        [dict setObject:@"development" forKey:@"method"];
+    }
+    
+    
     if (configurationModel.signingCertificate != nil && configurationModel.signingCertificate.length > 0) {
         [dict setObject:@"signingCertificate" forKey:configurationModel.signingCertificate];
     }
