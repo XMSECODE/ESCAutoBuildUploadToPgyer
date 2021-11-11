@@ -28,6 +28,13 @@ typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
 } ESCSortAlgorithmType;
 
+typedef enum : NSUInteger {
+    ESCBuildState_no_build,
+    ESCBuildState_start_build,
+    ESCBuildState_stop,
+    ESCBuildState_suspend
+} ESCBuildState;
+
 
 @interface ESCMainViewController () <NSTableViewDataSource, NSTabViewDelegate,ESCMainTableCellViewDelegate
 ,
@@ -77,6 +84,10 @@ ESCOneButtonTableCellViewDelegate
 @property (weak, nonatomic) IBOutlet NSPopUpButton *uploadTypeButton;
 
 @property (weak, nonatomic) IBOutlet NSPopUpButton *buildTypeButton;
+
+@property (nonatomic, strong)NSTask* currentBuildTask;
+
+@property (nonatomic, assign)ESCBuildState currentBuildState;
 
 @end
 
@@ -429,6 +440,39 @@ ESCOneButtonTableCellViewDelegate
     [self uploadData];
 }
 
+//停止编译
+- (IBAction)didClickStopBuildButton:(id)sender {
+    if (self.currentBuildTask && (self.currentBuildState == ESCBuildState_start_build || self.currentBuildState == ESCBuildState_suspend)) {
+        [self.currentBuildTask terminate];
+        self.currentBuildState = ESCBuildState_stop;
+        [self addLog:@"停止当前项目的编译"];
+    }else {
+        [self addLog:@"当前没有项目在编译中"];
+    }
+}
+
+//暂停编译
+- (IBAction)didClickSuspendButton:(id)sender {
+    if (self.currentBuildTask && self.currentBuildState == ESCBuildState_start_build) {
+        [self.currentBuildTask suspend];
+        self.currentBuildState = ESCBuildState_suspend;
+        [self addLog:@"暂停当前项目编译"];
+    }else {
+        [self addLog:@"当前没有项目在编译中"];
+    }
+}
+
+//继续编译
+- (IBAction)didClickResumeButton:(id)sender {
+    if (self.currentBuildTask && self.currentBuildState == ESCBuildState_suspend) {
+        [self.currentBuildTask resume];
+        self.currentBuildState = ESCBuildState_start_build;
+        [self addLog:@"继续当前项目的编译"];
+    }else {
+        [self addLog:@"当前没有项目在暂停编译中"];
+    }
+}
+
 - (void)uploadData {
     dispatch_async(self.other_queue, ^{
         //修改为子线程
@@ -515,16 +559,29 @@ ESCOneButtonTableCellViewDelegate
 //    NSString *md5path = [[NSBundle mainBundle] pathForResource:@"sh" ofType:@""];
     [certTask setLaunchPath:@"/bin/sh"];
     [certTask setArguments:@[buildModel.shellFilePath]];
-    
+    self.currentBuildTask = certTask;
     NSPipe *pipe = [NSPipe pipe];
     [certTask setStandardOutput:pipe];
     [certTask setStandardError:pipe];
     NSFileHandle *handle = [pipe fileHandleForReading];
     NSError *error = nil;
+    //开始编译
+    self.currentBuildState = ESCBuildState_start_build;
     [certTask launchAndReturnError:&error];
-//    system(buildModel.shellFilePath.UTF8String);
+    
+    //另外一种方法执行编译命令
+    //system(buildModel.shellFilePath.UTF8String);
+    
+    
     NSData *data;
     data = [handle readDataToEndOfFile];
+    if (self.currentBuildState == ESCBuildState_stop) {
+        //停止编译则不进行后续操作
+        buildModel.buildResult = ESCBuildResultExportIpafailure;
+        return buildModel;
+    }
+    //编译结束
+    self.currentBuildState = ESCBuildState_no_build;
     
     double endTime = CFAbsoluteTimeGetCurrent();
     int time = endTime - startTime;

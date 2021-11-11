@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -682,18 +682,18 @@
         <scene sceneID="Pwn-j2-ILr">
             <objects>
                 <viewController title="项目" storyboardIdentifier="ESCMainViewController" id="4X5-1k-l7B" customClass="ESCMainViewController" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="zej-sw-RWW">
-                        <rect key="frame" x="0.0" y="0.0" width="1964" height="581"/>
+                    <view key="view" id="zej-sw-RWW">
+                        <rect key="frame" x="0.0" y="0.0" width="1964" height="282"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVP-ah-Rd4">
-                                <rect key="frame" x="20" y="200" width="1924" height="240"/>
+                                <rect key="frame" x="20" y="203" width="1924" height="33"/>
                                 <clipView key="contentView" id="GL1-RQ-xb7">
-                                    <rect key="frame" x="1" y="1" width="1922" height="238"/>
+                                    <rect key="frame" x="1" y="0.0" width="1922" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="ESCMainTableCellViewID" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DUQ-UZ-IGm" viewBased="YES" id="Dqm-vh-eSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="215"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1922" height="19"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -712,7 +712,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="its-9X-94c" customClass="ESCMainTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="905" height="50"/>
+                                                            <rect key="frame" x="1" y="1" width="900" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="srh-Ix-gjp">
@@ -849,7 +849,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="DVO-mk-JtQ">
-                                                            <rect key="frame" x="909" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="904" y="1" width="51" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -867,7 +867,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yt3-M3-JPq">
-                                                            <rect key="frame" x="963" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="958" y="1" width="51" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMI-we-aFQ">
@@ -899,7 +899,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="cec-rh-3aT">
-                                                            <rect key="frame" x="1017" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="1012" y="1" width="51" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fl-RW-k2w">
@@ -931,11 +931,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="HPn-cp-wlg" customClass="ESCAppTableViewAppBuildUpdateDescriptionCellView">
-                                                            <rect key="frame" x="1071" y="1" width="400" height="50"/>
+                                                            <rect key="frame" x="1066" y="1" width="400" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="A6t-lB-JjD">
-                                                                    <rect key="frame" x="338" y="16" width="52" height="18"/>
+                                                                    <rect key="frame" x="338" y="16" width="54" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="yVz-ed-S7m"/>
                                                                     </constraints>
@@ -1002,7 +1002,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="44I-Lt-UtJ">
-                                                            <rect key="frame" x="1474" y="1" width="100" height="17"/>
+                                                            <rect key="frame" x="1469" y="1" width="100" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zu0-a2-3ue">
@@ -1034,11 +1034,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="9f9-QX-I2O">
-                                                            <rect key="frame" x="1577" y="1" width="104" height="17"/>
+                                                            <rect key="frame" x="1572" y="1" width="100" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEz-19-gsR">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="obO-FW-NZu">
                                                                         <font key="font" metaFont="system"/>
@@ -1075,7 +1075,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvF-lb-Y94">
-                                <rect key="frame" x="953" y="450" width="58" height="16"/>
+                                <rect key="frame" x="953" y="246" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="项目列表" id="8iZ-Ar-xcI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1083,7 +1083,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FPS-Fj-rMi">
-                                <rect key="frame" x="1914" y="149" width="30" height="32"/>
+                                <rect key="frame" x="1914" y="152" width="30" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2gy-bi-o3v"/>
                                     <constraint firstAttribute="height" constant="30" id="5K5-Tq-6hS"/>
@@ -1097,7 +1097,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-oS-ct8">
-                                <rect key="frame" x="13" y="73" width="122" height="32"/>
+                                <rect key="frame" x="14" y="75" width="128" height="32"/>
                                 <buttonCell key="cell" type="push" title="扫描ipa文件夹" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a6u-Uz-qmY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1107,7 +1107,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="itu-Te-zXD">
-                                <rect key="frame" x="161" y="73" width="88" height="32"/>
+                                <rect key="frame" x="170" y="75" width="94" height="32"/>
                                 <buttonCell key="cell" type="push" title="编译项目" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lGp-wl-z3V">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1117,7 +1117,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x7Y-vc-MIP">
-                                <rect key="frame" x="275" y="73" width="82" height="32"/>
+                                <rect key="frame" x="292" y="75" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="上传ipa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="50g-iV-Zrx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1127,7 +1127,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OIR-BR-TrH">
-                                <rect key="frame" x="383" y="73" width="102" height="32"/>
+                                <rect key="frame" x="407" y="75" width="107" height="32"/>
                                 <buttonCell key="cell" type="push" title="打包及上传" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="omo-dY-dFT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1137,7 +1137,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aB3-es-PVi">
-                                <rect key="frame" x="1853" y="157" width="58" height="16"/>
+                                <rect key="frame" x="1853" y="160" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="添加任务" id="NDx-Fo-mqI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1145,7 +1145,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPA-P8-lTq">
-                                <rect key="frame" x="528" y="36" width="600" height="120"/>
+                                <rect key="frame" x="558" y="36" width="600" height="120"/>
                                 <clipView key="contentView" drawsBackground="NO" id="jRi-pe-gJd">
                                     <rect key="frame" x="1" y="1" width="583" height="118"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1175,7 +1175,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YN9-vO-E5o">
-                                <rect key="frame" x="13" y="33" width="124" height="32"/>
+                                <rect key="frame" x="14" y="34" width="129" height="32"/>
                                 <buttonCell key="cell" type="push" title="设置蒲公英key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sYc-W0-cpO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1185,7 +1185,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-tT-v2d">
-                                <rect key="frame" x="124" y="33" width="162" height="32"/>
+                                <rect key="frame" x="133" y="34" width="168" height="32"/>
                                 <buttonCell key="cell" type="push" title="手动选择ipa文件上传" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vdf-Nd-6t2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1195,7 +1195,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HXr-43-2jn">
-                                <rect key="frame" x="1035" y="173" width="99" height="18"/>
+                                <rect key="frame" x="1035" y="177" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选编译ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pvY-qX-D0j">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1205,7 +1205,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bBG-VY-ars">
-                                <rect key="frame" x="1132" y="173" width="99" height="18"/>
+                                <rect key="frame" x="1126" y="177" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选上传ipa" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Q0m-a8-RAL">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1215,7 +1215,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aug-Bm-yLp">
-                                <rect key="frame" x="1043" y="1" width="92" height="32"/>
+                                <rect key="frame" x="1066" y="1" width="98" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear Log" bezelStyle="rounded" alignment="center" borderStyle="border" allowsMixedState="YES" imageScaling="proportionallyDown" inset="2" id="HnU-KM-bVl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1225,7 +1225,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Izq-5x-Q7l">
-                                <rect key="frame" x="1234" y="173" width="83" height="18"/>
+                                <rect key="frame" x="1222" y="177" width="79" height="18"/>
                                 <buttonCell key="cell" type="check" title="全选Both" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CCK-dY-IZo">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1235,7 +1235,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="32B-x4-JaF">
-                                <rect key="frame" x="1809" y="13" width="142" height="32"/>
+                                <rect key="frame" x="1803" y="13" width="147" height="32"/>
                                 <buttonCell key="cell" type="push" title="设置执行脚本命令" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gPV-Pk-SZ9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1246,7 +1246,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mgU-q6-KV8">
-                                <rect key="frame" x="1809" y="43" width="142" height="32"/>
+                                <rect key="frame" x="1803" y="44" width="147" height="32"/>
                                 <buttonCell key="cell" type="push" title="执行预设脚本命令" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CHX-dr-AIa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1256,7 +1256,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PRj-JA-r4t">
-                                <rect key="frame" x="1715" y="13" width="88" height="32"/>
+                                <rect key="frame" x="1701" y="13" width="94" height="32"/>
                                 <buttonCell key="cell" type="push" title="分组设置" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f1W-zx-cIv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1266,7 +1266,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Jxm-N0-wLx">
-                                <rect key="frame" x="937" y="173" width="80" height="18"/>
+                                <rect key="frame" x="943" y="177" width="76" height="18"/>
                                 <buttonCell key="cell" type="check" title="本地通知" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ShB-4A-qPr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1276,7 +1276,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vtd-Cb-VOj">
-                                <rect key="frame" x="13" y="3" width="120" height="32"/>
+                                <rect key="frame" x="14" y="3" width="125" height="32"/>
                                 <buttonCell key="cell" type="push" title="fir.im参数设置" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FbP-fk-0UN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1286,7 +1286,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qo0-tV-S0p">
-                                <rect key="frame" x="844" y="168" width="79" height="25"/>
+                                <rect key="frame" x="850" y="173" width="78" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="蒲公英" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iqd-i0-CDJ" id="GNb-6R-Dqq">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -1302,7 +1302,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qrd-Ug-PFa">
-                                <rect key="frame" x="129" y="3" width="168" height="32"/>
+                                <rect key="frame" x="137" y="3" width="173" height="32"/>
                                 <buttonCell key="cell" type="push" title="删除所有打包历史文件" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YtA-NJ-kJQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1312,7 +1312,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fe4-SY-MJ2">
-                                <rect key="frame" x="738" y="168" width="93" height="25"/>
+                                <rect key="frame" x="743" y="173" width="92" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="并行编译" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="f1T-KR-mNJ" id="rHE-Mt-Y2R">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -1327,12 +1327,43 @@
                                     <action selector="didClickBuildTypeButton:" target="4X5-1k-l7B" id="afo-ov-JAo"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w4c-Lh-1Ei">
+                                <rect key="frame" x="14" y="106" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="停止编译" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Koe-w6-Ya1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickStopBuildButton:" target="4X5-1k-l7B" id="yL5-7N-udF"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Ur-Wa-QYs">
+                                <rect key="frame" x="106" y="106" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="暂停编译" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6gR-Ub-1XW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickSuspendButton:" target="4X5-1k-l7B" id="wbv-pz-kP6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-OV-o8q">
+                                <rect key="frame" x="198" y="106" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="继续编译" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S2p-4K-jkC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didClickResumeButton:" target="4X5-1k-l7B" id="As4-tg-wq4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="leading" secondItem="9HV-oS-ct8" secondAttribute="leading" id="1DC-y5-aTJ"/>
                             <constraint firstAttribute="trailing" secondItem="32B-x4-JaF" secondAttribute="trailing" constant="20" id="1Gn-gQ-VeC"/>
                             <constraint firstAttribute="bottom" secondItem="Vtd-Cb-VOj" secondAttribute="bottom" constant="10" id="1L8-uH-loB"/>
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" id="2Fi-9h-yTP"/>
+                            <constraint firstItem="9HV-oS-ct8" firstAttribute="top" secondItem="w4c-Lh-1Ei" secondAttribute="bottom" constant="10" id="3qd-2h-vb2"/>
                             <constraint firstItem="Jxm-N0-wLx" firstAttribute="leading" secondItem="qo0-tV-S0p" secondAttribute="trailing" constant="20" id="5YD-m8-eAy"/>
                             <constraint firstItem="9HV-oS-ct8" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="100" id="60H-Wh-hHs"/>
                             <constraint firstItem="YN9-vO-E5o" firstAttribute="top" secondItem="9HV-oS-ct8" secondAttribute="bottom" constant="20" id="7Tr-0a-We7"/>
@@ -1348,11 +1379,13 @@
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="leading" secondItem="aB3-es-PVi" secondAttribute="trailing" constant="5" id="Nae-pp-hZm"/>
                             <constraint firstItem="32B-x4-JaF" firstAttribute="leading" secondItem="PRj-JA-r4t" secondAttribute="trailing" constant="20" id="Pc8-k5-7nb"/>
                             <constraint firstItem="cvF-lb-Y94" firstAttribute="top" secondItem="zej-sw-RWW" secondAttribute="top" constant="20" id="Q7q-sA-jCQ"/>
+                            <constraint firstItem="9HV-oS-ct8" firstAttribute="leading" secondItem="w4c-Lh-1Ei" secondAttribute="leading" id="Qj8-J6-dV5"/>
                             <constraint firstItem="OIR-BR-TrH" firstAttribute="centerY" secondItem="x7Y-vc-MIP" secondAttribute="centerY" id="Rme-SB-Hbx"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="centerY" secondItem="Jxm-N0-wLx" secondAttribute="centerY" id="SD2-d9-VAX"/>
                             <constraint firstItem="FPS-Fj-rMi" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="20" id="SiH-v0-dK9"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="leading" secondItem="itu-Te-zXD" secondAttribute="trailing" constant="40" id="TYe-Ph-p3h"/>
                             <constraint firstItem="32B-x4-JaF" firstAttribute="centerY" secondItem="PRj-JA-r4t" secondAttribute="centerY" id="V97-mC-K5u"/>
+                            <constraint firstItem="AAb-OV-o8q" firstAttribute="leading" secondItem="0Ur-Wa-QYs" secondAttribute="trailing" constant="10" id="X9A-kA-EaX"/>
                             <constraint firstItem="Izq-5x-Q7l" firstAttribute="centerY" secondItem="bBG-VY-ars" secondAttribute="centerY" id="Xa2-pW-zSC"/>
                             <constraint firstAttribute="bottom" secondItem="vPA-P8-lTq" secondAttribute="bottom" constant="36" id="Xj1-P8-XYf"/>
                             <constraint firstItem="KVP-ah-Rd4" firstAttribute="top" secondItem="cvF-lb-Y94" secondAttribute="bottom" constant="10" id="Z1A-js-g2L"/>
@@ -1361,6 +1394,7 @@
                             <constraint firstItem="aug-Bm-yLp" firstAttribute="trailing" secondItem="vPA-P8-lTq" secondAttribute="trailing" id="Zun-kU-FkF"/>
                             <constraint firstItem="Vtd-Cb-VOj" firstAttribute="top" secondItem="YN9-vO-E5o" secondAttribute="bottom" constant="10" id="ZyP-St-WsY"/>
                             <constraint firstAttribute="trailing" secondItem="KVP-ah-Rd4" secondAttribute="trailing" constant="20" id="aFV-9i-Z4L"/>
+                            <constraint firstItem="0Ur-Wa-QYs" firstAttribute="bottom" secondItem="w4c-Lh-1Ei" secondAttribute="bottom" id="fi5-al-02c"/>
                             <constraint firstItem="vPA-P8-lTq" firstAttribute="leading" secondItem="OIR-BR-TrH" secondAttribute="trailing" constant="50" id="gaW-Lo-Aqa"/>
                             <constraint firstItem="HXr-43-2jn" firstAttribute="top" secondItem="KVP-ah-Rd4" secondAttribute="bottom" constant="10" id="iqt-Go-CBS"/>
                             <constraint firstItem="Vtd-Cb-VOj" firstAttribute="leading" secondItem="YN9-vO-E5o" secondAttribute="leading" id="jpc-d2-PzD"/>
@@ -1369,6 +1403,7 @@
                             <constraint firstItem="32B-x4-JaF" firstAttribute="trailing" secondItem="mgU-q6-KV8" secondAttribute="trailing" id="lgI-Up-DBu"/>
                             <constraint firstItem="Qrd-Ug-PFa" firstAttribute="centerY" secondItem="Vtd-Cb-VOj" secondAttribute="centerY" id="luN-Qj-MvM"/>
                             <constraint firstItem="bBG-VY-ars" firstAttribute="leading" secondItem="HXr-43-2jn" secondAttribute="trailing" id="mNz-LW-Ovh"/>
+                            <constraint firstItem="0Ur-Wa-QYs" firstAttribute="leading" secondItem="w4c-Lh-1Ei" secondAttribute="trailing" constant="10" id="pGH-AB-017"/>
                             <constraint firstItem="itu-Te-zXD" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="q1J-Ro-hoC"/>
                             <constraint firstAttribute="bottom" secondItem="aug-Bm-yLp" secondAttribute="bottom" constant="8" id="rhq-ih-NEp"/>
                             <constraint firstItem="Jxm-N0-wLx" firstAttribute="centerY" secondItem="qo0-tV-S0p" secondAttribute="centerY" id="sUo-pM-9CX"/>
@@ -1377,6 +1412,7 @@
                             <constraint firstItem="Izq-5x-Q7l" firstAttribute="leading" secondItem="bBG-VY-ars" secondAttribute="trailing" constant="5" id="wx5-sw-3SO"/>
                             <constraint firstItem="32B-x4-JaF" firstAttribute="top" secondItem="mgU-q6-KV8" secondAttribute="bottom" constant="10" id="yCR-yq-v9f"/>
                             <constraint firstItem="x7Y-vc-MIP" firstAttribute="centerY" secondItem="9HV-oS-ct8" secondAttribute="centerY" id="zMS-72-6eJ"/>
+                            <constraint firstItem="AAb-OV-o8q" firstAttribute="bottom" secondItem="w4c-Lh-1Ei" secondAttribute="bottom" id="ztH-fe-XcI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1411,7 +1447,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-V9-6d4">
-                                <rect key="frame" x="194" y="13" width="62" height="32"/>
+                                <rect key="frame" x="192" y="13" width="67" height="32"/>
                                 <buttonCell key="cell" type="push" title="保存" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Egq-RV-Om0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1489,7 +1525,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u4o-lG-clp">
-                                <rect key="frame" x="28" y="108" width="58" height="16"/>
+                                <rect key="frame" x="28" y="108" width="55" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="_api_key" id="ACc-oi-cji">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1516,7 +1552,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OKY-GV-g3Q">
-                                <rect key="frame" x="113" y="13" width="214" height="32"/>
+                                <rect key="frame" x="114" y="12" width="212" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="s5M-DU-Aj7"/>
                                 </constraints>
@@ -1576,6 +1612,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="15" height="13"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
     </resources>
 </document>
