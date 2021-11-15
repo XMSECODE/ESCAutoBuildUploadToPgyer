@@ -62,6 +62,33 @@ static ESCConfigManager *staticESCConfigManager;
 
 }
 
+- (void)addGroupModel:(ESCGroupModel *)groupModel {
+    
+    NSArray <ESCConfigurationModel *>*appModels = [groupModel getAllAPPModelInGroup];
+    
+    
+    ESCGroupModel *cGroupModel = [[ESCConfigManager sharedConfigManager] groupModel];
+
+    NSMutableArray *temConfigurationModelArray = [cGroupModel.configurationModelArray mutableCopy];
+    if (temConfigurationModelArray == nil) {
+        temConfigurationModelArray = [NSMutableArray array];
+    }
+    
+    for (ESCConfigurationModel *model in appModels) {
+        [temConfigurationModelArray addObject:model];
+    }
+    
+    cGroupModel.configurationModelArray = temConfigurationModelArray;
+    [[ESCConfigManager sharedConfigManager] saveUserData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ESC_add_new_data_success" object:nil];
+}
+
+- (NSDictionary *)getUserData {
+    NSDictionary *groupModelDic = [[NSUserDefaults standardUserDefaults] objectForKey:ESCUserGroupDataKey];
+
+    return groupModelDic;
+}
+
 - (void)sortWithLRUTypeWithModel:(ESCConfigurationModel *)model {
     NSInteger index = [self.modelArray indexOfObject:model];
     if (index != 0) {

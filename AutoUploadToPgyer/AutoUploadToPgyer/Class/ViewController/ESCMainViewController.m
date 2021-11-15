@@ -116,6 +116,8 @@ ESCOneButtonTableCellViewDelegate
     
     [self setupUI];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"ESC_add_new_data_success" object:nil];
+    
 }
 
 - (void)setupUI {
@@ -471,6 +473,55 @@ ESCOneButtonTableCellViewDelegate
     }else {
         [self addLog:@"当前没有项目在暂停编译中"];
     }
+}
+
+//导出配置
+- (IBAction)didClickExportAppConfigInfo:(id)sender {
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    //是否可以创建文件夹
+    openPanel.canCreateDirectories = YES;
+    //是否可以选择文件夹
+    openPanel.canChooseDirectories = YES;
+    //是否可以选择文件
+    openPanel.canChooseFiles = NO;
+    //是否可以多选
+    [openPanel setAllowsMultipleSelection:NO];
+
+    [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
+        //是否点击open 按钮
+        if (result == NSModalResponseOK) {
+            NSString *pathString = [openPanel.URLs.firstObject path];
+            pathString = [pathString stringByAppendingString:@"/appconfigInfo.plist"];
+            NSDictionary *dict = [[ESCConfigManager sharedConfigManager] getUserData];
+            [dict writeToFile:pathString atomically:YES];
+        }
+    }];
+}
+
+//导入配置
+- (IBAction)didClickAddAppConfigs:(id)sender {
+
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    //是否可以创建文件夹
+    openPanel.canCreateDirectories = NO;
+    //是否可以选择文件夹
+    openPanel.canChooseDirectories = NO;
+    //是否可以选择文件
+    openPanel.canChooseFiles = YES;
+    //是否可以多选
+    [openPanel setAllowsMultipleSelection:NO];
+
+    [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
+        //是否点击open 按钮
+        if (result == NSModalResponseOK) {
+            NSString *pathString = [openPanel.URLs.firstObject path];
+            
+            NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:pathString];
+            ESCGroupModel *groupModel = [ESCGroupModel mj_objectWithKeyValues:dict];
+
+            [[ESCConfigManager sharedConfigManager] addGroupModel:groupModel];
+        }
+    }];
 }
 
 - (void)uploadData {

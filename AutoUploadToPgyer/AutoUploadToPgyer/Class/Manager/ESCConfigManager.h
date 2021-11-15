@@ -36,9 +36,13 @@
 
 + (instancetype)sharedConfigManager;
 
+- (NSDictionary *)getUserData;
+
 - (void)saveUserData;
 
 - (int)getGroupLevelWithGroupModel:(ESCGroupModel *)groupModel;
+
+- (void)addGroupModel:(ESCGroupModel *)groupModel;
 
 - (void)removeAllBuildHistoryFile;
 

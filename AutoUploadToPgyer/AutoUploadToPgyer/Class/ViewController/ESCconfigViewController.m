@@ -149,12 +149,6 @@
     configurationModel.schemes = schemes;
     configurationModel.appName = self.appNameTextField.stringValue;
     
-//    if (self.isCreatNew) {
-//        NSMutableArray *temArray = [[ESCConfigManager sharedConfigManager].modelArray mutableCopy];
-//        [temArray addObject:configurationModel];
-//        [ESCConfigManager sharedConfigManager].modelArray = [temArray copy];
-//    }
-    
     if (self.isCreatNew) {
         
     }else {
