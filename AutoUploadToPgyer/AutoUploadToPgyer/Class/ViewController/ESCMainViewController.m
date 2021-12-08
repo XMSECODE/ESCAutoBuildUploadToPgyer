@@ -341,6 +341,9 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:[logStr stringByAppendingString:resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    if(error){
+                        logStr = [logStr stringByAppendingString:error.localizedDescription];
+                    }
                     [weakSelf addLog:logStr];
                 }];
             }else if ([ESCConfigManager sharedConfigManager].uploadType == 1) {
@@ -361,6 +364,9 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:[NSString stringWithFormat:@"%@:\n%@",logStr,resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    if(error){
+                        logStr = [logStr stringByAppendingString:error.localizedDescription];
+                    }
                     [weakSelf addLog:logStr];
                 }];
             }
@@ -762,6 +768,9 @@ ESCOneButtonTableCellViewDelegate
            }
            model.uploadState = @"上传失败";
            NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+           if(error){
+               logStr = [logStr stringByAppendingString:error.localizedDescription];
+           }
            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
            [weakSelf addLog:logStr];
            [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
@@ -819,6 +828,9 @@ ESCOneButtonTableCellViewDelegate
         }
         model.uploadState = @"上传失败";
         NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+        if(error){
+            logStr = [logStr stringByAppendingString:error.localizedDescription];
+        }
         [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
         [weakSelf addLog:logStr];
         [weakSelf writeLog:error.localizedDescription withPath:model.historyLogPath];
@@ -838,7 +850,7 @@ ESCOneButtonTableCellViewDelegate
         NSString *buildShortcutUrl = [dataDict objectForKey:@"buildShortcutUrl"];
         NSString *buildVersion = [dataDict objectForKey:@"buildVersion"];
         NSString *buildKey = [dataDict objectForKey:@"buildKey"];
-        resultString = [NSString stringWithFormat:@"\n下载地址1:\nhttps://www.pgyer.com/%@\n下载地址2：\nhttps://www.pgyer.com/%@\nbuildVersion:%@\nbuildBuildVersion:%d",buildKey,buildShortcutUrl,buildVersion,buildBuildVersion];
+        resultString = [NSString stringWithFormat:@"\n下载地址1:\nhttps://www.pgyer.com/%@\n下载地址2：\nhttps://www.pgyer.com/%@\nbuildVersion:%@\nbuildBuildVersion:%d\n版本：%@(build %d) :  链接：https://www.pgyer.com/%@",buildKey,buildShortcutUrl,buildVersion,buildBuildVersion,buildVersion,buildBuildVersion,buildKey];
     }else {
         resultString = [result mj_JSONString];
     }

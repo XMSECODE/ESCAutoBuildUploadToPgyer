@@ -53,6 +53,13 @@ static ESCNetWorkManager *staticNetWorkManager;
                          progress:(void (^)(NSProgress * progress))cuploadProgress
                           success:(void (^)(NSDictionary *result))success
                           failure:(void (^)(NSError *error))failure{
+    
+    if (api_key == nil || api_key.length <= 0) {
+        NSError *error = [NSError errorWithDomain:@"apikey is null" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"apikey is null"}];
+        failure(error);
+        return;
+    }
+    
     NSDictionary *pare = nil;
     if (buildUpdateDescription == nil) {
         buildUpdateDescription = @"";
@@ -204,6 +211,11 @@ static ESCNetWorkManager *staticNetWorkManager;
                    api_token:(NSString *)api_token
                      success:(void (^)(NSDictionary *result))success
                      failure:(void (^)(NSError *error))failure {
+    if (api_token == nil || api_token.length <= 0) {
+        NSError *error = [NSError errorWithDomain:@"api_token is null" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"api_token is null"}];
+        failure(error);
+        return;
+    }
     NSDictionary *para = @{@"type":type,
                            @"bundle_id":bundle_id,
                            @"api_token":api_token
