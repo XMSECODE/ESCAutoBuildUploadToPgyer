@@ -162,6 +162,16 @@ static ESCConfigManager *staticESCConfigManager;
     }
 }
 
+- (int)getAllBuildFileTotalSize {
+    //遍历所有文件夹，再相加
+    NSArray <ESCConfigurationModel *>*appModelArray = [self.groupModel getAllAPPModelInGroup];
+    int totalSize = 0;
+    for (ESCConfigurationModel *model in appModelArray) {
+        totalSize = totalSize + [model getAllFileSize];
+    }
+    return totalSize;
+}
+
 - (void)removeBuildHistoryFileWithWithConfigurationModel:(ESCConfigurationModel *)configurationModel {
     NSString *ipaPath = [configurationModel ipaPath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:ipaPath]) {

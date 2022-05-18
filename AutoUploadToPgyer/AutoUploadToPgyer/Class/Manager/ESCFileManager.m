@@ -172,6 +172,40 @@ static ESCFileManager *staticESCFileManager;
     
 }
 
++ (int)getDirectorySize:(NSString *)dirPath {
+    NSError *error;
+    NSArray *temArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+        return 0;
+    }
+    if (temArray.count == 0) {
+        return 0;
+    }
+    int size = 0;
+    for (NSString *fileString in temArray) {
+        BOOL isDirectory = NO;
+        NSString *temfile = [NSString stringWithFormat:@"%@/%@",dirPath,fileString];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:temfile isDirectory:&isDirectory]) {
+            if (isDirectory == YES) {
+                size = size + [self getDirectorySize:temfile];
+            }else {
+                int fileSize = 0;
+                NSError *error;
+                NSDictionary *attributesDict = [[NSFileManager defaultManager] attributesOfItemAtPath:temfile error:&error];
+                if (error) {
+                    NSLog(@"get ipa attributes error === %@ ===\n==%@",error,temfile);
+                }else {
+                    fileSize = [[attributesDict objectForKey:NSFileSize] intValue];
+                    size = size + fileSize;
+                }
+
+            }
+        }
+    }
+    return size;
+}
+
 - (NSDateFormatter *)dateFormatter {
     if (_dateFormatter == nil) {
         _dateFormatter = [[NSDateFormatter alloc] init];

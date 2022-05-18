@@ -57,6 +57,10 @@ ESCOneButtonTableCellViewDelegate
 
 @property (weak) IBOutlet NSButton *selectAllBothButton;
 
+@property (weak) IBOutlet NSButton *calculateAllFileSizeButton;
+
+@property (weak) IBOutlet NSTextField *calculateAllFileSizeLabel;
+
 @property (nonatomic, assign) BOOL isCompiling;
 
 @property (nonatomic, assign) BOOL isUploading;
@@ -530,6 +534,19 @@ ESCOneButtonTableCellViewDelegate
     }];
 }
 
+- (IBAction)didCalculateAllFileSizeButton:(id)sender {
+    [self calculateAllFileSzie];
+}
+
+- (void)calculateAllFileSzie {
+    //计算所有文件夹下文件大小
+    int fileSize = [[ESCConfigManager sharedConfigManager] getAllBuildFileTotalSize];
+    NSString *fileSizeString = [NSString stringWithFormat:@"%.1lfGB",(fileSize / 1024.0 / 1024 / 1024)];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.calculateAllFileSizeLabel.stringValue = fileSizeString;
+    });
+}
+
 - (void)uploadData {
     dispatch_async(self.other_queue, ^{
         //修改为子线程
@@ -539,6 +556,7 @@ ESCOneButtonTableCellViewDelegate
         for (ESCConfigurationModel *model in appModelArray) {
             [[ESCFileManager sharedFileManager] getLatestIPAFileInfoWithConfigurationModel:model];
         }
+        [self calculateAllFileSzie];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });

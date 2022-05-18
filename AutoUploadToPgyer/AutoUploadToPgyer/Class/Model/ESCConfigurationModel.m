@@ -9,6 +9,7 @@
 #import "ESCConfigurationModel.h"
 #import "ESCConfigManager.h"
 #import "MJExtension.h"
+#import "ESCFileManager.h"
 
 @interface ESCConfigurationModel ()<MJKeyValue>
 
@@ -169,6 +170,12 @@
     
 //    NSLog(@"%lf===%lf===%lf===%lf",netRate,netRatekb,netRatemb,remainTime);
     
+}
+
+- (int)getAllFileSize {
+    NSString *dirPath = self.ipaPath;
+    int size = [ESCFileManager getDirectorySize:dirPath];
+    return size;
 }
 
 - (NSString *)buildUpdateDescription {
