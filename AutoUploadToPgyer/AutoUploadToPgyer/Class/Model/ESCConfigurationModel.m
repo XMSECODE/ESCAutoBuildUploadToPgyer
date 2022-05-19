@@ -172,9 +172,9 @@
     
 }
 
-- (int)getAllFileSize {
+- (int64_t)getAllFileSize {
     NSString *dirPath = self.ipaPath;
-    int size = [ESCFileManager getDirectorySize:dirPath];
+    int64_t size = [ESCFileManager getDirectorySize:dirPath];
     return size;
 }
 

@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, ESCXcodeMethod) {
 
 - (void)resetNetworkRate;
 
-- (int)getAllFileSize;
+- (int64_t)getAllFileSize;
 
 
 @end

@@ -47,6 +47,6 @@
 - (void)removeAllBuildHistoryFile;
 
 /// 获取所有编译文件大小
-- (int)getAllBuildFileTotalSize;
+- (int64_t)getAllBuildFileTotalSize;
 
 @end

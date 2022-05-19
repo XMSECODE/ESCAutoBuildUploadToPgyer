@@ -540,7 +540,7 @@ ESCOneButtonTableCellViewDelegate
 
 - (void)calculateAllFileSzie {
     //计算所有文件夹下文件大小
-    int fileSize = [[ESCConfigManager sharedConfigManager] getAllBuildFileTotalSize];
+    int64_t fileSize = [[ESCConfigManager sharedConfigManager] getAllBuildFileTotalSize];
     NSString *fileSizeString = [NSString stringWithFormat:@"%.1lfGB",(fileSize / 1024.0 / 1024 / 1024)];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.calculateAllFileSizeLabel.stringValue = fileSizeString;

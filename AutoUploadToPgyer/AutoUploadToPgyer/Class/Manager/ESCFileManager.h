@@ -35,6 +35,6 @@
 - (void)wirteLogToFileWith:(NSString *)logString withName:(NSString *)name withPath:(NSString *)path;
 
 /// 获取文件夹下所有文件大小
-+ (int)getDirectorySize:(NSString *)dirPath;
++ (int64_t)getDirectorySize:(NSString *)dirPath;
 
 @end

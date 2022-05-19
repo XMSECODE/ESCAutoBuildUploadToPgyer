@@ -162,10 +162,10 @@ static ESCConfigManager *staticESCConfigManager;
     }
 }
 
-- (int)getAllBuildFileTotalSize {
+- (int64_t)getAllBuildFileTotalSize {
     //遍历所有文件夹，再相加
     NSArray <ESCConfigurationModel *>*appModelArray = [self.groupModel getAllAPPModelInGroup];
-    int totalSize = 0;
+    int64_t totalSize = 0;
     for (ESCConfigurationModel *model in appModelArray) {
         totalSize = totalSize + [model getAllFileSize];
     }

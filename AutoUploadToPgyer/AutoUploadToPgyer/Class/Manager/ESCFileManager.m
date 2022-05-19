@@ -172,7 +172,7 @@ static ESCFileManager *staticESCFileManager;
     
 }
 
-+ (int)getDirectorySize:(NSString *)dirPath {
++ (int64_t)getDirectorySize:(NSString *)dirPath {
     NSError *error;
     NSArray *temArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&error];
     if (error) {
@@ -182,7 +182,7 @@ static ESCFileManager *staticESCFileManager;
     if (temArray.count == 0) {
         return 0;
     }
-    int size = 0;
+    int64_t size = 0;
     for (NSString *fileString in temArray) {
         BOOL isDirectory = NO;
         NSString *temfile = [NSString stringWithFormat:@"%@/%@",dirPath,fileString];
@@ -190,13 +190,13 @@ static ESCFileManager *staticESCFileManager;
             if (isDirectory == YES) {
                 size = size + [self getDirectorySize:temfile];
             }else {
-                int fileSize = 0;
+                int64_t fileSize = 0;
                 NSError *error;
                 NSDictionary *attributesDict = [[NSFileManager defaultManager] attributesOfItemAtPath:temfile error:&error];
                 if (error) {
                     NSLog(@"get ipa attributes error === %@ ===\n==%@",error,temfile);
                 }else {
-                    fileSize = [[attributesDict objectForKey:NSFileSize] intValue];
+                    fileSize = [[attributesDict objectForKey:NSFileSize] longLongValue];
                     size = size + fileSize;
                 }
 
