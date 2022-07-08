@@ -633,7 +633,20 @@ ESCOneButtonTableCellViewDelegate
     NSTask *certTask = [[NSTask alloc] init];
 //    NSString *md5path = [[NSBundle mainBundle] pathForResource:@"sh" ofType:@""];
     [certTask setLaunchPath:@"/bin/sh"];
+    NSString *shellFilePath = buildModel.shellFilePath;
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:shellFilePath];
+    if (result == NO) {
+        NSString *dataString = @"脚本文件不存在";
+        [self writeLog:dataString withPath:model.historyLogPath];
+        buildModel.buildResult = ESCBuildResultBuildFailure;
+        logStr = [NSString stringWithFormat:@"%@项目编译发生错误,脚本文件不存在,耗时0秒",model.appName];
+        [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
+        [self addLog:logStr];
+        return buildModel;
+    }
     [certTask setArguments:@[buildModel.shellFilePath]];
+    
+    
     self.currentBuildTask = certTask;
     NSPipe *pipe = [NSPipe pipe];
     [certTask setStandardOutput:pipe];
