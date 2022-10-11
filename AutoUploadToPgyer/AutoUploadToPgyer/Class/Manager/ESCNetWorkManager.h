@@ -11,7 +11,6 @@
 @interface ESCNetWorkManager : NSObject
 
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
-                             uKey:(NSString *)uKey
                           api_key:(NSString *)api_key
                          password:(NSString *)password
            buildUpdateDescription:(NSString *)buildUpdateDescription

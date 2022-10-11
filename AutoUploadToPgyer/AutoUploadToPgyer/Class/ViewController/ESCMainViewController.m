@@ -320,7 +320,6 @@ ESCOneButtonTableCellViewDelegate
         if (result == NSModalResponseOK) {
             if ([ESCConfigManager sharedConfigManager].uploadType == 0) {
                 NSString *pathString = [openPanel.URLs.firstObject path];
-                NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
                 NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
                 NSString *password = [ESCConfigManager sharedConfigManager].password;
                 
@@ -328,7 +327,6 @@ ESCOneButtonTableCellViewDelegate
                 [weakSelf addLog:logStr];
                 
                 [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
-                                                        uKey:ukey
                                                      api_key:api_k
                                                     password:password
                                       buildUpdateDescription:@""
@@ -750,12 +748,10 @@ ESCOneButtonTableCellViewDelegate
        NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
        [self addLog:logStr];
        
-       NSString *ukey = [ESCConfigManager sharedConfigManager].uKey;
        NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
        NSString *password = [ESCConfigManager sharedConfigManager].password;
        NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
        [ESCNetWorkManager uploadToPgyerWithFilePath:filePath
-                                               uKey:ukey
                                             api_key:api_k
                                            password:password
                              buildUpdateDescription:model.buildUpdateDescription
