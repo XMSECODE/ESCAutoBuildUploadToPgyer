@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, ESCFileType) {
+    ESCFileTypeIpa,
+    ESCFileTypeApk
+};
+
 @interface ESCNetWorkManager : NSObject
 
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
                           api_key:(NSString *)api_key
+                         fileType:(ESCFileType)filetype
                          password:(NSString *)password
            buildUpdateDescription:(NSString *)buildUpdateDescription
                          progress:(void (^)(NSProgress * progress))cuploadProgress

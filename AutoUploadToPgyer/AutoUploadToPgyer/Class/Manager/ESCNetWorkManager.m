@@ -51,6 +51,7 @@ static ESCNetWorkManager *staticNetWorkManager;
 
 + (void)uploadToPgyerWithFilePath:(NSString *)filePath
                           api_key:(NSString *)api_key
+                         fileType:(ESCFileType)filetype
                          password:(NSString *)password
            buildUpdateDescription:(NSString *)buildUpdateDescription
                          progress:(void (^)(NSProgress * progress))cuploadProgress
@@ -67,16 +68,20 @@ static ESCNetWorkManager *staticNetWorkManager;
     if (buildUpdateDescription == nil) {
         buildUpdateDescription = @"";
     }
+    NSString *typeString = @"ios";
+    if (filetype == ESCFileTypeApk) {
+        typeString = @"android";
+    }
     if (password == nil || password.length <= 0) {
         pare = @{@"_api_key":api_key,
                  @"buildInstallType":@"1",
-                 @"buildType":@"ios",
+                 @"buildType":typeString,
                  @"buildUpdateDescription":buildUpdateDescription
         };
     }else {
         pare = @{@"_api_key":api_key,
                  @"buildInstallType":@"2",
-                 @"buildType":@"ios",
+                 @"buildType":typeString,
                  @"buildPassword":password,
                  @"buildUpdateDescription":buildUpdateDescription
         };

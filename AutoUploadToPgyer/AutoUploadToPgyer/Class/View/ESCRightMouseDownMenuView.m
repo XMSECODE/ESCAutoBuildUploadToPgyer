@@ -23,7 +23,8 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
-    [[NSColor grayColor] setFill];
+    [[NSColor clearColor] setFill];
+
     
     NSRectFill(dirtyRect);
 }

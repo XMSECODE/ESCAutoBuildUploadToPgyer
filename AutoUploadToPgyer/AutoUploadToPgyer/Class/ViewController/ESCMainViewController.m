@@ -328,6 +328,7 @@ ESCOneButtonTableCellViewDelegate
                 
                 [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
                                                      api_key:api_k
+                                                    fileType:ESCFileTypeIpa
                                                     password:password
                                       buildUpdateDescription:@""
                                                     progress:^(NSProgress *progress) {
@@ -366,6 +367,80 @@ ESCOneButtonTableCellViewDelegate
                     [weakSelf addLog:[NSString stringWithFormat:@"%@:\n%@",logStr,resultString]];
                 } failure:^(NSError *error) {
                     NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",pathString];
+                    if(error){
+                        logStr = [logStr stringByAppendingString:error.localizedDescription];
+                    }
+                    [weakSelf addLog:logStr];
+                }];
+            }
+           
+        }
+    }];
+}
+
+- (IBAction)didClickManualSelectApkFileAndUploadButton:(id)sender {
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    //是否可以创建文件夹
+    openPanel.canCreateDirectories = NO;
+    //是否可以选择文件夹
+    openPanel.canChooseDirectories = NO;
+    //是否可以选择文件
+    openPanel.canChooseFiles = YES;
+    //是否可以多选
+    [openPanel setAllowsMultipleSelection:NO];
+    __weak __typeof(self)weakSelf = self;
+    [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
+        //是否点击open 按钮
+        if (result == NSModalResponseOK) {
+            if ([ESCConfigManager sharedConfigManager].uploadType == 0) {
+                NSString *pathString = [openPanel.URLs.firstObject path];
+                NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
+                NSString *password = [ESCConfigManager sharedConfigManager].password;
+                
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目apk包",pathString];
+                [weakSelf addLog:logStr];
+                
+                [ESCNetWorkManager uploadToPgyerWithFilePath:pathString
+                                                     api_key:api_k
+                                                    fileType:ESCFileTypeApk
+                                                    password:password
+                                      buildUpdateDescription:@""
+                                                    progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    int value = currentProgress * 100;
+                    if(value % 100 == 0) {
+                        NSString *logStr = [NSString stringWithFormat:@"上传%@项目apk包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                        [weakSelf addLog:logStr];
+                    }
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目apk包上传完成",pathString];
+                    NSString *resultString = [self parePgyerResult:result];
+                    [weakSelf addLog:[logStr stringByAppendingString:resultString]];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目apk包失败",pathString];
+                    if(error){
+                        logStr = [logStr stringByAppendingString:error.localizedDescription];
+                    }
+                    [weakSelf addLog:logStr];
+                }];
+            }else if ([ESCConfigManager sharedConfigManager].uploadType == 1) {
+                __weak __typeof(self)weakSelf = self;
+               NSString *pathString = [openPanel.URLs.firstObject path];
+
+                NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目apk包",pathString];
+                [self addLog:logStr];
+                
+                NSString *api_token = [ESCConfigManager sharedConfigManager].firim_api_token;
+                [ESCNetWorkManager uploadToFirimWithFilePath:pathString api_token:api_token buildUpdateDescription:@"" progress:^(NSProgress *progress) {
+                    double currentProgress = progress.fractionCompleted * 100;
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包进度%.2lf%@",[pathString lastPathComponent],currentProgress,@"%"];
+                    [weakSelf addLog:logStr];
+                } success:^(NSDictionary *result) {
+                    NSString *logStr = [NSString stringWithFormat:@"%@项目apk包上传完成",pathString];
+                    NSString *resultString = [result mj_JSONString];
+                    [weakSelf addLog:[NSString stringWithFormat:@"%@:\n%@",logStr,resultString]];
+                } failure:^(NSError *error) {
+                    NSString *logStr = [NSString stringWithFormat:@"上传%@项目apk包失败",pathString];
                     if(error){
                         logStr = [logStr stringByAppendingString:error.localizedDescription];
                     }
@@ -753,6 +828,7 @@ ESCOneButtonTableCellViewDelegate
        NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
        [ESCNetWorkManager uploadToPgyerWithFilePath:filePath
                                             api_key:api_k
+                                           fileType:ESCFileTypeIpa
                                            password:password
                              buildUpdateDescription:model.buildUpdateDescription
                                            progress:^(NSProgress *progress) {
