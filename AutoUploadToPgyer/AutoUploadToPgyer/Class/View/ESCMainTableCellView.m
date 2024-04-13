@@ -59,7 +59,7 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"mouseDownNotificationName" object:nil];
     //弹框
-    ESCRightMouseDownMenuView *menuView = [[ESCRightMouseDownMenuView alloc] initWithFrame:NSMakeRect(local_point.x, 2, 100, 66)];
+    ESCRightMouseDownMenuView *menuView = [[ESCRightMouseDownMenuView alloc] initWithFrame:NSMakeRect(local_point.x, 2, 150, 66)];
     [self addSubview:menuView];
     self.menuView = menuView;
     self.menuView.delegate = self;

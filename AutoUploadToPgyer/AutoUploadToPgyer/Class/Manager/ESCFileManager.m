@@ -162,7 +162,7 @@ static ESCFileManager *staticESCFileManager;
             if (isDirectory == YES) {
                 [self scanAllIPAFilePathWithDirectory:temfile resultArray:resultArray];
             }else {
-                if ([fileString containsString:@".ipa"]) {
+                if ([fileString containsString:@".ipa"] || [fileString containsString:@".apk"]) {
                     [resultArray addObject:temfile];
                 }
             }

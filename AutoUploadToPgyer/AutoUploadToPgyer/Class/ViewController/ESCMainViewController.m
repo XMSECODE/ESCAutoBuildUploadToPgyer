@@ -23,6 +23,7 @@
 #import "ESCOneButtonTableCellView.h"
 #import "ESCNotificationManager.h"
 #import "ESCFirimConfigViewController.h"
+#import "ESCAndroidTaskConfigViewController.h"
 
 typedef enum : NSUInteger {
     ESCSortAlgorithmTypeLRU
@@ -284,6 +285,15 @@ ESCOneButtonTableCellViewDelegate
 
 - (IBAction)didClickAddNewTarget:(id)sender {
     ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
+    __weak typeof(self)weakSelf = self;
+    [viewController setConfigCompleteBlock:^{
+        [weakSelf.tableView reloadData];
+    }];
+    [self presentViewControllerAsSheet:viewController];
+}
+
+- (IBAction)didClickAddNewAndroidBuild:(id)sender {
+    ESCAndroidTaskConfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCAndroidTaskConfigViewController" bundle:nil] instantiateInitialController];
     __weak typeof(self)weakSelf = self;
     [viewController setConfigCompleteBlock:^{
         [weakSelf.tableView reloadData];
@@ -698,6 +708,24 @@ ESCOneButtonTableCellViewDelegate
     if(self.isStartSort == YES) {
         [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
     }
+    if (model.tastType == ESCTaskType_iOS) {
+        
+    }else{
+        
+        NSString *taskString = [NSString stringWithFormat:@"cd %@\n ./gradlew assemble%@",model.projectPath,model.android_buildType];
+        NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
+        [self addLog:logStr];
+        system(taskString.UTF8String);
+        logStr = [NSString stringWithFormat:@"结束编译%@项目",model.appName];
+        [self addLog:logStr];
+        [self uploadData];
+
+        ESCBuildModel *buildModel = [[ESCBuildModel alloc] init];
+        buildModel.buildResult = ESCBuildResultSuccess;
+        
+        return buildModel;
+    }
+    
     NSString *logStr = [NSString stringWithFormat:@"开始编译%@项目",model.appName];
     [self addLog:logStr];
     double startTime = CFAbsoluteTimeGetCurrent();
@@ -816,19 +844,27 @@ ESCOneButtonTableCellViewDelegate
 
 - (void)uploadToPgyerWithModel:(ESCConfigurationModel *)model {
     __weak __typeof(self)weakSelf = self;
-       [model resetNetworkRate];
-       if(self.isStartSort == YES) {
-           [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
-       }
-       NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
-       [self addLog:logStr];
-       
+    [model resetNetworkRate];
+    if(self.isStartSort == YES) {
+        [[ESCConfigManager sharedConfigManager] sortWithLRUTypeWithModel:model];
+    }
+    ESCFileType fileType = ESCFileTypeIpa;
+    NSString *logStr = [NSString stringWithFormat:@"开始上传%@项目ipa包",model.appName];
+    if (model.tastType == ESCTaskType_android) {
+        fileType = ESCFileTypeApk;
+        logStr = [NSString stringWithFormat:@"开始上传%@项目apk包",model.appName];
+    }
+    
+    
+    [self addLog:logStr];
+    
+    
        NSString *api_k = [ESCConfigManager sharedConfigManager].api_k;
        NSString *password = [ESCConfigManager sharedConfigManager].password;
        NSString *filePath = [[ESCFileManager sharedFileManager] getLatestIPAFilePathFromWithConfigurationModel:model];
        [ESCNetWorkManager uploadToPgyerWithFilePath:filePath
                                             api_key:api_k
-                                           fileType:ESCFileTypeIpa
+                                           fileType:fileType
                                            password:password
                              buildUpdateDescription:model.buildUpdateDescription
                                            progress:^(NSProgress *progress) {
@@ -859,6 +895,9 @@ ESCOneButtonTableCellViewDelegate
            }
            model.uploadState = @"上传成功";
            NSString *logStr = [NSString stringWithFormat:@"%@项目ipa包上传完成",model.appName];
+           if (model.tastType == ESCTaskType_android) {
+               logStr = [NSString stringWithFormat:@"%@项目apk包上传完成",model.appName];
+           }
            [[ESCNotificationManager sharedManager] pushNotificationMessage:logStr];
            NSString *resultString = [self parePgyerResult:result];
            [weakSelf addLog:[logStr stringByAppendingString:resultString]];
@@ -871,6 +910,9 @@ ESCOneButtonTableCellViewDelegate
            }
            model.uploadState = @"上传失败";
            NSString *logStr = [NSString stringWithFormat:@"上传%@项目ipa包失败",model.appName];
+           if (model.tastType == ESCTaskType_android) {
+               logStr = [NSString stringWithFormat:@"上传%@项目apk包失败",model.appName];
+           }
            if(error){
                logStr = [logStr stringByAppendingString:error.localizedDescription];
            }
@@ -1056,9 +1098,15 @@ ESCOneButtonTableCellViewDelegate
         }
     }else if(view.type == ESCOneButtonTableCellViewConfigType){
         ESCConfigurationModel *model = view.model;
-        ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
-        viewController.configurationModel = model;
-        [self presentViewControllerAsSheet:viewController];
+        if (model.tastType == ESCTaskType_iOS) {
+            ESCconfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCconfigViewController" bundle:nil] instantiateInitialController];
+            viewController.configurationModel = model;
+            [self presentViewControllerAsSheet:viewController];
+        }else{
+            ESCAndroidTaskConfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCAndroidTaskConfigViewController" bundle:nil] instantiateInitialController];
+            viewController.configurationModel = model;
+            [self presentViewControllerAsSheet:viewController];
+        }
     }
 }
 

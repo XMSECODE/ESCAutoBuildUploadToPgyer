@@ -25,6 +25,8 @@
 		04ACE9E124B9BB7E000B1B90 /* ESCBuildModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACE9E024B9BB7E000B1B90 /* ESCBuildModel.m */; };
 		04F5AF4C260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */; };
 		04F5AF50260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */; };
+		1895C4272BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1895C4252BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.m */; };
+		1895C42A2BCA5FC1008EBCAE /* ESCAndroidTaskConfigViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895C4292BCA5FC1008EBCAE /* ESCAndroidTaskConfigViewController.storyboard */; };
 		F003AB11244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F003AB10244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m */; };
 		F012FA4C2284152D002CC739 /* ESCRightMouseDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F012FA4B2284152D002CC739 /* ESCRightMouseDownMenuView.m */; };
 		F04820D8244D47A0002780D9 /* ESCCustemShellConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F04820D6244D47A0002780D9 /* ESCCustemShellConfigViewController.m */; };
@@ -99,6 +101,9 @@
 		04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ESCAppBundleIdAndProfileConfigViewController.storyboard; sourceTree = "<group>"; };
 		04F5AF4E260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCAppBundleIdAndProfileConfigViewController.h; sourceTree = "<group>"; };
 		04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCAppBundleIdAndProfileConfigViewController.m; sourceTree = "<group>"; };
+		1895C4242BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCAndroidTaskConfigViewController.h; sourceTree = "<group>"; };
+		1895C4252BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCAndroidTaskConfigViewController.m; sourceTree = "<group>"; };
+		1895C4292BCA5FC1008EBCAE /* ESCAndroidTaskConfigViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ESCAndroidTaskConfigViewController.storyboard; sourceTree = "<group>"; };
 		F003AB0F244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCAppTableViewAppBuildUpdateDescriptionCellView.h; sourceTree = "<group>"; };
 		F003AB10244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESCAppTableViewAppBuildUpdateDescriptionCellView.m; sourceTree = "<group>"; };
 		F012FA4A2284152D002CC739 /* ESCRightMouseDownMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESCRightMouseDownMenuView.h; sourceTree = "<group>"; };
@@ -288,6 +293,9 @@
 				047431921F5D8B3200445EB5 /* ESCconfigViewController.h */,
 				047431931F5D8B3200445EB5 /* ESCconfigViewController.m */,
 				047431A11F5D9ADC00445EB5 /* ESCconfigViewController.storyboard */,
+				1895C4242BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.h */,
+				1895C4252BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.m */,
+				1895C4292BCA5FC1008EBCAE /* ESCAndroidTaskConfigViewController.storyboard */,
 				04F5AF4E260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.h */,
 				04F5AF4F260514C70055D190 /* ESCAppBundleIdAndProfileConfigViewController.m */,
 				04F5AF4B260514AF0055D190 /* ESCAppBundleIdAndProfileConfigViewController.storyboard */,
@@ -460,6 +468,7 @@
 				047431A01F5D9A9B00445EB5 /* Main.storyboard in Resources */,
 				04199EFC1F5AB21900CEFAB0 /* Assets.xcassets in Resources */,
 				F050520A2452728600164015 /* ESCGroupTableGroupCellView.xib in Resources */,
+				1895C42A2BCA5FC1008EBCAE /* ESCAndroidTaskConfigViewController.storyboard in Resources */,
 				F051C5C8247263A500782358 /* ESCOneButtonTableCellView.xib in Resources */,
 				F07CF28224A1F53A009D224F /* ESCFirimConfigViewController.storyboard in Resources */,
 				047431A21F5D9ADC00445EB5 /* ESCconfigViewController.storyboard in Resources */,
@@ -509,6 +518,7 @@
 				F0587A6E2481042C00BC6588 /* MJPropertyKey.m in Sources */,
 				0474319B1F5D987200445EB5 /* ESCNetWorkManager.m in Sources */,
 				F003AB11244D382B0098B601 /* ESCAppTableViewAppBuildUpdateDescriptionCellView.m in Sources */,
+				1895C4272BCA5FAB008EBCAE /* ESCAndroidTaskConfigViewController.m in Sources */,
 				047431981F5D978100445EB5 /* ESCConfigurationModel.m in Sources */,
 				F04820D8244D47A0002780D9 /* ESCCustemShellConfigViewController.m in Sources */,
 				04199F681F5ADB9800CEFAB0 /* NSDate+Utilities.m in Sources */,
