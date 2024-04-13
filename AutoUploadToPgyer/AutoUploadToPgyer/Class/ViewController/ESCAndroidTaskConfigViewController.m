@@ -1,39 +1,28 @@
 //
-//  ESCconfigViewController.m
-//  AutoUploadToPgyer
+//  ESCAndroidTaskConfigViewController.m
+//  iOSAutoBuildAndUpload
 //
-//  Created by xiangmingsheng on 04/09/2017.
-//  Copyright © 2017 XMSECODE. All rights reserved.
+//  Created by apple on 2024/4/13.
+//  Copyright © 2024 XMSECODE. All rights reserved.
 //
 
-#import "ESCconfigViewController.h"
+#import "ESCAndroidTaskConfigViewController.h"
 #import "ESCConfigurationModel.h"
 #import "ESCConfigManager.h"
 #import "ESCAppBundleIdAndProfileConfigViewController.h"
 
-@interface ESCconfigViewController ()
 
-@property (weak) IBOutlet NSButton *xcodeprojButton;
-
-@property (weak) IBOutlet NSButton *xcworkspaceButton;
-
-@property (weak) IBOutlet NSTextField *schemesTextField;
+@interface ESCAndroidTaskConfigViewController ()
 
 @property (weak) IBOutlet NSTextField *appNameTextField;
+
+@property (weak) IBOutlet NSTextField *buildTypeTextField;
 
 @property (weak) IBOutlet NSTextField *projectPathTextField;
 
 @property (weak) IBOutlet NSTextField *ipaPathTextField;
 
-@property (weak) IBOutlet NSTextField *signingCertificateTextField;
-
-@property (weak) IBOutlet NSTextField *bundleIdTextField;
-
-@property (weak) IBOutlet NSTextField *provisioningProfileNameTextField;
-
 @property (weak) IBOutlet NSPopUpButton *groupPopUpButton;
-
-@property (weak) IBOutlet NSPopUpButton *methodPopUpButton;
 
 @property (assign) BOOL isCreatNew;
 
@@ -41,7 +30,7 @@
 
 @end
 
-@implementation ESCconfigViewController
+@implementation ESCAndroidTaskConfigViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,22 +56,13 @@
         self.ipaPathTextField.stringValue = configurationModel.ipaPath;
     }
     
-    self.xcodeprojButton.state = !configurationModel.projectType;
-    self.xcworkspaceButton.state = configurationModel.projectType;
-    if (configurationModel.schemes) {
-        self.schemesTextField.stringValue = configurationModel.schemes;
-    }
+    
     if (configurationModel.appName) {
         self.appNameTextField.stringValue = configurationModel.appName;
     }
-    if (configurationModel.signingCertificate) {
-        self.signingCertificateTextField.stringValue = configurationModel.signingCertificate;
-    }
-    if (configurationModel.bundleID) {
-        self.bundleIdTextField.stringValue = configurationModel.bundleID;
-    }
-    if (configurationModel.provisioningProfileName) {
-        self.provisioningProfileNameTextField.stringValue = configurationModel.provisioningProfileName;
+    
+    if (configurationModel.android_buildType) {
+        self.buildTypeTextField.stringValue = configurationModel.android_buildType;
     }
     
     [self.groupPopUpButton removeAllItems];
@@ -105,17 +85,7 @@
         [self.groupPopUpButton selectItemAtIndex:[groupArray indexOfObject:groupModel] + 1];
     }
     
-    [self.methodPopUpButton removeAllItems];
-    [self.methodPopUpButton addItemsWithTitles:@[@"ad hoc",@"app store",@"development"]];
 
-    [self.methodPopUpButton selectItemAtIndex:self.configurationModel.method];
-
-}
-
-- (IBAction)didClickSetAppIdButton:(id)sender {
-    ESCAppBundleIdAndProfileConfigViewController *viewController = [[NSStoryboard storyboardWithName:@"ESCAppBundleIdAndProfileConfigViewController" bundle:nil] instantiateInitialController];
-    viewController.configurationModel = self.configurationModel;
-    [self presentViewControllerAsSheet:viewController];
 }
 
 - (IBAction)didClickCancelButton:(id)sender {
@@ -131,25 +101,16 @@
     NSString *ipaPath = self.ipaPathTextField.stringValue;
     configurationModel.ipaPath = ipaPath;
     
-    configurationModel.signingCertificate = self.signingCertificateTextField.stringValue;
     
-    configurationModel.bundleID = self.bundleIdTextField.stringValue;
-    
-    configurationModel.provisioningProfileName = self.provisioningProfileNameTextField.stringValue;
-    
-    configurationModel.method = self.methodPopUpButton.indexOfSelectedItem;
-    
-    configurationModel.tastType = ESCTaskType_iOS;
-    
-    if (self.xcodeprojButton.state) {
-        configurationModel.projectType = ESCXCodeProjectTypeProj;
-    }else {
-        configurationModel.projectType = ESCXCodeProjectTypeWorkspace;
-    }
-    
-    NSString *schemes = self.schemesTextField.stringValue;
-    configurationModel.schemes = schemes;
+    configurationModel.tastType = ESCTaskType_android;
+
     configurationModel.appName = self.appNameTextField.stringValue;
+    
+    configurationModel.android_buildType = self.buildTypeTextField.stringValue;
+    
+    if (configurationModel.android_buildType.length <= 0) {
+        configurationModel.android_buildType = @"release";
+    }
     
     if (self.isCreatNew) {
         
@@ -207,11 +168,6 @@
     
     [self dismissController:nil];
 }
-- (IBAction)didClickxcodeprojButton:(id)sender {
-    self.xcworkspaceButton.state = !self.xcodeprojButton.state;
-}
-- (IBAction)didClickxcworkspaceButton:(id)sender {
-    self.xcodeprojButton.state = !self.xcworkspaceButton.state;
-}
+
 
 @end

@@ -41,7 +41,7 @@
         NSButton *uploadButton = [[NSButton alloc] initWithFrame:CGRectMake(0, frameRect.size.height / 3 * 1, frameRect.size.width, frameRect.size.height / 3)];
         [self addSubview:uploadButton];
         self.uploadButton = uploadButton;
-        [self.uploadButton setTitle:@"上传ipa"];
+        [self.uploadButton setTitle:@"上传打包文件"];
         self.uploadButton.action = @selector(didClickUploadButton);
         self.uploadButton.target = self;
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JEY-uD-DLt">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JEY-uD-DLt">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ftR-Zq-5rk">
-                                <rect key="frame" x="619" y="13" width="67" height="32"/>
+                                <rect key="frame" x="626" y="13" width="61" height="32"/>
                                 <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lxV-w7-bsA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -27,11 +27,11 @@
                             <scrollView ambiguous="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoS-sM-2D1">
                                 <rect key="frame" x="20" y="100" width="300" height="400"/>
                                 <clipView key="contentView" ambiguous="YES" id="qAt-mE-SCu">
-                                    <rect key="frame" x="1" y="0.0" width="298" height="399"/>
+                                    <rect key="frame" x="1" y="1" width="298" height="383"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uNZ-fH-bED" viewBased="YES" id="dWq-tk-bCQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="303" height="374"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="312" height="358"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -50,11 +50,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="wPC-ci-VGv">
-                                                            <rect key="frame" x="1" y="1" width="300" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="309" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qa-0K-R4g">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qa-0K-R4g">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="D12-qm-wW1">
                                                                         <font key="font" metaFont="system"/>
@@ -82,20 +82,20 @@
                                     <constraint firstAttribute="width" constant="300" id="ScU-PC-nVa"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="jsF-eS-mbr">
-                                    <rect key="frame" x="1" y="383" width="298" height="16"/>
+                                    <rect key="frame" x="1" y="384" width="298" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dVl-Y7-MLp">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="uNZ-fH-bED">
-                                    <rect key="frame" x="0.0" y="0.0" width="303" height="25"/>
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="uNZ-fH-bED">
+                                    <rect key="frame" x="0.0" y="0.0" width="312" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vXz-e2-a7k">
-                                <rect key="frame" x="354" y="452" width="94" height="32"/>
+                                <rect key="frame" x="353" y="453" width="88" height="32"/>
                                 <buttonCell key="cell" type="push" title="新建分组" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kxm-25-mIm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -105,7 +105,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mg7-vy-b17">
-                                <rect key="frame" x="354" y="381" width="94" height="32"/>
+                                <rect key="frame" x="353" y="383" width="88" height="32"/>
                                 <buttonCell key="cell" type="push" title="删除分组" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zdI-ci-Kw5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

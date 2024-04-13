@@ -26,6 +26,11 @@ typedef NS_ENUM(NSUInteger, ESCXcodeMethod) {
     ESCXcodeMethod_development
 };
 
+typedef NS_ENUM(NSUInteger, ESCTaskType) {
+    ESCTaskType_iOS,
+    ESCTaskType_android
+};
+
 @interface ESCConfigurationModel : NSObject
 
 @property(nonatomic,copy)NSString* projectPath;
@@ -97,6 +102,11 @@ typedef NS_ENUM(NSUInteger, ESCXcodeMethod) {
 @property(nonatomic,copy)NSString *needRemainTimeString;
 
 @property(nonatomic,assign)ESCXcodeMethod method;
+
+@property(nonatomic,assign)ESCTaskType tastType;
+
+///安卓的buildType（release、debug...）
+@property(nonatomic,copy)NSString *android_buildType;
 
 - (void)calculateNetWorkRate;
 
