@@ -20,6 +20,8 @@ static NSString *ESCMainTableCellViewID = @"ESCMainTableCellViewID";
 
 - (void)mainTableCellViewdidClickRightMenuBuildAndUploadButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
 
+- (void)mainTableCellViewdidClickRightMenuOpenFindButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model;
+
 @end
 
 @interface ESCMainTableCellView : NSTableCellView

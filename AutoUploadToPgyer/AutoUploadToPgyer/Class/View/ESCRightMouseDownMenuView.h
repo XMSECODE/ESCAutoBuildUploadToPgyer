@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)ESCRightMouseDownMenuViewdidClickBuildAndUploadButton:(ESCRightMouseDownMenuView *)view ;
 
+- (void)ESCRightMouseDownMenuViewdidClickOpenFindButton:(ESCRightMouseDownMenuView *)view ;
+
 @end
 
 @interface ESCRightMouseDownMenuView : NSView
