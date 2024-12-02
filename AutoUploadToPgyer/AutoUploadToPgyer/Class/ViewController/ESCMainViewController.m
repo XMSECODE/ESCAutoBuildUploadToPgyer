@@ -268,7 +268,7 @@ ESCOneButtonTableCellViewDelegate
     if ([model isKindOfClass:[ESCGroupModel class]]) {
         return 20;
     }else if ([model isKindOfClass:[ESCConfigurationModel class]]) {
-        return 70;
+        return 90;
     }
     return 0;
 }
@@ -1051,6 +1051,16 @@ ESCOneButtonTableCellViewDelegate
             }
         });
     }
+}
+
+- (void)mainTableCellViewdidClickRightMenuOpenFindButton:(ESCMainTableCellView *)cellView configurationModel:(ESCConfigurationModel *)model {
+    NSString *path = model.ipaPath;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+     if ([fileManager fileExistsAtPath:path isDirectory:nil]) {
+         [[NSWorkspace sharedWorkspace] openFile:path];
+     } else {
+         NSLog(@"路径不存在: %@", path);
+     }
 }
 
 #pragma mark - ESCGroupTableGroupCellViewDelegate

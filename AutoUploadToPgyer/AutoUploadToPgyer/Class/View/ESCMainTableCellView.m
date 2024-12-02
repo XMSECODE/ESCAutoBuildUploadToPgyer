@@ -59,7 +59,7 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"mouseDownNotificationName" object:nil];
     //弹框
-    ESCRightMouseDownMenuView *menuView = [[ESCRightMouseDownMenuView alloc] initWithFrame:NSMakeRect(local_point.x, 2, 150, 66)];
+    ESCRightMouseDownMenuView *menuView = [[ESCRightMouseDownMenuView alloc] initWithFrame:NSMakeRect(local_point.x, -2, 150, 88)];
     [self addSubview:menuView];
     self.menuView = menuView;
     self.menuView.delegate = self;
@@ -103,6 +103,12 @@
 - (void)ESCRightMouseDownMenuViewdidClickBuildAndUploadButton:(ESCRightMouseDownMenuView *)view {
     if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickRightMenuBuildAndUploadButton:configurationModel:)]) {
         [self.delegate mainTableCellViewdidClickRightMenuBuildAndUploadButton:self configurationModel:self.configurationModel];
+    }
+}
+
+- (void)ESCRightMouseDownMenuViewdidClickOpenFindButton:(ESCRightMouseDownMenuView *)view {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mainTableCellViewdidClickRightMenuOpenFindButton:configurationModel:)]) {
+        [self.delegate mainTableCellViewdidClickRightMenuOpenFindButton:self configurationModel:self.configurationModel];
     }
 }
 
